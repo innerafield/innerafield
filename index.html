@@ -37,24 +37,33 @@
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow-x: hidden;
             transition: all 0.5s ease;
+            padding-bottom: 150px;
         }
 
-        .cosmos {
+        /* COSMOS BACKGROUND */
+        #cosmos {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
+        }
+
+        .cosmos-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
             background: radial-gradient(ellipse at top, var(--glow-pink), transparent 60%),
                         radial-gradient(ellipse at bottom, var(--glow-blue), transparent 60%);
             opacity: 0.3;
             animation: pulse 8s ease-in-out infinite;
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -64,11 +73,14 @@
 
         .container {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
             padding: 2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* HEADER */
@@ -76,13 +88,15 @@
             font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 600;
             letter-spacing: 0.5em;
-            margin: 0 0 1rem 0;
+            margin: 2rem 0 1rem 0;
             background: linear-gradient(135deg, #ff1493, #00bfff, #8a2be2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 40px var(--glow-pink);
             animation: fadeIn 1.5s ease;
+            text-align: center;
+            width: 100%;
         }
 
         @keyframes fadeIn {
@@ -100,71 +114,60 @@
             margin: 2rem auto;
             opacity: 0;
             animation: fadeIn 2s ease 0.5s forwards;
+            text-align: center;
         }
 
         /* BREATH CIRCLE */
         .breath-zone {
             margin: 4rem auto;
             position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .circle {
             width: 240px;
             height: 240px;
-            margin: 0 auto;
             border: 3px solid var(--border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 0 60px var(--glow-pink), 
                         inset 0 0 60px var(--glow-purple);
             backdrop-filter: blur(20px);
             opacity: 0;
             animation: fadeIn 2s ease 1s forwards;
+            transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .circle:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 80px var(--glow-pink);
         }
 
+        /* SMOOTH CONTINUOUS BREATHING ANIMATIONS */
         .circle.breathe-in {
-            animation: breathIn 4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.4);
+            opacity: 1;
         }
 
         .circle.hold-in {
-            animation: holdLarge 4s ease-in-out;
+            transform: scale(1.4);
+            opacity: 1;
         }
 
         .circle.breathe-out {
-            animation: breathOut 4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.85);
+            opacity: 0.5;
         }
 
         .circle.hold-out {
-            animation: holdSmall 4s ease-in-out;
-        }
-
-        @keyframes breathIn {
-            from { transform: scale(1); opacity: 0.6; }
-            to { transform: scale(1.4); opacity: 1; }
-        }
-
-        @keyframes holdLarge {
-            0%, 100% { transform: scale(1.4); opacity: 1; }
-            50% { transform: scale(1.45); }
-        }
-
-        @keyframes breathOut {
-            from { transform: scale(1.4); opacity: 1; }
-            to { transform: scale(0.85); opacity: 0.5; }
-        }
-
-        @keyframes holdSmall {
-            0%, 100% { transform: scale(0.85); opacity: 0.5; }
-            50% { transform: scale(0.8); }
+            transform: scale(0.85);
+            opacity: 0.5;
         }
 
         .circle-text {
@@ -175,43 +178,17 @@
         }
 
         .timer {
-            margin-top: 1rem;
-            font-size: 2rem;
+            margin-top: 2rem;
+            font-size: 2.5rem;
             font-weight: 300;
             font-variant-numeric: tabular-nums;
-            color: var(--text-dim);
+            color: var(--text);
             display: none;
+            text-align: center;
         }
 
         .timer.active {
             display: block;
-        }
-
-        /* PEACE BUTTON */
-        .peace-now {
-            margin: 3rem auto;
-            padding: 1.5rem 4rem;
-            font-size: 1.3rem;
-            background: linear-gradient(135deg, var(--glow-pink), var(--glow-blue));
-            border: none;
-            border-radius: 60px;
-            color: white;
-            cursor: pointer;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            transition: all 0.3s;
-            box-shadow: 0 10px 40px var(--glow-pink);
-            opacity: 0;
-            animation: fadeIn 2s ease 1.5s forwards;
-        }
-
-        .peace-now:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 60px var(--glow-pink);
-        }
-
-        .peace-now:active {
-            transform: translateY(0);
         }
 
         /* FREQUENCIES */
@@ -221,6 +198,7 @@
             gap: 1.5rem;
             margin: 4rem auto;
             max-width: 900px;
+            width: 100%;
             opacity: 0;
             animation: fadeIn 2s ease 2s forwards;
         }
@@ -254,15 +232,58 @@
             letter-spacing: 0.05em;
         }
 
-        /* CONTROLS */
+        /* FIXED CONTROLS AT BOTTOM */
+        .fixed-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        body.light .fixed-controls {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* PEACE NOW - BIG CENTRAL BUTTON */
+        .peace-now {
+            padding: 1.2rem 4rem;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--glow-pink), var(--glow-blue));
+            border: none;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px var(--glow-pink);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .peace-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 60px var(--glow-pink);
+        }
+
+        .peace-now:active {
+            transform: translateY(0);
+        }
+
+        /* OTHER CONTROLS */
         .controls {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 3rem auto;
-            opacity: 0;
-            animation: fadeIn 2s ease 2.5s forwards;
         }
 
         .btn {
@@ -441,6 +462,7 @@
             font-size: 1rem;
             letter-spacing: 0.05em;
             transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
         }
 
         .donate-btn:hover {
@@ -449,13 +471,13 @@
         }
 
         /* FOCUS MODE */
-        body.focus .container > *:not(.circle):not(.timer):not(.peace-now) {
+        body.focus .container > *:not(.breath-zone) {
             opacity: 0.1 !important;
             pointer-events: none;
         }
 
-        body.focus .access-bar,
-        body.focus .controls {
+        body.focus .fixed-controls,
+        body.focus .access-bar {
             opacity: 0.2;
         }
 
@@ -476,8 +498,16 @@
             }
 
             .peace-now {
-                padding: 1.2rem 3rem;
+                padding: 1rem 2.5rem;
                 font-size: 1.1rem;
+            }
+
+            .fixed-controls {
+                padding: 1rem;
+            }
+
+            body {
+                padding-bottom: 180px;
             }
         }
 
@@ -492,7 +522,6 @@
             border: 0;
         }
 
-        /* CANVAS FOR SHARE */
         #shareCanvas {
             display: none;
         }
@@ -509,7 +538,8 @@
     </style>
 </head>
 <body>
-    <div class="cosmos"></div>
+    <div class="cosmos-glow"></div>
+    <canvas id="cosmos"></canvas>
 
     <!-- Accessibility Bar -->
     <nav class="access-bar" role="navigation">
@@ -536,9 +566,6 @@
             <div class="timer" id="timer">00:00</div>
         </div>
 
-        <!-- Emergency Peace -->
-        <button class="peace-now" id="peace">🕊️ Peace Now</button>
-
         <!-- Frequencies -->
         <div class="frequencies" role="list" aria-label="Frequency selection">
             <div class="freq-card" data-freq="528" role="button" tabindex="0">
@@ -561,14 +588,6 @@
             </div>
         </div>
 
-        <!-- Controls -->
-        <div class="controls">
-            <button class="btn" id="intentionBtn">💫 Intention</button>
-            <button class="btn" id="soundBtn">🎵 Sound</button>
-            <button class="btn" id="shareBtn">📸 Share</button>
-            <button class="btn" id="stopBtn">⏹️ Stop</button>
-        </div>
-
         <!-- Donation -->
         <div class="donate">
             <h3>✨ Energy Exchange</h3>
@@ -579,10 +598,21 @@
         </div>
     </main>
 
+    <!-- FIXED CONTROLS AT BOTTOM -->
+    <div class="fixed-controls">
+        <button class="peace-now" id="peace">🕊️ Peace Now</button>
+        <div class="controls">
+            <button class="btn" id="intentionBtn">💫 Intention</button>
+            <button class="btn" id="soundBtn">🎵 Sound</button>
+            <button class="btn" id="shareBtn">📸 Share</button>
+            <button class="btn" id="stopBtn">⏹️ Stop</button>
+        </div>
+    </div>
+
     <!-- Intention Modal -->
     <div class="modal" id="intentionModal">
         <div class="modal-box">
-            <button class="close-x" onclick="close('intentionModal')">×</button>
+            <button class="close-x" onclick="closeModal('intentionModal')">×</button>
             <h2>Set Your Intention</h2>
             <p>What do you wish to call into being?</p>
             <textarea id="intentionText" placeholder="I intend to..."></textarea>
@@ -593,7 +623,7 @@
     <!-- Sound Modal -->
     <div class="modal" id="soundModal">
         <div class="modal-box">
-            <button class="close-x" onclick="close('soundModal')">×</button>
+            <button class="close-x" onclick="closeModal('soundModal')">×</button>
             <h2>Ambient Sound</h2>
             <p>Choose a sound to accompany your practice:</p>
             <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
@@ -608,7 +638,7 @@
     <!-- Share Modal -->
     <div class="modal" id="shareModal">
         <div class="modal-box">
-            <button class="close-x" onclick="close('shareModal')">×</button>
+            <button class="close-x" onclick="closeModal('shareModal')">×</button>
             <h2>Share Your Moment</h2>
             <canvas id="shareCanvas" width="1200" height="630"></canvas>
             <div class="share-preview" id="preview"></div>
@@ -621,6 +651,7 @@
         let audioCtx, osc, gain, timerInterval, breathInterval;
         let breathing = false, playing = false, startTime = null;
         let activeFreq = null, ambientSound = null;
+        let breathPhase = 0;
 
         // === INIT AUDIO ===
         function initAudio() {
@@ -690,43 +721,136 @@
             startTime = null;
         }
 
-        // === BREATHING ANIMATION ===
+        // === SMOOTH CONTINUOUS BREATHING ===
         function startBreathing() {
             breathing = !breathing;
+            const circle = document.getElementById('circle');
+            const text = document.getElementById('circleText');
+            
             if (!breathing) {
-                document.getElementById('circleText').textContent = 'BREATHE';
-                document.getElementById('circle').className = 'circle';
+                text.textContent = 'BREATHE';
+                circle.className = 'circle';
                 if (breathInterval) clearInterval(breathInterval);
                 return;
             }
 
             const phases = [
-                { text: 'INHALE', class: 'breathe-in', duration: 4000 },
-                { text: 'HOLD', class: 'hold-in', duration: 4000 },
-                { text: 'EXHALE', class: 'breathe-out', duration: 4000 },
-                { text: 'HOLD', class: 'hold-out', duration: 4000 }
+                { text: 'INHALE', class: 'breathe-in' },
+                { text: 'HOLD', class: 'hold-in' },
+                { text: 'EXHALE', class: 'breathe-out' },
+                { text: 'HOLD', class: 'hold-out' }
             ];
             
-            let index = 0;
-            const cycle = () => {
+            breathPhase = 0;
+            
+            function cycle() {
                 if (!breathing) return;
-                const phase = phases[index];
-                document.getElementById('circleText').textContent = phase.text;
-                document.getElementById('circle').className = 'circle ' + phase.class;
-                index = (index + 1) % phases.length;
-                setTimeout(cycle, phase.duration);
-            };
+                
+                const phase = phases[breathPhase];
+                text.textContent = phase.text;
+                circle.className = 'circle ' + phase.class;
+                
+                breathPhase = (breathPhase + 1) % phases.length;
+                setTimeout(cycle, 4000);
+            }
+            
             cycle();
         }
 
         // === MODALS ===
-        function open(id) {
+        function openModal(id) {
             document.getElementById(id).classList.add('show');
         }
 
-        function close(id) {
+        function closeModal(id) {
             document.getElementById(id).classList.remove('show');
         }
+
+        // === CANVAS PARTICLES ===
+        const canvas = document.getElementById('cosmos');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.color = Math.random() > 0.5 ? 
+                    `rgba(255, 20, 147, ${Math.random() * 0.5 + 0.2})` : 
+                    `rgba(0, 191, 255, ${Math.random() * 0.5 + 0.2})`;
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 2 + 0.5;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        const gradient = ctx.createLinearGradient(
+                            particles[i].x, particles[i].y,
+                            particles[j].x, particles[j].y
+                        );
+                        gradient.addColorStop(0, `rgba(255, 20, 147, ${0.1 * (1 - distance / 100)})`);
+                        gradient.addColorStop(1, `rgba(0, 191, 255, ${0.1 * (1 - distance / 100)})`);
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
         // === EVENT LISTENERS ===
         
@@ -747,14 +871,14 @@
         // Emergency Peace
         document.getElementById('peace').addEventListener('click', () => {
             playFreq(432);
-            document.querySelector('.cosmos').style.opacity = '0.8';
+            document.querySelector('.cosmos-glow').style.opacity = '0.8';
             setTimeout(() => {
-                document.querySelector('.cosmos').style.opacity = '0.3';
+                document.querySelector('.cosmos-glow').style.opacity = '0.3';
             }, 5000);
         });
 
         // Intention
-        document.getElementById('intentionBtn').addEventListener('click', () => open('intentionModal'));
+        document.getElementById('intentionBtn').addEventListener('click', () => openModal('intentionModal'));
         document.getElementById('releaseBtn').addEventListener('click', () => {
             const text = document.getElementById('intentionText').value;
             if (text.trim()) {
@@ -764,15 +888,14 @@
                     document.body.style.filter = 'brightness(1)';
                 }, 2000);
             }
-            close('intentionModal');
+            closeModal('intentionModal');
         });
 
         // Sound
-        document.getElementById('soundBtn').addEventListener('click', () => open('soundModal'));
+        document.getElementById('soundBtn').addEventListener('click', () => openModal('soundModal'));
         document.querySelectorAll('[data-sound]').forEach(btn => {
             btn.addEventListener('click', function() {
                 const sound = this.dataset.sound;
-                // Generate tone-based ambient sounds
                 if (sound !== 'none' && !ambientSound) {
                     initAudio();
                     ambientSound = audioCtx.createOscillator();
@@ -788,7 +911,7 @@
                     ambientSound.stop();
                     ambientSound = null;
                 }
-                close('soundModal');
+                closeModal('soundModal');
             });
         });
 
@@ -814,7 +937,7 @@
             
             const url = canvas.toDataURL('image/png');
             document.getElementById('preview').innerHTML = `<img src="${url}" alt="Share card">`;
-            open('shareModal');
+            openModal('shareModal');
         });
 
         document.getElementById('downloadBtn').addEventListener('click', () => {
@@ -846,27 +969,29 @@
         });
 
         document.getElementById('motionBtn').addEventListener('click', function() {
-            const animations = document.querySelectorAll('[style*="animation"]');
-            animations.forEach(el => {
-                el.style.animationPlayState = 
-                    el.style.animationPlayState === 'paused' ? 'running' : 'paused';
+            const elements = document.querySelectorAll('[style*="animation"]');
+            elements.forEach(el => {
+                if (el.style.animationPlayState === 'paused') {
+                    el.style.animationPlayState = 'running';
+                } else {
+                    el.style.animationPlayState = 'paused';
+                }
             });
             this.classList.toggle('active');
         });
 
-        // Close modals on ESC
+        // Close modals
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
-                close('intentionModal');
-                close('soundModal');
-                close('shareModal');
+                closeModal('intentionModal');
+                closeModal('soundModal');
+                closeModal('shareModal');
             }
         });
 
-        // Close on background click
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', e => {
-                if (e.target === modal) close(modal.id);
+                if (e.target === modal) closeModal(modal.id);
             });
         });
     </script>

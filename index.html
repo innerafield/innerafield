@@ -18,8 +18,8 @@
         :root {
             --bg: #000;
             --text: #fff;
-            --text-dim: rgba(255, 255, 255, 0.6);
-            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: rgba(255, 255, 255, 0.7);
+            --border: rgba(255, 255, 255, 0.15);
             --glow-pink: rgba(255, 20, 147, 0.4);
             --glow-blue: rgba(0, 191, 255, 0.4);
             --glow-purple: rgba(138, 43, 226, 0.3);
@@ -28,8 +28,8 @@
         body.light {
             --bg: #fafafa;
             --text: #1a1a1a;
-            --text-dim: rgba(0, 0, 0, 0.6);
-            --border: rgba(0, 0, 0, 0.1);
+            --text-dim: rgba(0, 0, 0, 0.7);
+            --border: rgba(0, 0, 0, 0.15);
         }
 
         body {
@@ -104,14 +104,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* WISDOM */
+        /* WISDOM - BACK AND VISIBLE */
         .wisdom {
             font-size: clamp(1.1rem, 2.5vw, 1.6rem);
             font-weight: 300;
             line-height: 2;
             color: var(--text-dim);
             max-width: 700px;
-            margin: 2rem auto;
+            margin: 2rem auto 3rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
             opacity: 0;
             animation: fadeIn 2s ease 0.5s forwards;
             text-align: center;
@@ -119,7 +124,7 @@
 
         /* BREATH CIRCLE */
         .breath-zone {
-            margin: 4rem auto;
+            margin: 3rem auto;
             position: relative;
             width: 100%;
             display: flex;
@@ -139,35 +144,41 @@
             box-shadow: 0 0 60px var(--glow-pink), 
                         inset 0 0 60px var(--glow-purple);
             backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.02);
             opacity: 0;
             animation: fadeIn 2s ease 1s forwards;
             transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 4s cubic-bezier(0.4, 0, 0.2, 1);
+                        opacity 4s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .circle:hover {
             transform: scale(1.05);
         }
 
-        /* SMOOTH CONTINUOUS BREATHING ANIMATIONS */
+        /* SMOOTH BREATHING ANIMATIONS */
         .circle.breathe-in {
             transform: scale(1.4);
             opacity: 1;
+            box-shadow: 0 0 100px var(--glow-pink), inset 0 0 80px var(--glow-purple);
         }
 
         .circle.hold-in {
             transform: scale(1.4);
             opacity: 1;
+            box-shadow: 0 0 100px var(--glow-pink), inset 0 0 80px var(--glow-purple);
         }
 
         .circle.breathe-out {
             transform: scale(0.85);
             opacity: 0.5;
+            box-shadow: 0 0 40px var(--glow-pink), inset 0 0 40px var(--glow-purple);
         }
 
         .circle.hold-out {
             transform: scale(0.85);
             opacity: 0.5;
+            box-shadow: 0 0 40px var(--glow-pink), inset 0 0 40px var(--glow-purple);
         }
 
         .circle-text {
@@ -177,18 +188,20 @@
             opacity: 0.8;
         }
 
+        /* TIMER - FIXED AND VISIBLE */
         .timer {
             margin-top: 2rem;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 300;
             font-variant-numeric: tabular-nums;
             color: var(--text);
-            display: none;
             text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
         .timer.active {
-            display: block;
+            opacity: 1;
         }
 
         /* FREQUENCIES */
@@ -204,24 +217,24 @@
         }
 
         .freq-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2rem 1rem;
             cursor: pointer;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
         .freq-card:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-5px);
             box-shadow: 0 10px 40px var(--glow-purple);
             border-color: var(--glow-pink);
         }
 
         .freq-card.active {
-            background: rgba(255, 20, 147, 0.1);
+            background: rgba(255, 20, 147, 0.15);
             border-color: var(--glow-pink);
             box-shadow: 0 0 30px var(--glow-pink);
         }
@@ -232,15 +245,15 @@
             letter-spacing: 0.05em;
         }
 
-        /* FIXED CONTROLS AT BOTTOM */
+        /* FIXED CONTROLS AT BOTTOM - MORE TRANSPARENT */
         .fixed-controls {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
             border-top: 1px solid var(--border);
             padding: 1.5rem;
             display: flex;
@@ -250,7 +263,7 @@
         }
 
         body.light .fixed-controls {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
         }
 
         /* PEACE NOW - BIG CENTRAL BUTTON */
@@ -287,7 +300,7 @@
         }
 
         .btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--border);
             color: var(--text);
             padding: 0.9rem 1.8rem;
@@ -297,7 +310,7 @@
             font-weight: 500;
             letter-spacing: 0.05em;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             font-family: 'Inter', sans-serif;
         }
 
@@ -313,15 +326,15 @@
             border-color: var(--glow-pink);
         }
 
-        /* ACCESSIBILITY BAR */
+        /* ACCESSIBILITY BAR - SIMPLIFIED */
         .access-bar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             padding: 0.8rem;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(30px);
             display: flex;
             gap: 0.8rem;
             justify-content: center;
@@ -331,7 +344,7 @@
         }
 
         body.light .access-bar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .access-bar .btn {
@@ -425,15 +438,15 @@
             box-shadow: 0 0 20px var(--glow-pink);
         }
 
-        /* DONATION */
+        /* DONATION - MORE TRANSPARENT */
         .donate {
             margin: 4rem auto;
-            padding: 2rem;
+            padding: 2.5rem;
             max-width: 600px;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
             border-radius: 25px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             opacity: 0;
             animation: fadeIn 2s ease 3s forwards;
         }
@@ -470,17 +483,6 @@
             box-shadow: 0 10px 40px var(--glow-blue);
         }
 
-        /* FOCUS MODE */
-        body.focus .container > *:not(.breath-zone) {
-            opacity: 0.1 !important;
-            pointer-events: none;
-        }
-
-        body.focus .fixed-controls,
-        body.focus .access-bar {
-            opacity: 0.2;
-        }
-
         /* MOBILE */
         @media (max-width: 768px) {
             h1 {
@@ -490,6 +492,10 @@
             .circle {
                 width: 200px;
                 height: 200px;
+            }
+
+            .timer {
+                font-size: 2.5rem;
             }
 
             .frequencies {
@@ -541,21 +547,19 @@
     <div class="cosmos-glow"></div>
     <canvas id="cosmos"></canvas>
 
-    <!-- Accessibility Bar -->
+    <!-- Accessibility Bar - SIMPLIFIED -->
     <nav class="access-bar" role="navigation">
-        <button class="btn" id="focusBtn">🎯 Focus</button>
         <button class="btn" id="themeBtn">☀️ Light</button>
         <button class="btn" id="textBtn">A+ Text</button>
-        <button class="btn" id="motionBtn">⏸️ Motion</button>
     </nav>
 
     <main class="container">
         <!-- Brand -->
         <h1>INNERA FIELD</h1>
 
-        <!-- Wisdom -->
+        <!-- Wisdom - BACK AND VISIBLE -->
         <div class="wisdom" role="region" aria-label="Daily wisdom">
-            <p id="wisdom">You are not broken. You are infinite. You are the bridge between form and formless.</p>
+            <p id="wisdom">Loading wisdom...</p>
         </div>
 
         <!-- Breath Circle -->
@@ -603,7 +607,6 @@
         <button class="peace-now" id="peace">🕊️ Peace Now</button>
         <div class="controls">
             <button class="btn" id="intentionBtn">💫 Intention</button>
-            <button class="btn" id="soundBtn">🎵 Sound</button>
             <button class="btn" id="shareBtn">📸 Share</button>
             <button class="btn" id="stopBtn">⏹️ Stop</button>
         </div>
@@ -620,21 +623,6 @@
         </div>
     </div>
 
-    <!-- Sound Modal -->
-    <div class="modal" id="soundModal">
-        <div class="modal-box">
-            <button class="close-x" onclick="closeModal('soundModal')">×</button>
-            <h2>Ambient Sound</h2>
-            <p>Choose a sound to accompany your practice:</p>
-            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
-                <button class="btn" data-sound="rain">🌧️ Rain</button>
-                <button class="btn" data-sound="ocean">🌊 Ocean</button>
-                <button class="btn" data-sound="bowls">🎶 Singing Bowls</button>
-                <button class="btn" data-sound="none">🔇 Silence</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Share Modal -->
     <div class="modal" id="shareModal">
         <div class="modal-box">
@@ -647,10 +635,39 @@
     </div>
 
     <script>
+        // === DAILY WISDOM - BACK ===
+        const wisdomMessages = [
+            "You are not broken. You are infinite. You are the bridge between form and formless.",
+            "You are the universe experiencing itself in human form.",
+            "Separation is the grand illusion. You have never been apart from Source.",
+            "Every breath is a conversation with infinity.",
+            "Your pain is not punishment. It is the cocoon before transformation.",
+            "Light does not fight darkness. It simply shines.",
+            "You are not seeking enlightenment. You are remembering what you already are.",
+            "The present moment is the only portal to eternity.",
+            "Love is not an emotion. It is the fundamental frequency of existence.",
+            "Your body is not a prison. It is a sacred instrument for experiencing the divine.",
+            "Stillness is not the absence of movement. It is the presence of everything.",
+            "You cannot fail at being yourself. It is the only thing you truly are.",
+            "Forgiveness is not for the other. It is the key to your own freedom.",
+            "The wound is where the light enters you.",
+            "Gratitude turns what we have into enough.",
+            "You are both the wave and the ocean.",
+            "Surrender is not giving up. It is giving over to what already is.",
+            "Every ending is a beginning wearing a disguise.",
+            "Your consciousness is the universe becoming aware of itself.",
+            "Peace is not found. It is uncovered by letting go of what blocks it.",
+            "You are not a drop in the ocean. You are the entire ocean in a drop."
+        ];
+
+        // Set daily wisdom
+        const today = new Date().getDate();
+        document.getElementById('wisdom').textContent = wisdomMessages[today % wisdomMessages.length];
+
         // === STATE ===
-        let audioCtx, osc, gain, timerInterval, breathInterval;
+        let audioCtx, osc, gain, timerInterval;
         let breathing = false, playing = false, startTime = null;
-        let activeFreq = null, ambientSound = null;
+        let activeFreq = null;
         let breathPhase = 0;
 
         // === INIT AUDIO ===
@@ -697,7 +714,7 @@
             activeFreq = null;
         }
 
-        // === TIMER ===
+        // === TIMER - FIXED ===
         function startTimer() {
             if (timerInterval) return;
             startTime = Date.now();
@@ -721,7 +738,7 @@
             startTime = null;
         }
 
-        // === SMOOTH CONTINUOUS BREATHING ===
+        // === SMOOTH BREATHING ===
         function startBreathing() {
             breathing = !breathing;
             const circle = document.getElementById('circle');
@@ -730,7 +747,6 @@
             if (!breathing) {
                 text.textContent = 'BREATHE';
                 circle.className = 'circle';
-                if (breathInterval) clearInterval(breathInterval);
                 return;
             }
 
@@ -891,30 +907,6 @@
             closeModal('intentionModal');
         });
 
-        // Sound
-        document.getElementById('soundBtn').addEventListener('click', () => openModal('soundModal'));
-        document.querySelectorAll('[data-sound]').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const sound = this.dataset.sound;
-                if (sound !== 'none' && !ambientSound) {
-                    initAudio();
-                    ambientSound = audioCtx.createOscillator();
-                    const freq = sound === 'rain' ? 100 : sound === 'ocean' ? 60 : 200;
-                    ambientSound.frequency.value = freq;
-                    ambientSound.type = 'sine';
-                    const ambientGain = audioCtx.createGain();
-                    ambientGain.gain.value = 0.03;
-                    ambientSound.connect(ambientGain);
-                    ambientGain.connect(audioCtx.destination);
-                    ambientSound.start();
-                } else if (ambientSound) {
-                    ambientSound.stop();
-                    ambientSound = null;
-                }
-                closeModal('soundModal');
-            });
-        });
-
         // Share
         document.getElementById('shareBtn').addEventListener('click', () => {
             const canvas = document.getElementById('shareCanvas');
@@ -951,12 +943,7 @@
         // Stop
         document.getElementById('stopBtn').addEventListener('click', stopAll);
 
-        // Accessibility
-        document.getElementById('focusBtn').addEventListener('click', function() {
-            document.body.classList.toggle('focus');
-            this.textContent = document.body.classList.contains('focus') ? '✨ Exit' : '🎯 Focus';
-        });
-
+        // Accessibility - SIMPLIFIED
         document.getElementById('themeBtn').addEventListener('click', function() {
             document.body.classList.toggle('light');
             this.textContent = document.body.classList.contains('light') ? '🌙 Dark' : '☀️ Light';
@@ -968,23 +955,10 @@
             this.classList.toggle('active');
         });
 
-        document.getElementById('motionBtn').addEventListener('click', function() {
-            const elements = document.querySelectorAll('[style*="animation"]');
-            elements.forEach(el => {
-                if (el.style.animationPlayState === 'paused') {
-                    el.style.animationPlayState = 'running';
-                } else {
-                    el.style.animationPlayState = 'paused';
-                }
-            });
-            this.classList.toggle('active');
-        });
-
         // Close modals
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closeModal('intentionModal');
-                closeModal('soundModal');
                 closeModal('shareModal');
             }
         });

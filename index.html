@@ -49,12 +49,13 @@
             transition: background 0.5s, color 0.5s;
         }
 
-        #canvas { position: fixed; inset: 0; z-index: 0; }
+        #canvas { position: fixed; inset: 0; z-index: 0; transition: opacity 0.5s; }
         .glow {
             position: fixed; inset: 0; z-index: 1; pointer-events: none;
             background: radial-gradient(circle at 50% 0%, var(--pink), transparent 50%),
                         radial-gradient(circle at 50% 100%, var(--blue), transparent 50%);
             opacity: 0.25; animation: breatheGlow 8s ease-in-out infinite;
+            transition: opacity 0.5s;
         }
         @keyframes breatheGlow { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.4; } }
 
@@ -199,11 +200,11 @@
 
         .bottombar {
             position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(30px);
+            background: transparent;
+            backdrop-filter: blur(30px);
             border-top: 1px solid var(--border); padding: 1.5rem;
             display: flex; flex-direction: column; align-items: center; gap: 1rem;
         }
-        body.light .bottombar { background: rgba(255,255,255,0.8); }
 
         .actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
@@ -276,7 +277,11 @@
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
-        body.no-motion * { animation: none !important; transition: none !important; }
+        body.no-motion * { 
+            animation: none !important; 
+            transition: opacity 0.3s, transform 0.3s, background 0.3s, color 0.3s, border 0.3s !important; 
+        }
+        body.no-motion .circle { transition: transform 4s cubic-bezier(0.4,0,0.2,1) !important; }
     </style>
 </head>
 <body>
@@ -288,6 +293,7 @@
         <button class="btn" id="themeBtn" title="Toggle light/dark theme">☀️ Light</button>
         <button class="btn" id="contrastBtn" title="High contrast mode">◐ Contrast</button>
         <button class="btn" id="textBtn" title="Larger text">A+ Text</button>
+        <button class="btn" id="readerBtn" title="Reader mode - screen reader optimized">📖 Reader</button>
         <button class="btn" id="motionBtn" title="Reduce motion">⏸️ Motion</button>
         <button class="btn" id="eyesBtn" title="Close eyes mode - screen goes dark">👁️ Eyes Closed</button>
     </div>
@@ -719,6 +725,33 @@
         document.getElementById('motionBtn').addEventListener('click', function() {
             document.body.classList.toggle('no-motion');
             this.classList.toggle('active');
+            
+            // Also hide canvas particles for reduced motion
+            const canvas = document.getElementById('canvas');
+            const glow = document.querySelector('.glow');
+            if (document.body.classList.contains('no-motion')) {
+                canvas.style.display = 'none';
+                glow.style.display = 'none';
+            } else {
+                canvas.style.display = 'block';
+                glow.style.display = 'block';
+            }
+        });
+
+        document.getElementById('readerBtn').addEventListener('click', function() {
+            const canvas = document.getElementById('canvas');
+            const glow = document.querySelector('.glow');
+            const isReaderMode = canvas.style.opacity === '0';
+            
+            if (!isReaderMode) {
+                canvas.style.opacity = '0';
+                glow.style.opacity = '0';
+                this.classList.add('active');
+            } else {
+                canvas.style.opacity = '1';
+                glow.style.opacity = '0.25';
+                this.classList.remove('active');
+            }
         });
 
         document.getElementById('eyesBtn').addEventListener('click', function() {
@@ -784,11 +817,7 @@
             btn.addEventListener('click', function() {
                 playAmbient(this.dataset.sound);
                 closeModal('soundModal');
-                
-                // Auto-start breathing animation when ambient sound is chosen
-                if (this.dataset.sound !== 'off' && !breathing) {
-                    breathe();
-                }
+                // Ambient sound is background only - no auto-breathing
             });
         });
 

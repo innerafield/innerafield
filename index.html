@@ -406,19 +406,19 @@
             <div style="margin: 1.5rem 0;">
                 <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Ethereum (ETH):</p>
                 <div class="crypto-address" onclick="copyAddress(this)" title="Click to copy">
-                    0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb9
+                    0x12e10C6aA1557A9B13c570c0070E223aec8dE498
                 </div>
             </div>
             
             <div style="margin: 1.5rem 0;">
                 <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Bitcoin (BTC):</p>
                 <div class="crypto-address" onclick="copyAddress(this)" title="Click to copy">
-                    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                    bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz
                 </div>
             </div>
             
             <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 1rem;">
-                These are example addresses. Replace with your actual crypto wallet addresses.
+                Direct to creator. Zero fees. Decentralized. Thank you. 🙏
             </p>
         </div>
     </div>
@@ -668,6 +668,11 @@
                 document.querySelectorAll('.freq').forEach(x => x.classList.remove('active'));
                 this.classList.add('active');
                 play(freq);
+                
+                // Auto-start breathing animation
+                if (!breathing) {
+                    breathe();
+                }
             });
         });
 
@@ -683,6 +688,11 @@
             play(432);
             document.querySelector('.glow').style.opacity = '0.6';
             setTimeout(() => document.querySelector('.glow').style.opacity = '0.25', 5000);
+            
+            // Auto-start breathing animation
+            if (!breathing) {
+                breathe();
+            }
         });
 
         document.getElementById('stopBtn').addEventListener('click', stop);
@@ -712,8 +722,39 @@
         });
 
         document.getElementById('eyesBtn').addEventListener('click', function() {
+            const isClosing = !document.body.classList.contains('eyes-closed');
             document.body.classList.toggle('eyes-closed');
             this.textContent = document.body.classList.contains('eyes-closed') ? '👁️ Open Eyes' : '👁️ Eyes Closed';
+            
+            if (isClosing) {
+                // Show brief instruction
+                const msg = document.createElement('div');
+                msg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:1.2rem;opacity:1;z-index:9999;text-align:center;padding:2rem;background:rgba(0,0,0,0.9);border-radius:20px;border:1px solid rgba(255,20,147,0.3);';
+                msg.textContent = 'Press ESC or click anywhere to open eyes';
+                document.body.appendChild(msg);
+                setTimeout(() => {
+                    msg.style.transition = 'opacity 2s';
+                    msg.style.opacity = '0';
+                    setTimeout(() => msg.remove(), 2000);
+                }, 2000);
+            }
+        });
+        
+        // Exit eyes-closed mode with ESC or click
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('eyes-closed')) {
+                document.body.classList.remove('eyes-closed');
+                document.getElementById('eyesBtn').textContent = '👁️ Eyes Closed';
+            }
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (document.body.classList.contains('eyes-closed') && 
+                !e.target.closest('.topbar') && 
+                !e.target.closest('.bottombar')) {
+                document.body.classList.remove('eyes-closed');
+                document.getElementById('eyesBtn').textContent = '👁️ Eyes Closed';
+            }
         });
 
         document.getElementById('vibrateBtn').addEventListener('click', function() {
@@ -743,6 +784,11 @@
             btn.addEventListener('click', function() {
                 playAmbient(this.dataset.sound);
                 closeModal('soundModal');
+                
+                // Auto-start breathing animation when ambient sound is chosen
+                if (this.dataset.sound !== 'off' && !breathing) {
+                    breathe();
+                }
             });
         });
 

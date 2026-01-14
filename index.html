@@ -37,7 +37,7 @@ body.light .topbar{background:rgba(255,255,255,.8)}
 .container{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:90px 1.5rem 280px;display:flex;flex-direction:column;align-items:center}
 .brand{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:.5em;text-align:center;margin-bottom:1.5rem;background:linear-gradient(135deg,#ff1493,#00bfff,#8a2be2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,20,147,.4));animation:fadeIn 1s ease;text-transform:uppercase}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.subtitle{font-size:clamp(.9rem,2vw,1.1rem);color:var(--dim);text-align:center;margin-bottom:2rem;letter-spacing:.15em;opacity:.8}
+.subtitle{font-size:clamp(.9rem,2vw,1.1rem);color:#fff;text-align:center;margin-bottom:2rem;letter-spacing:.15em;opacity:.9}
 .mode-bar{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center;animation:fadeIn 1s ease .2s both}
 .mode-btn{font-size:.8rem;padding:.5rem 1rem}
 .presets{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center;animation:fadeIn 1s ease .3s both}
@@ -45,14 +45,14 @@ body.light .topbar{background:rgba(255,255,255,.8)}
 .breath-section{width:100%;display:flex;flex-direction:column;align-items:center;margin:2rem 0;animation:fadeIn 1s ease .4s both}
 .circle-container{position:relative;width:280px;height:280px}
 .progress-ring{position:absolute;top:0;left:0;width:100%;height:100%;transform:rotate(-90deg)}
-.progress-ring circle{fill:none;stroke:var(--pink);stroke-width:3;stroke-dasharray:880;stroke-dashoffset:880;transition:stroke-dashoffset 4s linear}
+.progress-ring circle{fill:none;stroke:var(--pink);stroke-width:3;stroke-dasharray:860;stroke-dashoffset:860;transition:stroke-dashoffset 4s linear}
 .circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;border:3px solid var(--border);border-radius:50%;background:var(--glass);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 80px var(--pink),inset 0 0 80px var(--purple);transition:transform 4s cubic-bezier(.4,0,.2,1),box-shadow 4s cubic-bezier(.4,0,.2,1)}
 .circle:hover,.circle:focus{transform:translate(-50%,-50%) scale(1.02);outline:3px solid var(--pink);outline-offset:4px}
-.circle.in{transform:translate(-50%,-50%) scale(1.35);box-shadow:0 0 120px var(--pink),inset 0 0 120px var(--purple)}
-.circle.out{transform:translate(-50%,-50%) scale(.8);box-shadow:0 0 50px var(--blue),inset 0 0 60px var(--purple)}
-.circle-label{font-size:1.4rem;font-weight:400;letter-spacing:.4em;opacity:.8}
-.breath-count{font-size:.8rem;color:var(--dim);margin-top:.5rem}
-.phase-indicator{font-size:.7rem;color:var(--pink);margin-top:.3rem;font-weight:600;letter-spacing:.2em}
+.circle.in{transform:translate(-50%,-50%) scale(1.35);box-shadow:0 0 120px var(--pink),inset 0 0 120px var(--purple);border-color:var(--pink);border-width:4px}
+.circle.out{transform:translate(-50%,-50%) scale(.8);box-shadow:0 0 50px var(--blue),inset 0 0 60px var(--purple);border-color:var(--blue);border-width:2px}
+.circle-label{font-size:1.4rem;font-weight:400;letter-spacing:.4em;opacity:1;color:#fff}
+.breath-count{font-size:.8rem;color:#fff;margin-top:.5rem;opacity:.9}
+.phase-indicator{font-size:.7rem;color:var(--pink);margin-top:.3rem;font-weight:600;letter-spacing:.2em;text-shadow:0 0 10px var(--pink)}
 .timer{margin-top:2rem;font-size:3rem;font-weight:300;font-variant-numeric:tabular-nums;text-align:center;opacity:0;transition:opacity .5s}
 .timer.show{opacity:1}
 .stats{display:flex;gap:2rem;margin-top:1rem;font-size:.85rem;color:var(--dim);opacity:0;transition:opacity .5s}
@@ -60,22 +60,22 @@ body.light .topbar{background:rgba(255,255,255,.8)}
 .stat-item{display:flex;flex-direction:column;align-items:center;gap:.3rem}
 .stat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.7}
 .stat-value{font-size:1.1rem;font-weight:600;color:var(--text)}
-.wisdom{width:100%;max-width:700px;text-align:center;font-size:1.15rem;font-weight:300;line-height:1.9;color:var(--dim);margin:3rem 0;padding:2rem;background:var(--glass);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(20px);animation:fadeIn 1s ease .5s both}
+.wisdom{width:100%;max-width:700px;text-align:center;font-size:1.15rem;font-weight:300;line-height:1.9;color:#fff;margin:3rem 0;padding:2rem;background:var(--glass);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(20px);animation:fadeIn 1s ease .5s both}
 .frequencies{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:2.5rem 0;animation:fadeIn 1s ease .6s both}
 .freq{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:1.8rem 1rem;text-align:center;cursor:pointer;backdrop-filter:blur(20px);transition:all .3s;position:relative;overflow:hidden}
 .freq::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,var(--freq-color,.5),transparent 70%);opacity:0;transition:opacity .3s}
 .freq:hover::before,.freq.active::before{opacity:.3}
 .freq:hover,.freq:focus{background:rgba(255,255,255,.08);transform:translateY(-3px);box-shadow:0 8px 30px var(--purple);border-color:var(--pink);outline:2px solid var(--pink);outline-offset:2px}
 .freq.active{background:rgba(255,20,147,.1);border-color:var(--pink);box-shadow:0 0 25px var(--pink)}
-.freq h3{font-size:1.1rem;font-weight:600;letter-spacing:.02em;margin-bottom:.3rem}
-.freq-hz{font-size:.75rem;color:var(--dim);margin-bottom:.5rem}
-.freq-desc{font-size:.7rem;color:var(--dim);opacity:.8;line-height:1.4}
+.freq h3{font-size:1.1rem;font-weight:600;letter-spacing:.02em;margin-bottom:.3rem;color:#fff}
+.freq-hz{font-size:.75rem;color:rgba(255,255,255,.7);margin-bottom:.5rem}
+.freq-desc{font-size:.7rem;color:rgba(255,255,255,.8);opacity:1;line-height:1.4}
 .btn{background:var(--glass);border:1px solid var(--border);color:var(--text);padding:.6rem 1.2rem;border-radius:50px;font-family:Inter,sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.02em;cursor:pointer;backdrop-filter:blur(20px);transition:all .3s}
 .btn:hover,.btn:focus{background:rgba(255,20,147,.15);border-color:var(--pink);transform:translateY(-2px);box-shadow:0 6px 20px var(--pink);outline:2px solid var(--pink);outline-offset:2px}
 .btn.active{background:rgba(255,20,147,.2);border-color:var(--pink)}
 .btn-primary{background:linear-gradient(135deg,var(--pink),var(--blue));border:none;color:#fff;padding:1rem 2.5rem;font-size:1rem;box-shadow:0 8px 30px rgba(255,20,147,.3);font-weight:600}
 .btn-primary:hover,.btn-primary:focus{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,20,147,.4)}
-.btn-secondary{background:rgba(255,255,255,.08);border:1px solid var(--border);padding:.8rem 1.8rem;font-size:.9rem}
+.btn-secondary{background:rgba(255,255,255,.08);border:1px solid var(--border);padding:.8rem 1.8rem;font-size:.9rem;color:#fff}
 .bottombar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(30px);border-top:1px solid var(--border);padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
 body.light .bottombar{background:rgba(255,255,255,.85)}
 .actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
@@ -84,7 +84,8 @@ body.light .bottombar{background:rgba(255,255,255,.85)}
 .modal-content{background:rgba(10,10,20,.98);border:2px solid var(--pink);border-radius:24px;padding:2.5rem;max-width:550px;width:100%;box-shadow:0 0 60px var(--pink);animation:slideUp .4s ease;position:relative;max-height:85vh;overflow-y:auto}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .modal-content h2{color:#fff;font-size:1.8rem;font-weight:600;margin-bottom:1.2rem;letter-spacing:.02em}
-.modal-content p{color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:1.2rem;font-size:.95rem}
+.modal-content p{color:#fff;line-height:1.7;margin-bottom:1.2rem;font-size:.95rem}
+.modal-content strong{color:#fff}
 .close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:.5;transition:opacity .3s;padding:0;line-height:1;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .close:hover,.close:focus{opacity:1;outline:2px solid var(--pink);border-radius:8px}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -158,7 +159,7 @@ body.no-motion .circle{transition:transform 4s cubic-bezier(.4,0,.2,1)!important
 <div class="breath-section">
 <div class="circle-container">
 <svg class="progress-ring" viewBox="0 0 280 280" aria-hidden="true">
-<circle id="progressCircle" cx="140" cy="140" r="140"></circle>
+<circle id="progressCircle" cx="140" cy="140" r="137"></circle>
 </svg>
 <button class="circle" id="circle" aria-label="Breathing circle. Press to start or stop breathing guidance. Works with or without frequency.">
 <span class="circle-label" id="label">BREATHE</span>
@@ -185,80 +186,68 @@ body.no-motion .circle{transition:transform 4s cubic-bezier(.4,0,.2,1)!important
 <button class="freq" data-freq="174" data-name="Pain Relief" data-chakra="#8B0000" aria-label="174 Hz pain relief frequency - plays healing tone">
 <div class="chakra-indicator" style="background:#8B0000"></div>
 <h3>Pain Relief</h3>
-<div class="freq-hz">174 Hz</div>
 <div class="freq-desc">Security, safety</div>
 </button>
 <button class="freq" data-freq="285" data-name="Healing" data-chakra="#FF4500" aria-label="285 Hz tissue healing">
 <div class="chakra-indicator" style="background:#FF4500"></div>
 <h3>Healing</h3>
-<div class="freq-hz">285 Hz</div>
 <div class="freq-desc">Regeneration</div>
 </button>
 <button class="freq" data-freq="396" data-name="Liberation" data-chakra="#DC143C" aria-label="396 Hz liberation from fear">
 <div class="chakra-indicator" style="background:#DC143C"></div>
 <h3>Liberation</h3>
-<div class="freq-hz">396 Hz</div>
 <div class="freq-desc">Release fear</div>
 </button>
 <button class="freq" data-freq="417" data-name="Change" data-chakra="#FF8C00" aria-label="417 Hz transformation">
 <div class="chakra-indicator" style="background:#FF8C00"></div>
 <h3>Change</h3>
-<div class="freq-hz">417 Hz</div>
 <div class="freq-desc">Transformation</div>
 </button>
 <button class="freq" data-freq="528" data-name="Love" data-chakra="#32CD32" aria-label="528 Hz love and DNA repair">
 <div class="chakra-indicator" style="background:#32CD32"></div>
 <h3>Love</h3>
-<div class="freq-hz">528 Hz</div>
 <div class="freq-desc">DNA repair</div>
 </button>
 <button class="freq" data-freq="639" data-name="Connection" data-chakra="#00CED1" aria-label="639 Hz relationships">
 <div class="chakra-indicator" style="background:#00CED1"></div>
 <h3>Connection</h3>
-<div class="freq-hz">639 Hz</div>
 <div class="freq-desc">Harmony</div>
 </button>
 <button class="freq" data-freq="741" data-name="Awakening" data-chakra="#4169E1" aria-label="741 Hz intuition">
 <div class="chakra-indicator" style="background:#4169E1"></div>
 <h3>Awakening</h3>
-<div class="freq-hz">741 Hz</div>
 <div class="freq-desc">Intuition</div>
 </button>
 <button class="freq" data-freq="852" data-name="Vision" data-chakra="#4B0082" aria-label="852 Hz third eye">
 <div class="chakra-indicator" style="background:#4B0082"></div>
 <h3>Vision</h3>
-<div class="freq-hz">852 Hz</div>
 <div class="freq-desc">Third eye</div>
 </button>
 <button class="freq" data-freq="963" data-name="Pineal" data-chakra="#9370DB" aria-label="963 Hz crown activation">
 <div class="chakra-indicator" style="background:#9370DB"></div>
 <h3>Pineal</h3>
-<div class="freq-hz">963 Hz</div>
 <div class="freq-desc">Oneness</div>
 </button>
 <button class="freq" data-freq="432" data-name="Peace" data-chakra="#87CEEB" aria-label="432 Hz universal peace">
 <div class="chakra-indicator" style="background:#87CEEB"></div>
 <h3>Peace</h3>
-<div class="freq-hz">432 Hz</div>
 <div class="freq-desc">Universal</div>
 </button>
 <button class="freq" data-freq="7.83" data-name="Earth" data-chakra="#8B4513" aria-label="7.83 Hz earth grounding">
 <div class="chakra-indicator" style="background:#8B4513"></div>
 <h3>Earth</h3>
-<div class="freq-hz">7.83 Hz</div>
 <div class="freq-desc">Grounding</div>
 </button>
 <button class="freq" data-freq="40" data-name="Unity" data-chakra="#FFD700" aria-label="40 Hz gamma unity consciousness">
 <div class="chakra-indicator" style="background:#FFD700"></div>
 <h3>Unity</h3>
-<div class="freq-hz">40 Hz</div>
 <div class="freq-desc">Gamma</div>
 </button>
 </div>
 
 <div class="wisdom" style="margin-top:4rem;max-width:600px">
-<h2 style="font-size:1.5rem;margin-bottom:1rem;letter-spacing:.1em">✨ ENERGY EXCHANGE</h2>
-<p style="font-size:.95rem;line-height:1.8;margin-bottom:1.5rem">
+<h2 style="font-size:1.5rem;margin-bottom:1rem;letter-spacing:.1em;color:#fff">✨ ENERGY EXCHANGE</h2>
+<p style="font-size:.95rem;line-height:1.8;margin-bottom:1.5rem;color:#fff">
 Innera Field is free forever, for all beings. If it has served you, pass it forward.
 </p>
 <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem">
@@ -269,7 +258,7 @@ Innera Field is free forever, for all beings. If it has served you, pass it forw
 🔐 Crypto (Direct)
 </button>
 </div>
-<p style="font-size:.8rem;opacity:.7;margin-top:1rem">
+<p style="font-size:.8rem;opacity:.9;margin-top:1rem;color:#fff">
 100% supports keeping this free for all beings. Zero fees. Pure gift economy.
 </p>
 </div>
@@ -316,8 +305,8 @@ Innera Field is free forever, for all beings. If it has served you, pass it forw
 <button class="btn-secondary" data-sound="forest">🌲 Forest</button>
 <button class="btn-secondary" data-sound="wind">💨 Wind</button>
 <button class="btn-secondary" data-sound="om">🕉️ Om Chant</button>
-<button class="btn-secondary" data-sound="off">🔇 Silence</button>
 </div>
+<p style="font-size:.8rem;opacity:.8;margin-top:1rem;color:#fff">Use Stop button to end ambient sound</p>
 </div>
 </div>
 
@@ -325,15 +314,15 @@ Innera Field is free forever, for all beings. If it has served you, pass it forw
 <div class="modal-content">
 <button class="close" onclick="closeModal('binauralModal')" aria-label="Close">×</button>
 <h2 id="binauralTitle">Binaural Beats</h2>
-<p style="font-size:.85rem;opacity:.8">Requires headphones. Entrains brainwaves to desired state.</p>
+<p style="font-size:.85rem;opacity:.9;color:#fff">Requires headphones. Entrains brainwaves to desired state.</p>
 <div class="binaural-opts">
-<button class="btn-secondary" data-binaural="delta">😴 Delta (0.5-4 Hz)<br><span style="font-size:.75rem">Deep sleep, healing</span></button>
-<button class="btn-secondary" data-binaural="theta">🧘 Theta (4-8 Hz)<br><span style="font-size:.75rem">Meditation, creativity</span></button>
-<button class="btn-secondary" data-binaural="alpha">😌 Alpha (8-14 Hz)<br><span style="font-size:.75rem">Relaxation, learning</span></button>
-<button class="btn-secondary" data-binaural="beta">🎯 Beta (14-30 Hz)<br><span style="font-size:.75rem">Focus, alertness</span></button>
-<button class="btn-secondary" data-binaural="gamma">✨ Gamma (30-100 Hz)<br><span style="font-size:.75rem">Higher consciousness</span></button>
-<button class="btn-secondary" data-binaural="off">🔇 Off</button>
+<button class="btn-secondary" data-binaural="delta">😴 Delta<br><span style="font-size:.75rem">Deep sleep, healing</span></button>
+<button class="btn-secondary" data-binaural="theta">🧘 Theta<br><span style="font-size:.75rem">Meditation, creativity</span></button>
+<button class="btn-secondary" data-binaural="alpha">😌 Alpha<br><span style="font-size:.75rem">Relaxation, learning</span></button>
+<button class="btn-secondary" data-binaural="beta">🎯 Beta<br><span style="font-size:.75rem">Focus, alertness</span></button>
+<button class="btn-secondary" data-binaural="gamma">✨ Gamma<br><span style="font-size:.75rem">Higher consciousness</span></button>
 </div>
+<p style="font-size:.8rem;opacity:.8;margin-top:1rem;color:#fff">Use Stop button to end binaural session</p>
 </div>
 </div>
 
@@ -355,23 +344,23 @@ Innera Field is free forever, for all beings. If it has served you, pass it forw
 <div class="modal-content">
 <button class="close" onclick="closeModal('cryptoModal')" aria-label="Close">×</button>
 <h2 id="cryptoTitle">Direct Crypto Donation</h2>
-<p style="font-size:.85rem;opacity:.8;margin-bottom:1.5rem">100% reaches creator. No middleman. Click address to copy:</p>
+<p style="font-size:.85rem;opacity:.9;color:#fff;margin-bottom:1.5rem">100% reaches creator. No middleman. Click address to copy:</p>
 
 <div style="margin:1.5rem 0">
-<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600">Ethereum (ETH):</p>
-<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border)">
-0x12e10C6aA1557A9B13c570c0070E223aec8dE498
-</div>
-</div>
-
-<div style="margin:1.5rem 0">
-<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600">Bitcoin (BTC):</p>
-<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border)">
+<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600;color:#fff">Bitcoin (BTC):</p>
+<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border);color:#fff">
 bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz
 </div>
 </div>
 
-<p style="font-size:.75rem;opacity:.6;margin-top:1.5rem;text-align:center">
+<div style="margin:1.5rem 0">
+<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600;color:#fff">Ethereum (ETH):</p>
+<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border);color:#fff">
+0x12e10C6aA1557A9B13c570c0070E223aec8dE498
+</div>
+</div>
+
+<p style="font-size:.75rem;opacity:.8;margin-top:1.5rem;text-align:center;color:#fff">
 Direct to creator. Zero fees. Decentralized. 🙏
 </p>
 </div>
@@ -465,7 +454,8 @@ return[period,period/2,period,period/2];
 
 const play=freq=>{
 initAudio();
-stop();
+// Stop only the frequency oscillator, keep ambient/binaural playing
+if(osc){osc.stop();osc.disconnect();osc=null}
 if(freq===0){startTimer();return}
 currentFreq=freq;
 osc=A.createOscillator();
@@ -539,6 +529,8 @@ if(binGainR){binGainR.disconnect();binGainR=null}
 
 const stop=()=>{
 if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
 playing=!1;
 breathing=!1;
 breathCount=0;
@@ -548,7 +540,7 @@ $('#label').textContent='BREATHE';
 $('#phase').textContent='';
 $('#breathCount').textContent='';
 $('#circle').className='circle';
-$('#progressCircle').style.strokeDashoffset=880;
+$('#progressCircle').style.strokeDashoffset=860;
 announce('Session stopped');
 };
 
@@ -605,7 +597,7 @@ label.textContent='BREATHE';
 phase.textContent='';
 counter.textContent='';
 circle.className='circle';
-progress.style.strokeDashoffset=880;
+progress.style.strokeDashoffset=860;
 breathCount=0;
 announce('Breathing stopped');
 return;
@@ -622,33 +614,49 @@ const phases=[
 {text:'HOLD',cls:'out',duration:hold2*1000,vib:vib.hold,announce:'Hold',phase:`${hold2}s`}
 ].filter(p=>p.duration>0);
 
-let i=0;
-const cycle=()=>{
+let currentPhase=0;
+
+const runPhase=()=>{
 if(!breathing)return;
-if(i===0){
+
+// Start new cycle
+if(currentPhase===0){
 breathCount++;
 cycleCount++;
 $('#totalBreaths').textContent=breathCount;
 $('#totalCycles').textContent=Math.floor(breathCount/phases.length);
 }
 
-label.textContent=phases[i].text;
-phase.textContent=phases[i].phase;
+const p=phases[currentPhase];
+
+// Update UI
+label.textContent=p.text;
+phase.textContent=p.phase;
 counter.textContent=`Breath ${breathCount} of ∞`;
-circle.className='circle '+phases[i].cls;
+circle.className='circle '+p.cls;
 
-progress.style.strokeDashoffset=880;
-progress.style.transition=`stroke-dashoffset ${phases[i].duration/1000}s linear`;
-setTimeout(()=>progress.style.strokeDashoffset=0,50);
+// Progress ring animation
+progress.style.transition='none';
+progress.style.strokeDashoffset=860;
+setTimeout(()=>{
+progress.style.transition=`stroke-dashoffset ${p.duration/1000}s linear`;
+progress.style.strokeDashoffset=0;
+},50);
 
-vibrate(phases[i].vib);
+// Vibrate
+vibrate(p.vib);
 
-if(breathCount<=2||i===0)announce(phases[i].announce,'polite');
+// Announce
+if(breathCount<=2||currentPhase===0)announce(p.announce,'polite');
 
-i=(i+1)%phases.length;
-setTimeout(cycle,phases[i<phases.length?i-1:phases.length-1].duration);
+// Move to next phase
+currentPhase=(currentPhase+1)%phases.length;
+
+// Schedule next phase
+setTimeout(runPhase,p.duration);
 };
-cycle();
+
+runPhase();
 };
 
 let recognition;
@@ -1044,6 +1052,20 @@ $('#collectiveCount').textContent=count.toLocaleString();
 };
 setInterval(updateCollective,30000);
 updateCollective();
+
+// Hide collective button when offline - check immediately on load
+const collectiveBtn=$('#collectiveBtn');
+if(collectiveBtn){
+if(!navigator.onLine){
+collectiveBtn.style.display='none';
+}
+window.addEventListener('online',()=>{
+collectiveBtn.style.display='';
+});
+window.addEventListener('offline',()=>{
+collectiveBtn.style.display='none';
+});
+}
 
 const monthlyIntentions=[
 'Peace for all beings','Healing for the Earth','Love without conditions',

@@ -19,6 +19,9 @@
 --red:rgba(220,20,60,.4);--indigo:rgba(75,0,130,.4);--gold:rgba(255,215,0,.3)
 }
 body.light{--bg:#f8f9fa;--text:#1a1a1a;--dim:rgba(0,0,0,.65);--glass:rgba(0,0,0,.03);--border:rgba(0,0,0,.08)}
+body.light .subtitle,body.light .wisdom,body.light .circle-label,body.light .breath-count,body.light .freq h3,body.light .freq-desc,body.light .stat-label,body.light .stat-value{color:#1a1a1a!important}
+body.light .modal-content h2,body.light .modal-content p,body.light .modal-content strong,body.light .btn-secondary{color:#1a1a1a!important}
+body.light .crypto-address{color:#1a1a1a!important}
 body.contrast{--bg:#000;--text:#fff;--dim:#fff;--glass:rgba(255,255,255,.15);--border:rgba(255,255,255,.4)}
 body.eyes-closed{--bg:#000!important;--text:#111!important}
 body.eyes-closed *:not(#ariaLive):not(.ariaMsg){opacity:.02!important;transition:opacity 2s}
@@ -135,6 +138,7 @@ body.no-motion .circle{transition:transform 4s cubic-bezier(.4,0,.2,1)!important
 <button class="btn" id="motionBtn" aria-label="Reduce motion">⏸️</button>
 <button class="btn" id="eyesBtn" aria-label="Eyes closed mode">👁️</button>
 <button class="btn" id="voiceBtn" aria-label="Voice control">🎤</button>
+<button class="btn" id="langBtn" aria-label="Language">🌐</button>
 </div>
 
 <main id="main" class="container">
@@ -366,6 +370,28 @@ Direct to creator. Zero fees. Decentralized. 🙏
 </div>
 </div>
 
+<div class="modal" id="langModal" role="dialog" aria-labelledby="langTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('langModal')" aria-label="Close">×</button>
+<h2 id="langTitle">Language / Idioma / Langue / Sprache</h2>
+<p style="font-size:.85rem;opacity:.9;color:#fff;margin-bottom:1.5rem">Select your language:</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem">
+<button class="btn-secondary" onclick="setLang('en')">🇬🇧 English</button>
+<button class="btn-secondary" onclick="setLang('es')">🇪🇸 Español</button>
+<button class="btn-secondary" onclick="setLang('fr')">🇫🇷 Français</button>
+<button class="btn-secondary" onclick="setLang('de')">🇩🇪 Deutsch</button>
+<button class="btn-secondary" onclick="setLang('pt')">🇵🇹 Português</button>
+<button class="btn-secondary" onclick="setLang('it')">🇮🇹 Italiano</button>
+<button class="btn-secondary" onclick="setLang('ru')">🇷🇺 Русский</button>
+<button class="btn-secondary" onclick="setLang('zh')">🇨🇳 中文</button>
+<button class="btn-secondary" onclick="setLang('ja')">🇯🇵 日本語</button>
+<button class="btn-secondary" onclick="setLang('ko')">🇰🇷 한국어</button>
+<button class="btn-secondary" onclick="setLang('ar')">🇸🇦 العربية</button>
+<button class="btn-secondary" onclick="setLang('hi')">🇮🇳 हिन्दी</button>
+</div>
+</div>
+</div>
+
 <script>
 const copyAddress=el=>{
 navigator.clipboard.writeText(el.textContent.trim()).then(()=>{
@@ -382,6 +408,37 @@ alert('Could not copy. Please copy manually: '+el.textContent);
 };
 const $=(s,a=document)=>a.querySelector(s),$$=(s,a=document)=>a.querySelectorAll(s);
 let A,osc,gain,ambOsc,ambGain,binL,binR,binGainL,binGainR,timer,breathing=!1,playing=!1,start,presetTime=0,breathCount=0,cycleCount=0,vibrateOn=!1,voiceOn=!1,currentMode='default',currentFreq=0,spatialPanner;
+
+const translations={
+en:{breathe:'BREATHE',begin:'BEGIN',stop:'Stop',subtitle:'UNIVERSAL BRIDGE • ALL BEINGS • ALL HOME • WORKS OFFLINE'},
+es:{breathe:'RESPIRAR',begin:'COMENZAR',stop:'Detener',subtitle:'PUENTE UNIVERSAL • TODOS LOS SERES • TODOS EN CASA • FUNCIONA SIN CONEXIÓN'},
+fr:{breathe:'RESPIRER',begin:'COMMENCER',stop:'Arrêter',subtitle:'PONT UNIVERSEL • TOUS LES ÊTRES • TOUS CHEZ SOI • FONCTIONNE HORS LIGNE'},
+de:{breathe:'ATMEN',begin:'BEGINNEN',stop:'Stoppen',subtitle:'UNIVERSELLE BRÜCKE • ALLE WESEN • ALLE ZUHAUSE • FUNKTIONIERT OFFLINE'},
+pt:{breathe:'RESPIRAR',begin:'COMEÇAR',stop:'Parar',subtitle:'PONTE UNIVERSAL • TODOS OS SERES • TODOS EM CASA • FUNCIONA OFFLINE'},
+it:{breathe:'RESPIRARE',begin:'INIZIA',stop:'Ferma',subtitle:'PONTE UNIVERSALE • TUTTI GLI ESSERI • TUTTI A CASA • FUNZIONA OFFLINE'},
+ru:{breathe:'ДЫШАТЬ',begin:'НАЧАТЬ',stop:'Стоп',subtitle:'УНИВЕРСАЛЬНЫЙ МОСТ • ВСЕ СУЩЕСТВА • ВСЕ ДОМА • РАБОТАЕТ ОФЛАЙН'},
+zh:{breathe:'呼吸',begin:'开始',stop:'停止',subtitle:'宇宙之桥 • 所有生命 • 所有回家 • 离线工作'},
+ja:{breathe:'呼吸',begin:'始める',stop:'停止',subtitle:'ユニバーサルブリッジ • すべての存在 • すべての家 • オフラインで動作'},
+ko:{breathe:'호흡',begin:'시작',stop:'정지',subtitle:'우주의 다리 • 모든 존재 • 모두 집에 • 오프라인 작동'},
+ar:{breathe:'تنفس',begin:'ابدأ',stop:'توقف',subtitle:'الجسر العالمي • جميع الكائنات • الجميع في المنزل • يعمل بدون اتصال'},
+hi:{breathe:'सांस',begin:'शुरू',stop:'रुकें',subtitle:'सार्वभौमिक पुल • सभी प्राणी • सभी घर • ऑफलाइन काम करता है'}
+};
+
+let currentLang='en';
+
+const setLang=(lang)=>{
+currentLang=lang;
+const t=translations[lang];
+$('#label').textContent=t.breathe;
+$('#peace').textContent='🕊️ '+t.begin;
+$('#stopBtn').textContent='⏹️ '+t.stop;
+$('.subtitle').textContent=t.subtitle;
+localStorage.setItem('if_lang',lang);
+closeModal('langModal');
+announce(`Language changed to ${lang}`);
+};
+
+window.setLang=setLang;
 
 const announce=(msg,priority='polite')=>{
 const el=$('#ariaLive');
@@ -454,8 +511,10 @@ return[period,period/2,period,period/2];
 
 const play=freq=>{
 initAudio();
-// Stop only the frequency oscillator, keep ambient/binaural playing
+// Stop ALL audio sources - only play one thing at a time
 if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
 if(freq===0){startTimer();return}
 currentFreq=freq;
 osc=A.createOscillator();
@@ -483,6 +542,9 @@ document.documentElement.style.setProperty('--pink',color);
 
 const playBinaural=(base,beat)=>{
 initAudio();
+// Stop ALL other audio - only play one thing at a time
+if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
 stopBinaural();
 binGainL=A.createGain();
 binGainR=A.createGain();
@@ -504,7 +566,10 @@ announce(`Binaural ${beat} Hz activated. Use headphones for best effect.`);
 };
 
 const playAmbient=type=>{
+// Stop ALL other audio - only play one thing at a time
+if(osc){osc.stop();osc.disconnect();osc=null}
 stopAmbient();
+stopBinaural();
 if(type==='off')return;
 initAudio();
 ambOsc=A.createOscillator();
@@ -892,6 +957,8 @@ this.classList.toggle('active');
 voiceOn?startVoice():stopVoice();
 });
 
+$('#langBtn').addEventListener('click',()=>openModal('langModal'));
+
 document.addEventListener('keydown',e=>{
 if(e.key==='Escape'){
 if(document.body.classList.contains('eyes-closed')){
@@ -904,6 +971,7 @@ closeModal('soundModal');
 closeModal('binauralModal');
 closeModal('collectiveModal');
 closeModal('cryptoModal');
+closeModal('langModal');
 }
 });
 
@@ -1076,6 +1144,12 @@ const monthlyIntentions=[
 $('#monthlyIntention').textContent=monthlyIntentions[new Date().getMonth()];
 
 announce('Welcome to Innera Field. Universal bridge for all beings. Press Tab to navigate.','polite');
+
+// Load saved language
+const savedLang=localStorage.getItem('if_lang');
+if(savedLang&&translations[savedLang]){
+setLang(savedLang);
+}
 
 if('serviceWorker'in navigator){
 navigator.serviceWorker.register('sw.js').catch(()=>{});

@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
-<meta name="description" content="Find your purpose. Connect to Source. For all beings.">
+<meta name="description" content="Find your purpose. Connect to Source. For all beings. For peace.">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Innera Field</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -18,12 +17,21 @@
   --void:#000;
   --light:#fff;
   --dim:rgba(255,255,255,.5);
+  --faint:rgba(255,255,255,.25);
+  --glass:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.1);
   --pink:rgba(255,20,147,.4);
   --blue:rgba(0,191,255,.4);
   --purple:rgba(138,43,226,.35);
   --gold:rgba(255,215,0,.5);
-  --glass:rgba(255,255,255,.03);
-  --border:rgba(255,255,255,.08);
+  --green:rgba(80,200,120,.4);
+  --red:rgba(220,80,80,.4);
+  --orange:rgba(255,160,80,.4);
+  --indigo:rgba(100,100,200,.4);
+  --violet:rgba(180,100,220,.4);
+  --turquoise:rgba(80,200,200,.4);
+  --brown:rgba(160,120,80,.3);
+  --white:rgba(255,255,255,.5);
 }
 
 html,body{
@@ -39,9 +47,8 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
   -webkit-tap-highlight-color:transparent;
-  animation:awakening 2.5s ease-out;
+  animation:awakening 2s ease-out;
 }
 
 @keyframes awakening{
@@ -49,7 +56,7 @@ body{
   100%{opacity:1}
 }
 
-/* Cosmic background - alive, breathing */
+/* Cosmic background */
 .cosmos{
   position:fixed;
   inset:0;
@@ -61,14 +68,15 @@ body{
   opacity:.25;
   animation:cosmicPulse 10s ease-in-out infinite;
   pointer-events:none;
+  transition:background 3s ease;
 }
 
 @keyframes cosmicPulse{
   0%,100%{opacity:.25;transform:scale(1)}
-  50%{opacity:.4;transform:scale(1.02)}
+  50%{opacity:.35;transform:scale(1.02)}
 }
 
-/* Main container - everything centered, no scroll */
+/* Main container */
 .field{
   position:relative;
   z-index:1;
@@ -82,39 +90,78 @@ body{
   text-align:center;
 }
 
-/* Title - INNERA FIELD */
+/* Title */
 .title{
   position:absolute;
-  top:max(8vh,50px);
-  font-size:clamp(1.4rem,4.5vw,2.2rem);
-  font-weight:200;
-  letter-spacing:.6em;
-  padding-left:.6em;
-  background:linear-gradient(135deg,#ff1493,#00bfff,#8a2be2);
+  top:max(10vh,60px);
+  font-size:clamp(1.3rem,4vw,2rem);
+  font-weight:600;
+  letter-spacing:.7em;
+  padding-left:.7em;
+  background:linear-gradient(135deg,#ff1493,#00bfff,#8a2be2,#ff1493);
+  background-size:300% 300%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  animation:titleGlow 4s ease-in-out infinite alternate;
+  animation:titleShimmer 8s ease-in-out infinite;
   user-select:none;
+  text-shadow:0 0 60px rgba(255,20,147,.5);
 }
 
-@keyframes titleGlow{
-  0%{filter:drop-shadow(0 0 20px rgba(255,20,147,.3))}
-  100%{filter:drop-shadow(0 0 40px rgba(0,191,255,.4))}
+@keyframes titleShimmer{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
 }
 
-/* The Circle - heart of everything */
+/* Controls - top right */
+.controls{
+  position:absolute;
+  top:max(3vh,18px);
+  right:max(3vw,18px);
+  display:flex;
+  gap:.5rem;
+  z-index:100;
+}
+
+.ctrl{
+  background:var(--glass);
+  border:1px solid var(--border);
+  color:var(--dim);
+  width:38px;
+  height:38px;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:all .3s ease;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ctrl:hover{
+  border-color:rgba(255,255,255,.2);
+  color:var(--light);
+  background:rgba(255,255,255,.08);
+}
+
+.ctrl.on{
+  background:rgba(255,255,255,.1);
+  border-color:rgba(255,255,255,.25);
+  color:var(--light);
+}
+
+/* The Circle */
 .circle{
   position:relative;
-  width:min(280px,65vw);
-  height:min(280px,65vw);
+  width:min(260px,60vw);
+  height:min(260px,60vw);
   border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,rgba(255,20,147,.06),transparent 60%);
+  background:radial-gradient(circle at 40% 35%,rgba(255,20,147,.05),transparent 60%);
   border:2px solid var(--border);
   box-shadow:
     0 0 80px var(--pink),
-    0 0 150px var(--purple),
-    inset 0 0 60px rgba(138,43,226,.12);
+    0 0 140px var(--purple),
+    inset 0 0 50px rgba(138,43,226,.1);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -127,7 +174,6 @@ body{
   will-change:transform,box-shadow;
 }
 
-/* Alive pulse when idle */
 .circle:not(.breathing){
   animation:heartbeat 5s ease-in-out infinite;
 }
@@ -135,161 +181,320 @@ body{
 @keyframes heartbeat{
   0%,100%{
     transform:scale(1);
-    box-shadow:
-      0 0 80px var(--pink),
-      0 0 150px var(--purple),
-      inset 0 0 60px rgba(138,43,226,.12);
+    box-shadow:0 0 80px var(--pink),0 0 140px var(--purple),inset 0 0 50px rgba(138,43,226,.1);
   }
   50%{
-    transform:scale(1.03);
-    box-shadow:
-      0 0 100px var(--pink),
-      0 0 180px var(--purple),
-      inset 0 0 80px rgba(138,43,226,.18);
+    transform:scale(1.025);
+    box-shadow:0 0 100px var(--pink),0 0 160px var(--purple),inset 0 0 70px rgba(138,43,226,.15);
   }
 }
 
-.circle:hover:not(.breathing){
-  border-color:rgba(255,255,255,.15);
-}
-
+.circle:hover:not(.breathing){border-color:rgba(255,255,255,.18)}
 .circle:focus{outline:none}
-.circle:focus-visible{
-  outline:2px solid rgba(255,255,255,.3);
-  outline-offset:10px;
-}
+.circle:focus-visible{outline:2px solid rgba(255,255,255,.3);outline-offset:12px}
 
-/* Breathing states - organic, flowing */
+/* Breathing states */
 .circle.breathing.inhale{
-  transform:scale(1.4);
-  border-color:rgba(255,215,0,.35);
-  box-shadow:
-    0 0 200px var(--gold),
-    0 0 300px var(--pink),
-    inset 0 0 150px rgba(255,215,0,.15);
+  transform:scale(1.35);
+  border-color:rgba(255,215,0,.4);
+  box-shadow:0 0 180px var(--gold),0 0 280px var(--pink),inset 0 0 120px rgba(255,215,0,.12);
 }
 
-.circle.breathing.hold{
-  box-shadow:
-    0 0 180px rgba(255,180,150,.4),
-    0 0 280px var(--purple),
-    inset 0 0 140px rgba(255,180,150,.1);
-  border-color:rgba(255,180,150,.3);
+.circle.breathing.hold-in{
+  transform:scale(1.35);
+  border-color:rgba(255,180,150,.35);
+  box-shadow:0 0 160px rgba(255,180,150,.4),0 0 260px var(--purple),inset 0 0 110px rgba(255,180,150,.1);
 }
 
 .circle.breathing.exhale{
-  transform:scale(0.8);
-  border-color:rgba(0,191,255,.3);
-  box-shadow:
-    0 0 60px var(--blue),
-    0 0 120px var(--purple),
-    inset 0 0 80px rgba(0,191,255,.1);
+  transform:scale(0.75);
+  border-color:rgba(0,191,255,.35);
+  box-shadow:0 0 60px var(--blue),0 0 120px var(--purple),inset 0 0 70px rgba(0,191,255,.1);
 }
 
-.circle.breathing.rest{
-  transform:scale(0.8);
-  border-color:rgba(138,43,226,.3);
-  box-shadow:
-    0 0 50px var(--purple),
-    0 0 100px rgba(138,43,226,.2),
-    inset 0 0 70px rgba(138,43,226,.15);
+.circle.breathing.hold-out{
+  transform:scale(0.75);
+  border-color:rgba(138,43,226,.35);
+  box-shadow:0 0 50px var(--purple),0 0 100px rgba(138,43,226,.25),inset 0 0 60px rgba(138,43,226,.12);
 }
 
-/* Word in circle */
+/* Circle text */
 .word{
-  font-size:clamp(1rem,3.5vw,1.3rem);
+  font-size:clamp(.95rem,3.2vw,1.2rem);
   font-weight:300;
   letter-spacing:.35em;
   padding-left:.35em;
   text-transform:uppercase;
   opacity:.9;
-  transition:opacity 1.5s ease,letter-spacing 2s ease;
-  text-shadow:0 0 30px rgba(255,255,255,.2);
+  transition:all 1.5s ease;
+  text-shadow:0 0 25px rgba(255,255,255,.2);
   user-select:none;
 }
 
-.breathing .word{
-  letter-spacing:.45em;
-  padding-left:.45em;
-}
+.breathing .word{letter-spacing:.4em;padding-left:.4em}
 
-/* Phase text */
 .phase{
-  font-size:clamp(.75rem,2.5vw,.9rem);
+  font-size:clamp(.7rem,2.2vw,.85rem);
   font-weight:300;
-  letter-spacing:.25em;
-  margin-top:.8rem;
+  letter-spacing:.2em;
+  margin-top:.6rem;
   opacity:0;
   transition:opacity 1.5s ease;
   color:var(--dim);
-  text-transform:lowercase;
 }
 
 .breathing .phase{opacity:1}
 
-/* Breath count */
-.count{
-  font-size:.7rem;
-  letter-spacing:.2em;
-  margin-top:.6rem;
+.timer{
+  font-size:.65rem;
+  letter-spacing:.15em;
+  margin-top:.5rem;
   opacity:0;
-  color:rgba(255,255,255,.35);
+  color:var(--faint);
   transition:opacity 1.5s ease;
 }
 
-.breathing .count{opacity:1}
+.breathing .timer{opacity:1}
 
-/* Wisdom - below circle */
+/* Wisdom */
 .wisdom{
   position:absolute;
-  bottom:max(12vh,70px);
-  font-size:clamp(.8rem,2.2vw,.95rem);
+  bottom:max(14vh,85px);
+  font-size:clamp(.78rem,2.1vw,.9rem);
   font-weight:300;
-  letter-spacing:.12em;
-  max-width:min(85%,420px);
-  line-height:1.9;
+  letter-spacing:.1em;
+  max-width:min(85%,400px);
+  line-height:1.85;
   opacity:0;
   transition:opacity 3s ease;
   font-style:italic;
-  color:rgba(255,255,255,.45);
+  color:rgba(255,255,255,.4);
 }
 
 .active .wisdom{opacity:1}
 
-/* Minimal controls - top right */
-.controls{
+/* Energy exchange */
+.energy{
   position:absolute;
-  top:max(3vh,15px);
-  right:max(3vw,15px);
-  display:flex;
-  gap:.6rem;
-  z-index:10;
+  bottom:max(4vh,20px);
+  font-size:.7rem;
+  letter-spacing:.15em;
+  opacity:.2;
+  transition:opacity .5s ease;
+  color:var(--dim);
+  cursor:pointer;
 }
 
-.ctrl{
-  background:transparent;
-  border:1px solid rgba(255,255,255,.1);
-  color:rgba(255,255,255,.4);
-  width:36px;
-  height:36px;
-  font-size:.85rem;
+.energy:hover{opacity:.5}
+
+.energy a{
+  color:inherit;
+  text-decoration:none;
+  margin:0 .3rem;
+}
+
+.energy a:hover{color:var(--light)}
+
+/* Menu panel */
+.menu{
+  position:fixed;
+  top:0;
+  right:-320px;
+  width:min(300px,85vw);
+  height:100%;
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(30px);
+  border-left:1px solid var(--border);
+  z-index:200;
+  transition:right .4s cubic-bezier(.22,1,.36,1);
+  overflow-y:auto;
+  padding:1.5rem;
+}
+
+.menu.open{right:0}
+
+.menu-close{
+  position:absolute;
+  top:1rem;
+  right:1rem;
+  background:none;
+  border:none;
+  color:var(--dim);
+  font-size:1.5rem;
   cursor:pointer;
-  transition:all .3s ease;
-  border-radius:50%;
+  transition:color .3s;
+}
+
+.menu-close:hover{color:var(--light)}
+
+.menu h3{
+  font-size:.7rem;
+  font-weight:400;
+  letter-spacing:.25em;
+  color:var(--faint);
+  margin:1.5rem 0 .8rem;
+  text-transform:uppercase;
+}
+
+.menu h3:first-of-type{margin-top:.5rem}
+
+.menu-item{
   display:flex;
   align-items:center;
-  justify-content:center;
+  padding:.6rem .8rem;
+  margin:.3rem 0;
+  background:var(--glass);
+  border:1px solid transparent;
+  border-radius:6px;
+  cursor:pointer;
+  transition:all .3s ease;
+  font-size:.8rem;
+  color:var(--dim);
 }
 
-.ctrl:hover{
-  border-color:rgba(255,255,255,.25);
-  color:rgba(255,255,255,.7);
+.menu-item:hover{
+  border-color:var(--border);
+  color:var(--light);
 }
 
-.ctrl.on{
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.2);
-  color:rgba(255,255,255,.85);
+.menu-item.selected{
+  border-color:rgba(255,20,147,.3);
+  background:rgba(255,20,147,.08);
+  color:var(--light);
+}
+
+.menu-item .dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  margin-right:.8rem;
+  background:var(--border);
+}
+
+.menu-item.selected .dot{background:rgba(255,20,147,.8)}
+
+.menu-item .hz{
+  margin-left:auto;
+  font-size:.65rem;
+  color:var(--faint);
+}
+
+.menu-divider{
+  height:1px;
+  background:var(--border);
+  margin:1rem 0;
+}
+
+.time-row{
+  display:flex;
+  gap:.4rem;
+  flex-wrap:wrap;
+}
+
+.time-btn{
+  flex:1;
+  min-width:50px;
+  padding:.5rem;
+  background:var(--glass);
+  border:1px solid transparent;
+  border-radius:6px;
+  color:var(--dim);
+  font-size:.75rem;
+  cursor:pointer;
+  transition:all .3s;
+}
+
+.time-btn:hover{border-color:var(--border);color:var(--light)}
+.time-btn.selected{border-color:rgba(255,20,147,.3);background:rgba(255,20,147,.08);color:var(--light)}
+
+.toggle-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.6rem 0;
+  font-size:.8rem;
+  color:var(--dim);
+}
+
+.toggle{
+  width:40px;
+  height:22px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:11px;
+  cursor:pointer;
+  position:relative;
+  transition:all .3s;
+}
+
+.toggle::after{
+  content:'';
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:14px;
+  height:14px;
+  background:var(--dim);
+  border-radius:50%;
+  transition:all .3s;
+}
+
+.toggle.on{
+  background:rgba(255,20,147,.2);
+  border-color:rgba(255,20,147,.4);
+}
+
+.toggle.on::after{
+  left:21px;
+  background:rgba(255,20,147,.9);
+}
+
+.headphones-note{
+  font-size:.65rem;
+  color:var(--faint);
+  margin-top:.3rem;
+  padding-left:.5rem;
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:150;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s;
+}
+
+.overlay.show{opacity:1;pointer-events:auto}
+
+/* Session end message */
+.session-end{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1s ease;
+  z-index:50;
+}
+
+.session-end.show{opacity:1}
+
+.session-end .breaths{
+  font-size:1.5rem;
+  font-weight:300;
+  letter-spacing:.3em;
+  margin-bottom:.8rem;
+}
+
+.session-end .message{
+  font-size:.85rem;
+  color:var(--dim);
+  font-style:italic;
 }
 
 /* Screen reader */
@@ -304,104 +509,191 @@ body{
 
 /* High contrast */
 body.contrast{background:#000}
-body.contrast .circle{
-  border:3px solid #fff;
-  box-shadow:0 0 50px rgba(255,255,255,.2);
+body.contrast .circle{border:3px solid #fff;box-shadow:0 0 40px rgba(255,255,255,.2)}
+body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .title{
+  -webkit-text-fill-color:#fff;color:#fff;opacity:1;
 }
-body.contrast .word,
-body.contrast .phase,
-body.contrast .wisdom,
-body.contrast .title{
-  -webkit-text-fill-color:#fff;
-  color:#fff;
-  opacity:1;
-}
+body.contrast .menu{background:#000}
 
-/* Reduce motion */
+/* Reduced motion */
 @media(prefers-reduced-motion:reduce){
-  *{
-    animation:none !important;
-    transition-duration:.3s !important;
-  }
+  *{animation:none!important;transition-duration:.2s!important}
 }
 
 /* Mobile */
-@media(max-width:480px){
-  .circle{
-    width:min(220px,60vw);
-    height:min(220px,60vw);
-  }
-  .controls{
-    top:auto;
-    bottom:max(3vh,12px);
-    right:50%;
-    transform:translateX(50%);
-  }
-  .wisdom{bottom:max(10vh,55px)}
+@media(max-width:500px){
+  .circle{width:min(220px,58vw);height:min(220px,58vw)}
+  .title{top:max(8vh,45px);font-size:clamp(1.1rem,3.5vw,1.6rem)}
+  .wisdom{bottom:max(12vh,70px)}
+  .controls{top:max(2.5vh,12px);right:max(2.5vw,12px);gap:.4rem}
+  .ctrl{width:34px;height:34px;font-size:.8rem}
 }
 </style>
 </head>
 <body>
 
-<div class="cosmos" aria-hidden="true"></div>
+<div class="cosmos" id="cosmos"></div>
 
 <div class="field">
-
-  <!-- Title -->
   <h1 class="title">INNERA FIELD</h1>
 
-  <!-- Controls -->
-  <div class="controls" role="toolbar" aria-label="Options">
-    <button class="ctrl" id="sound" aria-label="Sound" aria-pressed="false" title="Sound">♪</button>
-    <button class="ctrl" id="vibe" aria-label="Vibration" aria-pressed="false" title="Vibration">◎</button>
-    <button class="ctrl" id="contrast" aria-label="High contrast" aria-pressed="false" title="Contrast">◐</button>
+  <div class="controls">
+    <button class="ctrl" id="menuBtn" aria-label="Open menu" title="Frequencies">☰</button>
+    <button class="ctrl" id="soundBtn" aria-label="Sound" aria-pressed="false" title="Sound">♪</button>
+    <button class="ctrl" id="vibeBtn" aria-label="Vibration" aria-pressed="false" title="Vibration">◎</button>
+    <button class="ctrl" id="contrastBtn" aria-label="High contrast" aria-pressed="false" title="Contrast">◐</button>
   </div>
 
-  <!-- The Circle -->
-  <div class="circle" id="circle" role="button" tabindex="0" 
-       aria-label="Breathing circle. Click or press Enter to begin.">
+  <div class="circle" id="circle" role="button" tabindex="0" aria-label="Breathing circle. Click to begin.">
     <span class="word" id="word">breathe</span>
-    <span class="phase" id="phase" aria-hidden="true"></span>
-    <span class="count" id="count" aria-hidden="true"></span>
+    <span class="phase" id="phase"></span>
+    <span class="timer" id="timerDisplay"></span>
   </div>
 
-  <!-- Wisdom -->
   <p class="wisdom" id="wisdom"></p>
 
-  <!-- Screen reader announcements -->
-  <div class="sr" id="sr" role="status" aria-live="assertive"></div>
+  <div class="energy">
+    · if this serves you · <a href="https://ko-fi.com/innerafield" target="_blank" rel="noopener">♡</a> ·
+  </div>
 
+  <div class="sr" id="sr" role="status" aria-live="assertive"></div>
 </div>
+
+<!-- Session end message -->
+<div class="session-end" id="sessionEnd">
+  <div class="breaths" id="endBreaths"></div>
+  <div class="message">you are infinite. return when you forget.</div>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Menu -->
+<nav class="menu" id="menu" aria-label="Frequency settings">
+  <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
+
+  <h3>Journeys</h3>
+  <div class="menu-item selected" data-journey="heart">
+    <span class="dot"></span>Heart Opening<span class="hz">528→432→396→417</span>
+  </div>
+  <div class="menu-item" data-journey="awakening">
+    <span class="dot"></span>Awakening<span class="hz">741→852→963→639</span>
+  </div>
+  <div class="menu-item" data-journey="grounding">
+    <span class="dot"></span>Grounding<span class="hz">285→432→174→7.83</span>
+  </div>
+  <div class="menu-item" data-journey="unity">
+    <span class="dot"></span>Unity<span class="hz">528→639→111→7.83</span>
+  </div>
+  <div class="menu-item" data-journey="peace">
+    <span class="dot"></span>Deep Peace<span class="hz">θ + 432</span>
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <h3>Frequencies</h3>
+  <div class="menu-item" data-freq="174"><span class="dot"></span>Pain Relief<span class="hz">174 Hz</span></div>
+  <div class="menu-item" data-freq="285"><span class="dot"></span>Healing<span class="hz">285 Hz</span></div>
+  <div class="menu-item" data-freq="396"><span class="dot"></span>Liberation<span class="hz">396 Hz</span></div>
+  <div class="menu-item" data-freq="417"><span class="dot"></span>Change<span class="hz">417 Hz</span></div>
+  <div class="menu-item" data-freq="528"><span class="dot"></span>Love<span class="hz">528 Hz</span></div>
+  <div class="menu-item" data-freq="639"><span class="dot"></span>Connection<span class="hz">639 Hz</span></div>
+  <div class="menu-item" data-freq="741"><span class="dot"></span>Awakening<span class="hz">741 Hz</span></div>
+  <div class="menu-item" data-freq="852"><span class="dot"></span>Vision<span class="hz">852 Hz</span></div>
+  <div class="menu-item" data-freq="963"><span class="dot"></span>Pineal<span class="hz">963 Hz</span></div>
+  <div class="menu-item" data-freq="432"><span class="dot"></span>Peace<span class="hz">432 Hz</span></div>
+  <div class="menu-item" data-freq="7.83"><span class="dot"></span>Earth<span class="hz">7.83 Hz</span></div>
+  <div class="menu-item" data-freq="111"><span class="dot"></span>Unity<span class="hz">111 Hz</span></div>
+
+  <div class="menu-divider"></div>
+
+  <h3>Binaural Beats 🎧</h3>
+  <div class="menu-item" data-binaural="delta"><span class="dot"></span>Delta<span class="hz">0.5-4 Hz · deep sleep</span></div>
+  <div class="menu-item" data-binaural="theta"><span class="dot"></span>Theta<span class="hz">4-8 Hz · meditation</span></div>
+  <div class="menu-item" data-binaural="alpha"><span class="dot"></span>Alpha<span class="hz">8-14 Hz · calm focus</span></div>
+  <div class="menu-item" data-binaural="beta"><span class="dot"></span>Beta<span class="hz">14-30 Hz · clarity</span></div>
+  <div class="menu-item" data-binaural="gamma"><span class="dot"></span>Gamma<span class="hz">30-100 Hz · transcendence</span></div>
+  <p class="headphones-note">Use headphones for binaural beats</p>
+
+  <div class="menu-divider"></div>
+
+  <h3>Duration</h3>
+  <div class="time-row">
+    <button class="time-btn" data-time="300">5 min</button>
+    <button class="time-btn selected" data-time="600">10 min</button>
+    <button class="time-btn" data-time="1200">20 min</button>
+    <button class="time-btn" data-time="0">∞</button>
+  </div>
+
+  <div class="menu-divider"></div>
+
+  <h3>Options</h3>
+  <div class="toggle-row">
+    <span>Voice guidance</span>
+    <div class="toggle" id="voiceToggle" role="switch" aria-checked="false"></div>
+  </div>
+  <div class="toggle-row">
+    <span>Shift frequency with breath</span>
+    <div class="toggle on" id="shiftToggle" role="switch" aria-checked="true"></div>
+  </div>
+</nav>
 
 <script>
 (function(){
 'use strict';
 
-// State
+// ══════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════
 const S = {
   on: false,
   phase: 0,
   breaths: 0,
-  audio: null,
-  osc: null,
-  gain: null,
   sound: false,
   vibe: false,
-  timer: null
+  voice: false,
+  shift: true,
+  journey: 'heart',
+  freq: null,
+  binaural: null,
+  duration: 600,
+  elapsed: 0,
+  timer: null,
+  tickTimer: null,
+  audio: null,
+  osc: null,
+  oscL: null,
+  oscR: null,
+  gain: null,
+  gainL: null,
+  gainR: null
 };
 
-// Elements
+// ══════════════════════════════════════════════════════════
+// ELEMENTS
+// ══════════════════════════════════════════════════════════
 const circle = document.getElementById('circle');
 const word = document.getElementById('word');
 const phase = document.getElementById('phase');
-const count = document.getElementById('count');
+const timerDisplay = document.getElementById('timerDisplay');
 const wisdom = document.getElementById('wisdom');
 const sr = document.getElementById('sr');
-const soundBtn = document.getElementById('sound');
-const vibeBtn = document.getElementById('vibe');
-const contrastBtn = document.getElementById('contrast');
+const sessionEnd = document.getElementById('sessionEnd');
+const endBreaths = document.getElementById('endBreaths');
+const menu = document.getElementById('menu');
+const overlay = document.getElementById('overlay');
+const menuBtn = document.getElementById('menuBtn');
+const menuClose = document.getElementById('menuClose');
+const soundBtn = document.getElementById('soundBtn');
+const vibeBtn = document.getElementById('vibeBtn');
+const contrastBtn = document.getElementById('contrastBtn');
+const voiceToggle = document.getElementById('voiceToggle');
+const shiftToggle = document.getElementById('shiftToggle');
+const cosmos = document.getElementById('cosmos');
 
-// Wisdom
+// ══════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════
 const wisdoms = [
   "you are not broken. you are returning.",
   "the breath knows the way home.",
@@ -412,27 +704,62 @@ const wisdoms = [
   "every exhale is a small surrender.",
   "your purpose is this moment.",
   "the universe remembers your name.",
-  "lost and found are the same place."
+  "lost and found are the same place.",
+  "peace is not found. it is remembered.",
+  "you are the field. the field is you."
 ];
 
-// Phases: 4-4-4-4 box breathing
-const phases = ['inhale','hold','exhale','rest'];
+const phases = ['inhale','hold-in','exhale','hold-out'];
 const words = ['breathe in','hold','release','rest'];
 const durations = [4000,4000,4000,4000];
 
-// Audio
+const journeys = {
+  heart:     [528,432,396,417],
+  awakening: [741,852,963,639],
+  grounding: [285,432,174,7.83],
+  unity:     [528,639,111,7.83],
+  peace:     [432,432,432,432]
+};
+
+const binauralHz = {
+  delta: 2,
+  theta: 6,
+  alpha: 10,
+  beta: 20,
+  gamma: 40
+};
+
+// ══════════════════════════════════════════════════════════
+// AUDIO ENGINE
+// ══════════════════════════════════════════════════════════
 function initAudio(){
   if(S.audio) return;
   S.audio = new (window.AudioContext||window.webkitAudioContext)();
+  
+  // Main gain
   S.gain = S.audio.createGain();
   S.gain.gain.value = 0;
   S.gain.connect(S.audio.destination);
+  
+  // Stereo for binaural
+  S.gainL = S.audio.createGain();
+  S.gainR = S.audio.createGain();
+  S.gainL.gain.value = 0;
+  S.gainR.gain.value = 0;
+  
+  const merger = S.audio.createChannelMerger(2);
+  S.gainL.connect(merger, 0, 0);
+  S.gainR.connect(merger, 0, 1);
+  merger.connect(S.audio.destination);
+  
+  S.merger = merger;
 }
 
-function playTone(hz){
-  if(!S.sound||!S.audio) return;
+function playFreq(hz){
+  if(!S.audio) return;
+  
   if(S.osc){
-    S.osc.frequency.setTargetAtTime(hz,S.audio.currentTime,0.8);
+    S.osc.frequency.setTargetAtTime(hz, S.audio.currentTime, 0.8);
   } else {
     S.osc = S.audio.createOscillator();
     S.osc.type = 'sine';
@@ -440,147 +767,330 @@ function playTone(hz){
     S.osc.connect(S.gain);
     S.osc.start();
   }
-  S.gain.gain.setTargetAtTime(0.06,S.audio.currentTime,0.4);
+  S.gain.gain.setTargetAtTime(0.07, S.audio.currentTime, 0.5);
 }
 
-function stopTone(){
-  if(S.gain) S.gain.gain.setTargetAtTime(0,S.audio.currentTime,0.6);
+function playBinaural(beatHz, baseHz = 200){
+  if(!S.audio) return;
+  
+  // Left oscillator
+  if(!S.oscL){
+    S.oscL = S.audio.createOscillator();
+    S.oscL.type = 'sine';
+    S.oscL.connect(S.gainL);
+    S.oscL.start();
+  }
+  S.oscL.frequency.setTargetAtTime(baseHz, S.audio.currentTime, 0.3);
+  
+  // Right oscillator (slightly different)
+  if(!S.oscR){
+    S.oscR = S.audio.createOscillator();
+    S.oscR.type = 'sine';
+    S.oscR.connect(S.gainR);
+    S.oscR.start();
+  }
+  S.oscR.frequency.setTargetAtTime(baseHz + beatHz, S.audio.currentTime, 0.3);
+  
+  S.gainL.gain.setTargetAtTime(0.06, S.audio.currentTime, 0.5);
+  S.gainR.gain.setTargetAtTime(0.06, S.audio.currentTime, 0.5);
 }
 
-// Vibration
+function stopAudio(){
+  if(S.gain) S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.5);
+  if(S.gainL) S.gainL.gain.setTargetAtTime(0, S.audio.currentTime, 0.5);
+  if(S.gainR) S.gainR.gain.setTargetAtTime(0, S.audio.currentTime, 0.5);
+}
+
+// ══════════════════════════════════════════════════════════
+// VOICE
+// ══════════════════════════════════════════════════════════
+function speak(text){
+  if(!S.voice || !window.speechSynthesis) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.8;
+  u.pitch = 0.9;
+  u.volume = 0.7;
+  speechSynthesis.speak(u);
+}
+
+// ══════════════════════════════════════════════════════════
+// VIBRATION
+// ══════════════════════════════════════════════════════════
 function vibe(pattern){
   if(S.vibe && navigator.vibrate) navigator.vibrate(pattern);
 }
 
-// Set phase
+// ══════════════════════════════════════════════════════════
+// BREATHING CYCLE
+// ══════════════════════════════════════════════════════════
 function setPhase(i){
   S.phase = i;
   const p = phases[i];
   
-  // Update classes
+  // Update circle
   circle.className = 'circle breathing ' + p;
   
   // Update text
   word.textContent = words[i];
-  phase.textContent = p;
+  phase.textContent = p.replace('-',' ');
   
   // Screen reader
   sr.textContent = words[i];
   
+  // Voice
+  speak(words[i]);
+  
   // Vibration patterns
-  const vibes = [[100,40,100],[40],[180],[30]];
+  const vibes = [[80,30,80,30,80],[40],[150,50,100],[30]];
   vibe(vibes[i]);
   
-  // Frequencies: inhale=528, hold=432, exhale=396, rest=417
-  const freqs = [528,432,396,417];
-  if(S.sound) playTone(freqs[i]);
+  // Sound
+  if(S.sound && S.audio){
+    if(S.journey === 'peace' && S.binaural === null){
+      // Deep peace uses theta + 432
+      playBinaural(6, 200);
+      playFreq(432);
+    } else if(S.binaural){
+      // Pure binaural
+      playBinaural(binauralHz[S.binaural], 200);
+      if(S.freq) playFreq(S.freq);
+    } else if(S.freq){
+      // Single frequency
+      playFreq(S.freq);
+    } else if(S.shift && S.journey){
+      // Shift with breath
+      const freqs = journeys[S.journey];
+      playFreq(freqs[i]);
+    }
+  }
   
-  // Count breaths on exhale end
+  // Count breaths
   if(i === 2) S.breaths++;
-  count.textContent = 'breath ' + S.breaths;
 }
 
-// Next phase
 function next(){
   const n = (S.phase + 1) % 4;
   setPhase(n);
   S.timer = setTimeout(next, durations[n]);
 }
 
-// Start
+function updateTimer(){
+  if(!S.on) return;
+  
+  S.elapsed++;
+  
+  if(S.duration > 0){
+    const remaining = S.duration - S.elapsed;
+    if(remaining <= 0){
+      stop();
+      return;
+    }
+    const min = Math.floor(remaining / 60);
+    const sec = remaining % 60;
+    timerDisplay.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
+  } else {
+    timerDisplay.textContent = 'breath ' + S.breaths;
+  }
+  
+  S.tickTimer = setTimeout(updateTimer, 1000);
+}
+
+// ══════════════════════════════════════════════════════════
+// START / STOP
+// ══════════════════════════════════════════════════════════
 function start(){
   if(S.on) return;
   S.on = true;
   S.breaths = 0;
+  S.elapsed = 0;
   
   document.body.classList.add('active');
-  wisdom.textContent = wisdoms[Math.floor(Math.random()*wisdoms.length)];
+  sessionEnd.classList.remove('show');
+  
+  wisdom.textContent = wisdoms[Math.floor(Math.random() * wisdoms.length)];
   
   if(S.sound){
     initAudio();
-    if(S.audio.state==='suspended') S.audio.resume();
-    playTone(528);
+    if(S.audio.state === 'suspended') S.audio.resume();
   }
   
   setPhase(0);
   S.timer = setTimeout(next, durations[0]);
-  sr.textContent = 'Breathing started. Breathe in.';
+  updateTimer();
+  
+  sr.textContent = 'Breathing started. ' + words[0];
 }
 
-// Stop
 function stop(){
   if(!S.on) return;
   S.on = false;
   
   document.body.classList.remove('active');
+  
   clearTimeout(S.timer);
+  clearTimeout(S.tickTimer);
   S.timer = null;
+  S.tickTimer = null;
   
   circle.className = 'circle';
   word.textContent = 'breathe';
   phase.textContent = '';
-  count.textContent = '';
+  timerDisplay.textContent = '';
   
-  stopTone();
+  stopAudio();
   
-  wisdom.textContent = 'return when you forget.';
-  setTimeout(()=>{if(!S.on) wisdom.textContent='';},5000);
+  // Show session end
+  endBreaths.textContent = S.breaths + ' breaths with Source';
+  sessionEnd.classList.add('show');
   
-  sr.textContent = S.breaths + ' breaths. You are infinite.';
+  setTimeout(() => {
+    sessionEnd.classList.remove('show');
+    wisdom.textContent = '';
+  }, 5000);
+  
+  sr.textContent = S.breaths + ' breaths complete. You are infinite.';
 }
 
-// Toggle
 function toggle(){
   S.on ? stop() : start();
 }
 
-// Controls
-soundBtn.onclick = ()=>{
+// ══════════════════════════════════════════════════════════
+// MENU
+// ══════════════════════════════════════════════════════════
+function openMenu(){
+  menu.classList.add('open');
+  overlay.classList.add('show');
+}
+
+function closeMenu(){
+  menu.classList.remove('open');
+  overlay.classList.remove('show');
+}
+
+// Journey selection
+document.querySelectorAll('[data-journey]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-journey],[data-freq],[data-binaural]').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    S.journey = el.dataset.journey;
+    S.freq = null;
+    S.binaural = null;
+  });
+});
+
+// Frequency selection
+document.querySelectorAll('[data-freq]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-journey],[data-freq],[data-binaural]').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    S.freq = parseFloat(el.dataset.freq);
+    S.journey = null;
+    S.binaural = null;
+  });
+});
+
+// Binaural selection
+document.querySelectorAll('[data-binaural]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-journey],[data-freq],[data-binaural]').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    S.binaural = el.dataset.binaural;
+    S.journey = null;
+    S.freq = null;
+  });
+});
+
+// Time selection
+document.querySelectorAll('[data-time]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-time]').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    S.duration = parseInt(el.dataset.time);
+  });
+});
+
+// Toggles
+voiceToggle.addEventListener('click', () => {
+  S.voice = !S.voice;
+  voiceToggle.classList.toggle('on', S.voice);
+  voiceToggle.setAttribute('aria-checked', S.voice);
+});
+
+shiftToggle.addEventListener('click', () => {
+  S.shift = !S.shift;
+  shiftToggle.classList.toggle('on', S.shift);
+  shiftToggle.setAttribute('aria-checked', S.shift);
+});
+
+// ══════════════════════════════════════════════════════════
+// CONTROLS
+// ══════════════════════════════════════════════════════════
+menuBtn.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+overlay.addEventListener('click', closeMenu);
+
+soundBtn.addEventListener('click', () => {
   S.sound = !S.sound;
-  soundBtn.classList.toggle('on',S.sound);
-  soundBtn.setAttribute('aria-pressed',S.sound);
+  soundBtn.classList.toggle('on', S.sound);
+  soundBtn.setAttribute('aria-pressed', S.sound);
+  
   if(S.sound && S.on){
     initAudio();
-    if(S.audio.state==='suspended') S.audio.resume();
-    playTone(528);
+    if(S.audio.state === 'suspended') S.audio.resume();
   } else if(!S.sound){
-    stopTone();
+    stopAudio();
   }
-};
+});
 
-vibeBtn.onclick = ()=>{
+vibeBtn.addEventListener('click', () => {
   S.vibe = !S.vibe;
-  vibeBtn.classList.toggle('on',S.vibe);
-  vibeBtn.setAttribute('aria-pressed',S.vibe);
-  if(S.vibe) vibe([40,20,40]);
-};
+  vibeBtn.classList.toggle('on', S.vibe);
+  vibeBtn.setAttribute('aria-pressed', S.vibe);
+  if(S.vibe) vibe([30,20,30]);
+});
 
-contrastBtn.onclick = ()=>{
+contrastBtn.addEventListener('click', () => {
   document.body.classList.toggle('contrast');
   const on = document.body.classList.contains('contrast');
-  contrastBtn.classList.toggle('on',on);
-  contrastBtn.setAttribute('aria-pressed',on);
-};
+  contrastBtn.classList.toggle('on', on);
+  contrastBtn.setAttribute('aria-pressed', on);
+});
 
-// Events
-circle.onclick = toggle;
-circle.onkeydown = e=>{
-  if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}
-};
+// ══════════════════════════════════════════════════════════
+// EVENTS
+// ══════════════════════════════════════════════════════════
+circle.addEventListener('click', toggle);
+circle.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){
+    e.preventDefault();
+    toggle();
+  }
+});
 
-document.onkeydown = e=>{
-  if(e.key===' '&&document.activeElement===document.body){e.preventDefault();toggle();}
-  if(e.key==='Escape'&&S.on) stop();
-};
+document.addEventListener('keydown', e => {
+  if(e.key === ' ' && document.activeElement === document.body){
+    e.preventDefault();
+    toggle();
+  }
+  if(e.key === 'Escape'){
+    if(menu.classList.contains('open')){
+      closeMenu();
+    } else if(S.on){
+      stop();
+    }
+  }
+});
 
-// Hide vibe button if not supported
-if(!navigator.vibrate) vibeBtn.style.display='none';
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+if(!navigator.vibrate) vibeBtn.style.display = 'none';
 
-// System preferences
 if(window.matchMedia('(prefers-contrast:more)').matches){
   document.body.classList.add('contrast');
   contrastBtn.classList.add('on');
-  contrastBtn.setAttribute('aria-pressed','true');
+  contrastBtn.setAttribute('aria-pressed', 'true');
 }
 
 })();

@@ -3,493 +3,1160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<meta name="description" content="Breathe. Connect to Source. For all beings.">
+<meta name="description" content="Universal spiritual bridge. For every being, every ability, every path to Source. Blind, deaf, paralyzed - all welcome home.">
 <meta name="theme-color" content="#000000">
-<title>Innera Field</title>
+<title>Innera Field - Universal Bridge to Source</title>
+<script type="text/javascript">
+function googleTranslateElementInit(){
+new google.translate.TranslateElement({
+pageLanguage:'en',
+includedLanguages:'es,fr,de,pt,it,ru,zh-CN,ja,ko,ar,hi,bn,id,ms,th,vi,tr,pl,nl,sv,no,da,fi,el,he,fa,uk,ro,cs,hu',
+layout:google.translate.TranslateElement.InlineLayout.SIMPLE,
+autoDisplay:false
+},'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#000;
-  color:#fff;
-  font-family:system-ui,-apple-system,sans-serif;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  cursor:pointer;
+:root{
+--bg:#000;--text:#fff;--dim:rgba(255,255,255,.65);--glass:rgba(255,255,255,.05);--border:rgba(255,255,255,.12);
+--pink:rgba(255,20,147,.5);--blue:rgba(0,191,255,.5);--purple:rgba(138,43,226,.4);--green:rgba(50,205,50,.4);--orange:rgba(255,140,0,.4);
+--red:rgba(220,20,60,.4);--indigo:rgba(75,0,130,.4);--gold:rgba(255,215,0,.3)
 }
-
-/* The Circle - Center of Everything */
-#circle{
-  position:absolute;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  background:radial-gradient(circle at center,rgba(255,20,147,.1),transparent);
-  border:3px solid rgba(255,20,147,.3);
-  box-shadow:0 0 100px rgba(255,20,147,.4),inset 0 0 80px rgba(138,43,226,.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  transition:all 4s cubic-bezier(.4,0,.2,1);
-  backdrop-filter:blur(20px);
-  animation:birthPulse 3s ease-in-out;
+body.light{--bg:#f8f9fa;--text:#1a1a1a;--dim:rgba(0,0,0,.65);--glass:rgba(0,0,0,.03);--border:rgba(0,0,0,.08)}
+body.light .subtitle,body.light .wisdom,body.light .circle-label,body.light .breath-count,body.light .freq h3,body.light .freq-desc,body.light .stat-label,body.light .stat-value{color:#1a1a1a!important}
+body.light .modal-content h2,body.light .modal-content p,body.light .modal-content strong,body.light .btn-secondary{color:#1a1a1a!important}
+body.light .crypto-address{color:#1a1a1a!important}
+body.contrast{--bg:#000;--text:#fff;--dim:#fff;--glass:rgba(255,255,255,.15);--border:rgba(255,255,255,.4)}
+body.eyes-closed{--bg:#000!important;--text:#111!important}
+body.eyes-closed *:not(#ariaLive):not(.ariaMsg){opacity:.02!important;transition:opacity 2s}
+body.eyes-closed #c,body.eyes-closed .glow{opacity:0!important}
+body.morning{--pink:rgba(255,165,0,.6);--blue:rgba(135,206,250,.5);--purple:rgba(255,192,203,.4)}
+body.evening{--pink:rgba(72,61,139,.5);--blue:rgba(25,25,112,.5);--purple:rgba(138,43,226,.5)}
+body.grief{--pink:rgba(105,105,105,.5);--blue:rgba(70,70,70,.5);--purple:rgba(50,50,50,.4)}
+body{font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .8s,color .8s;animation:gentleFadeIn 1s ease-out}
+@keyframes gentleFadeIn{0%{opacity:0}100%{opacity:1}}
+#c{position:fixed;inset:0;z-index:0;transition:opacity .5s}
+.glow{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 0,var(--pink),transparent 50%),radial-gradient(circle at 50% 100%,var(--blue),transparent 50%);opacity:.25;animation:breatheGlow 8s ease-in-out infinite;transition:opacity .5s}
+@keyframes breatheGlow{0%,100%{opacity:.25}50%{opacity:.4}}
+.skip{position:absolute;left:-9999px;background:var(--pink);color:#fff;padding:1rem;text-decoration:none;border-radius:8px;z-index:10000}
+.skip:focus{left:1rem;top:1rem}
+.topbar{position:fixed;top:0;left:0;right:0;height:auto;min-height:60px;z-index:1000;background:rgba(0,0,0,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;justify-content:center;align-items:center;gap:.6rem;padding:.8rem;flex-wrap:wrap}
+body.light .topbar{background:rgba(255,255,255,.8)}
+.container{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh}
+.brand{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:.5em;text-align:center;margin-bottom:1.5rem;background:linear-gradient(135deg,#ff1493,#00bfff,#8a2be2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,20,147,.4));animation:fadeIn 1s ease;text-transform:uppercase;white-space:nowrap}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.subtitle{font-size:clamp(.9rem,2vw,1.1rem);color:#fff;text-align:center;margin-bottom:2rem;letter-spacing:.15em;opacity:.9}
+.mode-bar{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center;animation:fadeIn 1s ease .2s both}
+.mode-btn{font-size:.8rem;padding:.5rem 1rem}
+.presets{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center;animation:fadeIn 1s ease .3s both}
+.preset{font-size:.8rem;padding:.5rem 1rem}
+.breath-section{width:100%;display:flex;flex-direction:column;align-items:center;margin:2rem 0;animation:fadeIn 1s ease .4s both}
+.circle-container{position:relative;width:280px;height:280px}
+.progress-ring{position:absolute;top:0;left:0;width:100%;height:100%;transform:rotate(-90deg)}
+.progress-ring circle{fill:none;stroke:var(--pink);stroke-width:3;stroke-dasharray:860;stroke-dashoffset:860;transition:stroke-dashoffset 4s linear}
+.circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:260px;height:260px;border:3px solid var(--border);border-radius:50%;background:var(--glass);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 80px var(--pink),inset 0 0 80px var(--purple);transition:transform 4s cubic-bezier(.4,0,.2,1),box-shadow 4s cubic-bezier(.4,0,.2,1),border-color 4s cubic-bezier(.4,0,.2,1);will-change:transform;contain:layout style;animation:heroSpotlight 3s ease-in-out}
+@keyframes heroSpotlight{0%{box-shadow:0 0 200px var(--pink),inset 0 0 100px var(--purple);transform:translate(-50%,-50%) scale(1.1)}50%{box-shadow:0 0 250px var(--pink),inset 0 0 120px var(--purple)}100%{box-shadow:0 0 80px var(--pink),inset 0 0 80px var(--purple);transform:translate(-50%,-50%) scale(1)}}
+.circle:hover,.circle:focus{transform:translate(-50%,-50%) scale(1.02);outline:3px solid var(--pink);outline-offset:4px}
+.circle.in{transform:translate(-50%,-50%) scale(1.35);box-shadow:0 0 120px var(--pink),inset 0 0 120px var(--purple);border-color:var(--pink);border-width:4px;animation:subtleHeartbeat 4s ease-in-out infinite}
+.circle.out{transform:translate(-50%,-50%) scale(.8);box-shadow:0 0 50px var(--blue),inset 0 0 60px var(--purple);border-color:var(--blue);border-width:2px}
+@keyframes subtleHeartbeat{0%,100%{box-shadow:0 0 120px var(--pink),inset 0 0 120px var(--purple)}50%{box-shadow:0 0 140px var(--pink),inset 0 0 140px var(--purple)}}
+.circle-label{font-size:1.4rem;font-weight:400;letter-spacing:.4em;opacity:1;color:#fff;text-align:center;display:block;width:100%}
+.breath-count{font-size:.8rem;color:#fff;margin-top:.5rem;opacity:.9;text-align:center;display:block;width:100%}
+.phase-indicator{font-size:.7rem;color:var(--pink);margin-top:.3rem;font-weight:600;letter-spacing:.2em;text-shadow:0 0 10px var(--pink);text-align:center;display:block;width:100%}
+.timer{margin-top:2rem;font-size:3rem;font-weight:300;font-variant-numeric:tabular-nums;text-align:center;opacity:0;transition:opacity .5s}
+.timer.show{opacity:1}
+.stats{display:flex;gap:2rem;margin-top:1rem;font-size:.85rem;color:var(--dim);opacity:0;transition:opacity .5s}
+.stats.show{opacity:1}
+.stat-item{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.stat-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;opacity:.7}
+.stat-value{font-size:1.1rem;font-weight:600;color:var(--text)}
+.wisdom{width:100%;max-width:700px;text-align:center;font-size:1.15rem;font-weight:300;line-height:1.9;color:#fff;margin:3rem 0;padding:2rem;background:var(--glass);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(20px);animation:fadeIn 1s ease .5s both}
+.frequencies{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:2.5rem 0;animation:fadeIn 1s ease .6s both}
+.freq{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:1.8rem 1rem;text-align:center;cursor:pointer;backdrop-filter:blur(20px);transition:all .3s;position:relative;overflow:hidden}
+.freq::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,var(--freq-color,.5),transparent 70%);opacity:0;transition:opacity .3s}
+.freq:hover::before,.freq.active::before{opacity:.3}
+.freq:hover,.freq:focus{background:rgba(255,255,255,.08);transform:translateY(-3px);box-shadow:0 8px 30px var(--purple);border-color:var(--pink);outline:2px solid var(--pink);outline-offset:2px}
+.freq.active{background:rgba(255,20,147,.1);border-color:var(--pink);box-shadow:0 0 25px var(--pink)}
+.freq h3{font-size:1.1rem;font-weight:600;letter-spacing:.02em;margin-bottom:.3rem;color:#fff}
+.freq-hz{font-size:.75rem;color:rgba(255,255,255,.7);margin-bottom:.5rem}
+.freq-desc{font-size:.7rem;color:rgba(255,255,255,.8);opacity:1;line-height:1.4}
+.btn{background:var(--glass);border:1px solid var(--border);color:var(--text);padding:.6rem 1.2rem;border-radius:50px;font-family:Inter,sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.02em;cursor:pointer;backdrop-filter:blur(20px);transition:all .3s}
+.btn:hover,.btn:focus{background:rgba(255,20,147,.15);border-color:var(--pink);transform:translateY(-2px);box-shadow:0 6px 20px var(--pink);outline:2px solid var(--pink);outline-offset:2px}
+.btn.active{background:rgba(50,205,50,.3);border:2px solid rgba(50,205,50,.6);box-shadow:0 0 15px rgba(50,205,50,.4)}
+#google_translate_element{display:inline-block}
+#google_translate_element select{background:var(--glass);color:var(--text);border:1px solid var(--border);padding:.5rem;border-radius:8px;font-size:.9rem;cursor:pointer;transition:all .3s}
+#google_translate_element select:hover{background:rgba(255,255,255,.1);border-color:var(--pink)}
+.goog-te-banner-frame{display:none!important}
+body{top:0!important}
+.btn-primary{background:linear-gradient(135deg,var(--pink),var(--blue));border:none;color:#fff;padding:1rem 2.5rem;font-size:1rem;box-shadow:0 8px 30px rgba(255,20,147,.3);font-weight:600}
+.btn-primary:hover,.btn-primary:focus{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,20,147,.4)}
+.btn-secondary{background:rgba(255,255,255,.08);border:1px solid var(--border);padding:.8rem 1.8rem;font-size:.9rem;color:#fff}
+.bottombar{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(30px);border-top:1px solid var(--border);padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:.8rem}
+body.light .bottombar{background:rgba(255,255,255,.85)}
+.actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(15px);z-index:2000;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.modal.show{display:flex}
+.modal-content{background:rgba(10,10,20,.98);border:2px solid var(--pink);border-radius:24px;padding:2.5rem;max-width:550px;width:100%;box-shadow:0 0 60px var(--pink);animation:slideUp .4s ease;position:relative;max-height:85vh;overflow-y:auto}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-content h2{color:#fff;font-size:1.8rem;font-weight:600;margin-bottom:1.2rem;letter-spacing:.02em}
+.modal-content p{color:#fff;line-height:1.7;margin-bottom:1.2rem;font-size:.95rem}
+.modal-content strong{color:#fff}
+.close{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:.5;transition:opacity .3s;padding:0;line-height:1;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.close:hover,.close:focus{opacity:1;outline:2px solid var(--pink);border-radius:8px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#ariaLive{position:absolute;left:-9999px}
+.sound-opts,.binaural-opts,.mode-opts{display:flex;flex-direction:column;gap:.8rem;margin:1rem 0}
+.option-group{margin:1.5rem 0}
+.option-group h3{font-size:1.1rem;margin-bottom:.8rem;color:rgba(255,255,255,.9)}
+textarea{width:100%;min-height:100px;background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:12px;padding:1rem;color:#fff;font-family:Inter,sans-serif;font-size:.95rem;resize:vertical;margin-bottom:1rem}
+textarea:focus{outline:none;border-color:var(--pink);box-shadow:0 0 15px rgba(255,20,147,.2)}
+.collective-info{background:rgba(255,20,147,.1);border:1px solid var(--pink);border-radius:12px;padding:1.2rem;margin:1rem 0;text-align:center}
+.collective-count{font-size:2rem;font-weight:700;color:var(--pink);margin:.5rem 0}
+.collective-label{font-size:.85rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:768px){
+.brand{letter-spacing:.3em;margin-bottom:1.5rem}
+.circle-container{width:240px;height:240px}
+.circle{width:220px;height:220px}
+.timer{font-size:2.5rem}
+.frequencies{grid-template-columns:1fr;max-width:300px}
+.btn-primary{padding:.9rem 2rem}
+.container{padding-bottom:260px}
+.topbar{gap:.5rem;padding:.6rem}
+.btn{font-size:.8rem;padding:.5rem 1rem}
 }
-
-@keyframes birthPulse{
-  0%{transform:scale(0);opacity:0}
-  50%{transform:scale(1.1);opacity:1;box-shadow:0 0 200px rgba(255,20,147,.8)}
-  100%{transform:scale(1);box-shadow:0 0 100px rgba(255,20,147,.4)}
+@media(max-width:480px){
+.circle-container{width:200px;height:200px}
+.circle{width:180px;height:180px}
+.stats{gap:1rem}
 }
-
-#circle.breathing{
-  animation:breathePulse 16s infinite cubic-bezier(.4,0,.2,1);
-}
-
-@keyframes breathePulse{
-  0%{transform:scale(1);box-shadow:0 0 100px rgba(255,20,147,.4)}
-  25%{transform:scale(1.3);box-shadow:0 0 200px rgba(255,20,147,.8),inset 0 0 150px rgba(138,43,226,.6)}
-  50%{transform:scale(1);box-shadow:0 0 100px rgba(255,20,147,.4)}
-  75%{transform:scale(0.85);box-shadow:0 0 60px rgba(0,191,255,.6),inset 0 0 100px rgba(138,43,226,.5)}
-  100%{transform:scale(1);box-shadow:0 0 100px rgba(255,20,147,.4)}
-}
-
-/* The Word */
-#word{
-  font-size:2.5rem;
-  font-weight:300;
-  letter-spacing:.5em;
-  text-align:center;
-  text-transform:uppercase;
-  opacity:.9;
-  transition:all 1s ease;
-  text-shadow:0 0 30px rgba(255,20,147,.6);
-  padding-left:.5em;
-}
-
-/* Frequency Indicator (subtle) */
-#freq{
-  position:absolute;
-  bottom:2rem;
-  font-size:.8rem;
-  opacity:.3;
-  letter-spacing:.2em;
-  transition:opacity 1s;
-}
-
-/* State Messages */
-#state{
-  position:absolute;
-  top:2rem;
-  font-size:.9rem;
-  opacity:.4;
-  letter-spacing:.3em;
-  text-align:center;
-  max-width:80%;
-}
-
-/* Screen Reader Only */
-.sr-only{
-  position:absolute;
-  width:1px;
-  height:1px;
-  padding:0;
-  margin:-1px;
-  overflow:hidden;
-  clip:rect(0,0,0,0);
-  white-space:nowrap;
-  border:0;
-}
-
-/* Responsive */
-@media(max-width:600px){
-  #circle{width:250px;height:250px}
-  #word{font-size:2rem}
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body.no-motion *{animation:none!important;transition:opacity .3s,transform .3s,background .3s,color .3s,border .3s!important}
+body.no-motion .circle{transition:transform 4s cubic-bezier(.4,0,.2,1)!important}
+.chakra-indicator{position:absolute;top:10px;right:10px;width:12px;height:12px;border-radius:50%;opacity:.7;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.2);opacity:1}}
 </style>
 </head>
 <body>
+<a href="#main" class="skip">Skip to main content</a>
+<div id="ariaLive" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
 
-<div id="circle" role="button" tabindex="0" aria-label="Breathing circle. Click to begin.">
-  <div id="word">BREATHE</div>
+<canvas id="c"></canvas>
+<div class="glow"></div>
+
+<div class="topbar" role="navigation" aria-label="Controls">
+<button class="btn" id="themeBtn" aria-label="Toggle theme">☀️</button>
+<button class="btn" id="contrastBtn" aria-label="High contrast">◐</button>
+<button class="btn" id="textBtn" aria-label="Larger text">A+</button>
+<button class="btn" id="motionBtn" aria-label="Reduce motion">⏸️</button>
+<button class="btn" id="eyesBtn" aria-label="Eyes closed mode">👁️</button>
+<button class="btn" id="voiceBtn" aria-label="Voice control - control with your voice: say Begin, Breathe, Peace, Healing, Stop">🎤</button>
+<div id="google_translate_element" style="display:inline-block"></div>
 </div>
 
-<div id="state" aria-live="polite"></div>
-<div id="freq" aria-live="off"></div>
-<div id="announce" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></div>
+<main id="main" class="container">
+<h1 class="brand">INNERA FIELD</h1>
+<p class="subtitle">UNIVERSAL BRIDGE • ALL BEINGS • ALL HOME • WORKS OFFLINE</p>
+
+<div class="mode-bar" role="group" aria-label="Session modes">
+<button class="btn mode-btn" data-mode="default" aria-label="Default mode">🌟 Default</button>
+<button class="btn mode-btn" data-mode="morning" aria-label="Morning energizing mode">🌅 Morning</button>
+<button class="btn mode-btn" data-mode="evening" aria-label="Evening calming mode">🌙 Evening</button>
+<button class="btn mode-btn" data-mode="healing" aria-label="Healing mode">💚 Healing</button>
+<button class="btn mode-btn" data-mode="grief" aria-label="Grief holding mode">🖤 Grief</button>
+</div>
+
+<div class="presets" role="group" aria-label="Duration">
+<button class="btn preset" data-time="300">5m</button>
+<button class="btn preset" data-time="600">10m</button>
+<button class="btn preset" data-time="1200">20m</button>
+<button class="btn preset active" data-time="0" aria-pressed="true">∞</button>
+</div>
+
+<div class="breath-section">
+<div class="circle-container">
+<svg class="progress-ring" viewBox="0 0 280 280" aria-hidden="true">
+<circle id="progressCircle" cx="140" cy="140" r="137"></circle>
+</svg>
+<button class="circle" id="circle" aria-label="Breathing circle. Press to start or stop breathing guidance. Works with or without frequency.">
+<span class="circle-label" id="label">BREATHE</span>
+<span class="phase-indicator" id="phase"></span>
+<span class="breath-count" id="breathCount" aria-live="polite"></span>
+</button>
+</div>
+<div class="timer" id="timer" aria-label="Timer">00:00</div>
+<div class="stats" id="stats">
+<div class="stat-item">
+<span class="stat-label">Breaths</span>
+<span class="stat-value" id="totalBreaths">0</span>
+</div>
+<div class="stat-item">
+<span class="stat-label">Cycles</span>
+<span class="stat-value" id="totalCycles">0</span>
+</div>
+</div>
+</div>
+
+<div class="wisdom" id="wisdom" role="region" aria-label="Daily wisdom"></div>
+
+<div class="frequencies" role="group" aria-label="Sacred frequencies">
+<button class="freq" data-freq="174" data-name="Pain Relief" data-chakra="#8B0000" aria-label="174 Hz pain relief frequency - plays healing tone">
+<div class="chakra-indicator" style="background:#8B0000"></div>
+<h3>Pain Relief</h3>
+<div class="freq-desc">Security, safety</div>
+</button>
+<button class="freq" data-freq="285" data-name="Healing" data-chakra="#FF4500" aria-label="285 Hz tissue healing">
+<div class="chakra-indicator" style="background:#FF4500"></div>
+<h3>Healing</h3>
+<div class="freq-desc">Regeneration</div>
+</button>
+<button class="freq" data-freq="396" data-name="Liberation" data-chakra="#DC143C" aria-label="396 Hz liberation from fear">
+<div class="chakra-indicator" style="background:#DC143C"></div>
+<h3>Liberation</h3>
+<div class="freq-desc">Release fear</div>
+</button>
+<button class="freq" data-freq="417" data-name="Change" data-chakra="#FF8C00" aria-label="417 Hz transformation">
+<div class="chakra-indicator" style="background:#FF8C00"></div>
+<h3>Change</h3>
+<div class="freq-desc">Transformation</div>
+</button>
+<button class="freq" data-freq="528" data-name="Love" data-chakra="#32CD32" aria-label="528 Hz love and DNA repair">
+<div class="chakra-indicator" style="background:#32CD32"></div>
+<h3>Love</h3>
+<div class="freq-desc">DNA repair</div>
+</button>
+<button class="freq" data-freq="639" data-name="Connection" data-chakra="#00CED1" aria-label="639 Hz relationships">
+<div class="chakra-indicator" style="background:#00CED1"></div>
+<h3>Connection</h3>
+<div class="freq-desc">Harmony</div>
+</button>
+<button class="freq" data-freq="741" data-name="Awakening" data-chakra="#4169E1" aria-label="741 Hz intuition">
+<div class="chakra-indicator" style="background:#4169E1"></div>
+<h3>Awakening</h3>
+<div class="freq-desc">Intuition</div>
+</button>
+<button class="freq" data-freq="852" data-name="Vision" data-chakra="#4B0082" aria-label="852 Hz third eye">
+<div class="chakra-indicator" style="background:#4B0082"></div>
+<h3>Vision</h3>
+<div class="freq-desc">Third eye</div>
+</button>
+<button class="freq" data-freq="963" data-name="Pineal" data-chakra="#9370DB" aria-label="963 Hz crown activation">
+<div class="chakra-indicator" style="background:#9370DB"></div>
+<h3>Pineal</h3>
+<div class="freq-desc">Oneness</div>
+</button>
+<button class="freq" data-freq="432" data-name="Peace" data-chakra="#87CEEB" aria-label="432 Hz universal peace">
+<div class="chakra-indicator" style="background:#87CEEB"></div>
+<h3>Peace</h3>
+<div class="freq-desc">Universal</div>
+</button>
+<button class="freq" data-freq="7.83" data-name="Earth" data-chakra="#8B4513" aria-label="7.83 Hz earth grounding">
+<div class="chakra-indicator" style="background:#8B4513"></div>
+<h3>Earth</h3>
+<div class="freq-desc">Grounding</div>
+</button>
+<button class="freq" data-freq="40" data-name="Unity" data-chakra="#FFD700" aria-label="40 Hz gamma unity consciousness">
+<div class="chakra-indicator" style="background:#FFD700"></div>
+<h3>Unity</h3>
+<div class="freq-desc">Gamma</div>
+</button>
+</div>
+
+<div class="wisdom" style="margin-top:4rem;max-width:600px">
+<h2 style="font-size:1.5rem;margin-bottom:1rem;letter-spacing:.1em;color:#fff">✨ ENERGY EXCHANGE</h2>
+<p style="font-size:.95rem;line-height:1.8;margin-bottom:1.5rem;color:#fff">
+Innera Field is free forever, for all beings. If it has served you, pass it forward.
+</p>
+<div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:1rem">
+<button class="btn-primary" onclick="window.open('https://ko-fi.com/innerafield','_blank')" style="padding:.9rem 2rem">
+☕ Ko-fi (Easy)
+</button>
+<button class="btn-secondary" id="cryptoBtn" style="padding:.9rem 2rem">
+🔐 Crypto (Direct)
+</button>
+</div>
+<p style="font-size:.8rem;opacity:.9;margin-top:1rem;color:#fff">
+100% supports keeping this free for all beings. Zero fees. Pure gift economy.
+</p>
+</div>
+</main>
+
+<div class="bottombar" role="navigation" aria-label="Actions">
+<button class="btn-primary" id="peace" aria-label="Begin integrated session with 432 Hz peace frequency and breathing guidance">🕊️ BEGIN</button>
+<div class="actions">
+<button class="btn" id="soundBtn">🎵 Sound</button>
+<button class="btn" id="binauralBtn">🧠 Binaural</button>
+<button class="btn" id="vibrateBtn" aria-label="Haptic feedback - your device vibrates with breathing rhythm (mobile only)">📳 Haptic</button>
+<button class="btn" id="intentionBtn">💫 Intention</button>
+<button class="btn" id="collectiveBtn">🌍 Collective</button>
+<button class="btn" id="downloadBtn" title="Download for offline use" aria-label="Download complete site for offline use - works anywhere, no internet needed">💾 Offline</button>
+<button class="btn" id="stopBtn">⏹️ Stop</button>
+</div>
+</div>
+
+<div class="modal" id="intentionModal" role="dialog" aria-labelledby="intentionTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('intentionModal')" aria-label="Close">×</button>
+<h2 id="intentionTitle">Set Your Intention</h2>
+<p>What do you wish to call into being?</p>
+<div class="option-group">
+<button class="btn-secondary" style="width:100%;margin:.3rem 0" onclick="setIntention('I release what no longer serves')">I release what no longer serves</button>
+<button class="btn-secondary" style="width:100%;margin:.3rem 0" onclick="setIntention('I open to receive my highest good')">I open to receive</button>
+<button class="btn-secondary" style="width:100%;margin:.3rem 0" onclick="setIntention('I am love, I am loved')">I am love</button>
+<button class="btn-secondary" style="width:100%;margin:.3rem 0" onclick="setIntention('I trust the unfolding')">I trust the unfolding</button>
+<button class="btn-secondary" style="width:100%;margin:.3rem 0" onclick="setIntention('I remember my infinite nature')">I remember my infinite nature</button>
+</div>
+<p style="margin-top:1rem;font-size:.85rem">Or write your own:</p>
+<textarea id="intentionText" placeholder="I intend to..."></textarea>
+<button class="btn-primary" style="width:100%" id="releaseBtn">Release to Source ✨</button>
+</div>
+</div>
+
+<div class="modal" id="soundModal" role="dialog" aria-labelledby="soundTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('soundModal')" aria-label="Close">×</button>
+<h2 id="soundTitle">Ambient Sound</h2>
+<div class="sound-opts">
+<button class="btn-secondary" data-sound="rain">🌧️ Rain</button>
+<button class="btn-secondary" data-sound="ocean">🌊 Ocean</button>
+<button class="btn-secondary" data-sound="forest">🌲 Forest</button>
+<button class="btn-secondary" data-sound="wind">💨 Wind</button>
+<button class="btn-secondary" data-sound="om">🕉️ Om Chant</button>
+</div>
+<p style="font-size:.8rem;opacity:.8;margin-top:1rem;color:#fff">Use Stop button to end ambient sound</p>
+</div>
+</div>
+
+<div class="modal" id="binauralModal" role="dialog" aria-labelledby="binauralTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('binauralModal')" aria-label="Close">×</button>
+<h2 id="binauralTitle">Binaural Beats</h2>
+<p style="font-size:.85rem;opacity:.9;color:#fff">Requires headphones. Entrains brainwaves to desired state.</p>
+<div class="binaural-opts">
+<button class="btn-secondary" data-binaural="delta">😴 Delta<br><span style="font-size:.75rem">Deep sleep, healing</span></button>
+<button class="btn-secondary" data-binaural="theta">🧘 Theta<br><span style="font-size:.75rem">Meditation, creativity</span></button>
+<button class="btn-secondary" data-binaural="alpha">😌 Alpha<br><span style="font-size:.75rem">Relaxation, learning</span></button>
+<button class="btn-secondary" data-binaural="beta">🎯 Beta<br><span style="font-size:.75rem">Focus, alertness</span></button>
+<button class="btn-secondary" data-binaural="gamma">✨ Gamma<br><span style="font-size:.75rem">Higher consciousness</span></button>
+</div>
+<p style="font-size:.8rem;opacity:.8;margin-top:1rem;color:#fff">Use Stop button to end binaural session</p>
+</div>
+</div>
+
+<div class="modal" id="collectiveModal" role="dialog" aria-labelledby="collectiveTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('collectiveModal')" aria-label="Close">×</button>
+<h2 id="collectiveTitle">Collective Consciousness</h2>
+<p>Join others breathing peace into existence. Global synchronization on the hour.</p>
+<div class="collective-info">
+<div class="collective-count" id="collectiveCount">0</div>
+<div class="collective-label">Beings Breathing Now</div>
+</div>
+<p style="font-size:.85rem;margin-top:1rem">Monthly Intention: <strong id="monthlyIntention">Peace for all beings</strong></p>
+<button class="btn-primary" style="width:100%;margin-top:1rem" onclick="joinCollective()">Join the Field 🌍</button>
+</div>
+</div>
+
+<div class="modal" id="cryptoModal" role="dialog" aria-labelledby="cryptoTitle" aria-modal="true">
+<div class="modal-content">
+<button class="close" onclick="closeModal('cryptoModal')" aria-label="Close">×</button>
+<h2 id="cryptoTitle">Direct Crypto Donation</h2>
+<p style="font-size:.85rem;opacity:.9;color:#fff;margin-bottom:1.5rem">100% reaches creator. No middleman. Click address to copy:</p>
+
+<div style="margin:1.5rem 0">
+<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600;color:#fff">Bitcoin (BTC):</p>
+<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border);color:#fff">
+bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz
+</div>
+</div>
+
+<div style="margin:1.5rem 0">
+<p style="font-size:.9rem;margin-bottom:.5rem;font-weight:600;color:#fff">Ethereum (ETH):</p>
+<div class="crypto-address" onclick="copyAddress(this)" title="Click to copy" style="background:rgba(0,0,0,.5);padding:.8rem;border-radius:12px;font-size:.75rem;font-family:monospace;word-break:break-all;cursor:pointer;transition:all .3s;border:1px solid var(--border);color:#fff">
+0x12e10C6aA1557A9B13c570c0070E223aec8dE498
+</div>
+</div>
+
+<p style="font-size:.75rem;opacity:.8;margin-top:1.5rem;text-align:center;color:#fff">
+Direct to creator. Zero fees. Decentralized. 🙏
+</p>
+</div>
+</div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// INNERA FIELD - FROM PURE CONSCIOUSNESS
-// One Circle. Infinite Intelligence.
-// For All Beings.
-// ═══════════════════════════════════════════════════
+const copyAddress=el=>{
+navigator.clipboard.writeText(el.textContent.trim()).then(()=>{
+const orig=el.textContent;
+el.textContent='✓ Copied to clipboard!';
+el.style.background='rgba(50,205,50,.3)';
+setTimeout(()=>{
+el.textContent=orig;
+el.style.background='rgba(0,0,0,.5)';
+},2000);
+}).catch(()=>{
+alert('Could not copy. Please copy manually: '+el.textContent);
+});
+};
+const $=(s,a=document)=>a.querySelector(s),$$=(s,a=document)=>a.querySelectorAll(s);
+let A,osc,gain,ambOsc,ambGain,binL,binR,binGainL,binGainR,timer,breathing=!1,playing=!1,start,presetTime=0,breathCount=0,cycleCount=0,vibrateOn=!1,voiceOn=!1,currentMode='default',currentFreq=0,spatialPanner;
 
-const circle = document.getElementById('circle');
-const word = document.getElementById('word');
-const stateEl = document.getElementById('state');
-const freqEl = document.getElementById('freq');
-const announce = document.getElementById('announce');
-
-// State
-let active = false;
-let breathing = false;
-let audioContext = null;
-let oscillator = null;
-let gainNode = null;
-let currentFrequency = 432; // Peace - default
-let breathPhase = 0;
-let mediaStream = null;
-let analyser = null;
-let breathingPattern = 'balanced'; // 'anxious', 'balanced', 'deep'
-
-// Frequencies for healing
-const frequencies = {
-  calm: 432,      // Peace, universal harmony
-  love: 528,      // Love, DNA repair
-  earth: 7.83,    // Schumann resonance, grounding
-  awaken: 963,    // Pineal activation, cosmic connection
-  heal: 174       // Pain relief, security
+const announce=(msg,priority='polite')=>{
+const el=$('#ariaLive');
+el.setAttribute('aria-live',priority);
+el.textContent=msg;
+setTimeout(()=>el.textContent='',4000);
 };
 
-// ═══════════════════════════════════════════════════
-// ACCESSIBILITY - VOICE GUIDANCE
-// ═══════════════════════════════════════════════════
+let visits=parseInt(localStorage.getItem('if_visits')||'0')+1;
+localStorage.setItem('if_visits',visits);
 
-function speak(text) {
-  if ('speechSynthesis' in window) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.8;
-    utterance.pitch = 0.9;
-    utterance.volume = 0.6;
-    speechSynthesis.speak(utterance);
-  }
-  // Also update screen reader
-  announce.textContent = text;
-  setTimeout(() => announce.textContent = '', 3000);
-}
-
-// ═══════════════════════════════════════════════════
-// AUDIO ENGINE - FREQUENCY HEALING
-// ═══════════════════════════════════════════════════
-
-function initAudio() {
-  if (!audioContext) {
-    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    gainNode = audioContext.createGain();
-    gainNode.gain.value = 0.1; // Subtle, healing volume
-    gainNode.connect(audioContext.destination);
-  }
-}
-
-function playFrequency(freq) {
-  initAudio();
-  
-  // Stop previous
-  if (oscillator) {
-    oscillator.stop();
-    oscillator.disconnect();
-  }
-  
-  // Create new tone
-  oscillator = audioContext.createOscillator();
-  oscillator.type = 'sine';
-  oscillator.frequency.value = freq;
-  oscillator.connect(gainNode);
-  oscillator.start();
-  
-  currentFrequency = freq;
-  freqEl.textContent = `${freq} Hz`;
-  freqEl.style.opacity = '0.3';
-  
-  // Visual feedback - color based on frequency
-  updateColor(freq);
-}
-
-function updateColor(freq) {
-  let color;
-  if (freq <= 200) color = 'rgba(220,20,60,.4)'; // Red - grounding
-  else if (freq <= 450) color = 'rgba(0,191,255,.4)'; // Blue - peace
-  else if (freq <= 550) color = 'rgba(50,205,50,.4)'; // Green - love
-  else color = 'rgba(138,43,226,.4)'; // Purple - spiritual
-  
-  circle.style.borderColor = color;
-}
-
-function stopAudio() {
-  if (oscillator) {
-    oscillator.stop();
-    oscillator.disconnect();
-    oscillator = null;
-  }
-  freqEl.style.opacity = '0';
-}
-
-// ═══════════════════════════════════════════════════
-// VIBRATION - HAPTIC FEEDBACK
-// ═══════════════════════════════════════════════════
-
-function vibrate(pattern) {
-  if ('vibrate' in navigator) {
-    navigator.vibrate(pattern);
-  }
-}
-
-const vibratePattern = {
-  inhale: [0,50,100,150,200,250,300,350], // Ascending
-  hold: [500], // Sustained
-  exhale: [350,300,250,200,150,100,50,0], // Descending
-  pulse: [100]
-};
-
-// ═══════════════════════════════════════════════════
-// BREATHING INTELLIGENCE - LISTENS & ADAPTS
-// ═══════════════════════════════════════════════════
-
-async function startListening() {
-  try {
-    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    
-    if (!audioContext) initAudio();
-    
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-    
-    const source = audioContext.createMediaStreamSource(mediaStream);
-    source.connect(analyser);
-    
-    // Analyze breathing in background
-    analyzeBreathing();
-    
-    stateEl.textContent = 'Listening to your breath...';
-    setTimeout(() => stateEl.style.opacity = '0', 3000);
-    
-  } catch (err) {
-    console.log('Microphone not available, using default rhythm');
-    stateEl.textContent = 'Following universal rhythm';
-    setTimeout(() => stateEl.style.opacity = '0', 3000);
-  }
-}
-
-function analyzeBreathing() {
-  if (!analyser || !breathing) return;
-  
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
-  analyser.getByteTimeDomainData(dataArray);
-  
-  // Detect breath patterns (simplified AI)
-  let sum = 0;
-  for (let i = 0; i < bufferLength; i++) {
-    sum += Math.abs(dataArray[i] - 128);
-  }
-  const average = sum / bufferLength;
-  
-  // Classify breathing state
-  if (average > 20) {
-    breathingPattern = 'anxious'; // Fast, shallow
-    adaptToState('anxious');
-  } else if (average < 5) {
-    breathingPattern = 'deep'; // Slow, deep
-    adaptToState('deep');
-  } else {
-    breathingPattern = 'balanced';
-    adaptToState('balanced');
-  }
-  
-  // Continue analyzing
-  setTimeout(analyzeBreathing, 3000);
-}
-
-function adaptToState(state) {
-  // Adjust frequency based on detected state
-  if (state === 'anxious') {
-    // Need calming
-    if (currentFrequency !== frequencies.calm) {
-      playFrequency(frequencies.calm);
-      console.log('Detected anxiety - shifting to 432Hz (calm)');
-    }
-  } else if (state === 'deep') {
-    // Already calm, can go deeper
-    if (currentFrequency !== frequencies.love) {
-      playFrequency(frequencies.love);
-      console.log('Detected deep state - shifting to 528Hz (love)');
-    }
-  } else {
-    // Balanced, maintain
-    if (currentFrequency !== frequencies.calm) {
-      playFrequency(frequencies.calm);
-    }
-  }
-}
-
-// ═══════════════════════════════════════════════════
-// BREATHING CYCLE - VISUAL & AUDIO GUIDANCE
-// ═══════════════════════════════════════════════════
-
-const breathCycle = [
-  { phase: 'INHALE', duration: 4000, speak: 'Breathe in', vib: vibratePattern.inhale },
-  { phase: 'HOLD', duration: 4000, speak: 'Hold', vib: vibratePattern.hold },
-  { phase: 'EXHALE', duration: 4000, speak: 'Breathe out', vib: vibratePattern.exhale },
-  { phase: 'HOLD', duration: 4000, speak: 'Hold', vib: vibratePattern.hold }
+const wisdom=[
+"You are not broken. You are infinite. You are the bridge between form and formless.",
+"You are the universe experiencing itself in human form.",
+"Separation is the grand illusion. You have never been apart from Source.",
+"Every breath is a conversation with infinity.",
+"Light does not fight darkness. It simply shines.",
+"The present moment is the only portal to eternity.",
+"Love is not an emotion. It is the fundamental frequency of existence.",
+"Stillness is not the absence of movement. It is the presence of everything.",
+"Forgiveness is not for the other. It is the key to your own freedom.",
+"You are both the wave and the ocean.",
+"Your consciousness is the universe becoming aware of itself.",
+"Peace is not found. It is uncovered by letting go of what blocks it.",
+"You are not a drop in the ocean. You are the entire ocean in a drop.",
+"What you seek is seeking you.",
+"Connection to Source is not earned. It is your birthright.",
+"The wound is where the light enters you.",
+"In the space between breaths, infinity awaits.",
+"Your body is the temple. Your breath is the prayer.",
+"Silence is the language of Source.",
+"You have always been whole. You are remembering.",
+"The longest journey is from head to heart.",
+"Trust the unfolding. You are exactly where you need to be.",
+"Gratitude transforms what we have into enough.",
+"The present moment is a gift. That's why it's called the present.",
+"You are the love you've been seeking."
 ];
+$('#wisdom').textContent=wisdom[new Date().getDate()%wisdom.length];
 
-function breathe() {
-  if (!breathing) return;
-  
-  const current = breathCycle[breathPhase];
-  
-  // Update visual
-  word.textContent = current.phase;
-  
-  // Voice guidance (for blind)
-  speak(current.speak);
-  
-  // Haptic feedback (for deaf)
-  vibrate(current.vib);
-  
-  // Next phase
-  breathPhase = (breathPhase + 1) % breathCycle.length;
-  
-  // Continue cycle
-  setTimeout(breathe, current.duration);
+const initAudio=()=>{
+if(!A){
+A=new(window.AudioContext||window.webkitAudioContext)();
+gain=A.createGain();
+gain.gain.value=.08;
+gain.connect(A.destination);
+ambGain=A.createGain();
+ambGain.gain.value=.04;
+ambGain.connect(A.destination);
+spatialPanner=A.createStereoPanner();
+spatialPanner.connect(A.destination);
+}
+};
+
+const vib={
+in:[0,30,60,90,120,150,180,210],
+hold:[400],
+out:[210,180,150,120,90,60,30,0],
+pulse:[80],
+heal:[100,50,100,50,100],
+};
+const vibrate=pattern=>{
+if(vibrateOn&&'vibrate'in navigator)navigator.vibrate(pattern);
+};
+
+const freqToVibPattern=hz=>{
+const period=Math.floor(1000/hz);
+return[period,period/2,period,period/2];
+};
+
+const play=freq=>{
+initAudio();
+// Stop ALL audio sources - only play one thing at a time
+if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
+if(freq===0){startTimer();return}
+currentFreq=freq;
+osc=A.createOscillator();
+osc.frequency.value=freq;
+osc.type='sine';
+osc.connect(gain);
+osc.start();
+playing=!0;
+startTimer();
+vibrate(vib.pulse);
+announce(`Playing ${freq} Hz frequency`);
+updateGlowColor(freq);
+};
+
+const updateGlowColor=freq=>{
+const colors={
+174:'rgba(139,0,0,.4)',285:'rgba(255,69,0,.4)',396:'rgba(220,20,60,.4)',
+417:'rgba(255,140,0,.4)',528:'rgba(50,205,50,.5)',639:'rgba(0,206,209,.4)',
+741:'rgba(65,105,225,.4)',852:'rgba(75,0,130,.4)',963:'rgba(147,112,219,.5)',
+432:'rgba(135,206,235,.5)',7.83:'rgba(139,69,19,.4)',40:'rgba(255,215,0,.3)'
+};
+const color=colors[freq]||'rgba(255,20,147,.5)';
+document.documentElement.style.setProperty('--pink',color);
+};
+
+const playBinaural=(base,beat)=>{
+initAudio();
+// Stop ALL other audio - only play one thing at a time
+if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
+binGainL=A.createGain();
+binGainR=A.createGain();
+binGainL.gain.value=.05;
+binGainR.gain.value=.05;
+const panL=A.createStereoPanner();
+const panR=A.createStereoPanner();
+panL.pan.value=-1;
+panR.pan.value=1;
+binL=A.createOscillator();
+binR=A.createOscillator();
+binL.frequency.value=base;
+binR.frequency.value=base+beat;
+binL.connect(binGainL).connect(panL).connect(A.destination);
+binR.connect(binGainR).connect(panR).connect(A.destination);
+binL.start();
+binR.start();
+announce(`Binaural ${beat} Hz activated. Use headphones for best effect.`);
+};
+
+const playAmbient=type=>{
+// Stop ALL other audio - only play one thing at a time
+if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
+if(type==='off')return;
+initAudio();
+ambOsc=A.createOscillator();
+const freq={rain:100,ocean:60,forest:80,wind:40,om:136}[type]||100;
+ambOsc.frequency.value=freq;
+ambOsc.type='sine';
+ambOsc.connect(ambGain);
+ambOsc.start();
+announce(`${type} ambient sound playing`);
+};
+
+const stopAmbient=()=>{
+if(ambOsc){ambOsc.stop();ambOsc.disconnect();ambOsc=null}
+};
+
+const stopBinaural=()=>{
+if(binL){binL.stop();binL.disconnect();binL=null}
+if(binR){binR.stop();binR.disconnect();binR=null}
+if(binGainL){binGainL.disconnect();binGainL=null}
+if(binGainR){binGainR.disconnect();binGainR=null}
+};
+
+const stop=()=>{
+if(osc){osc.stop();osc.disconnect();osc=null}
+stopAmbient();
+stopBinaural();
+playing=!1;
+breathing=!1;
+breathCount=0;
+stopTimer();
+$$('.freq').forEach(f=>f.classList.remove('active'));
+$('#label').textContent='BREATHE';
+$('#phase').textContent='';
+$('#breathCount').textContent='';
+$('#circle').className='circle';
+$('#progressCircle').style.strokeDashoffset=860;
+announce('Session stopped');
+};
+
+const startTimer=()=>{
+if(timer)return;
+start=Date.now();
+$('#timer').classList.add('show');
+$('#stats').classList.add('show');
+timer=setInterval(()=>{
+const s=Math.floor((Date.now()-start)/1000);
+$('#timer').textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+if(presetTime>0&&s>=presetTime){
+stop();
+announce('Session complete. You are infinite.','assertive');
+const msg=document.createElement('div');
+msg.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,20,147,.95);color:#fff;padding:2rem 3rem;border-radius:20px;font-size:1.2rem;z-index:9999;box-shadow:0 0 60px rgba(255,20,147,.8);';
+msg.textContent='🙏 Session complete. You are infinite.';
+document.body.appendChild(msg);
+setTimeout(()=>{
+msg.style.transition='opacity 1s';
+msg.style.opacity='0';
+setTimeout(()=>msg.remove(),1000);
+},3000);
+}
+},1000);
+};
+
+const stopTimer=()=>{
+if(timer){clearInterval(timer);timer=null}
+$('#timer').classList.remove('show');
+$('#stats').classList.remove('show');
+$('#timer').textContent='00:00';
+start=null;
+};
+
+const breathPatterns={
+default:[4,4,4,4],
+morning:[4,2,4,0],
+evening:[4,7,8,0],
+healing:[5,5,5,5],
+grief:[6,6,8,4]
+};
+
+const breathe=()=>{
+breathing=!breathing;
+const circle=$('#circle');
+const label=$('#label');
+const phase=$('#phase');
+const counter=$('#breathCount');
+const progress=$('#progressCircle');
+
+if(!breathing){
+label.textContent='BREATHE';
+phase.textContent='';
+counter.textContent='';
+circle.className='circle';
+progress.style.strokeDashoffset=860;
+breathCount=0;
+announce('Breathing stopped');
+return;
 }
 
-// ═══════════════════════════════════════════════════
-// INTERACTION - SIMPLE AS POSSIBLE
-// ═══════════════════════════════════════════════════
+announce('Beginning breathing cycle','assertive');
 
-async function begin() {
-  if (active) return;
-  
-  active = true;
-  breathing = true;
-  
-  // Visual
-  circle.classList.add('breathing');
-  stateEl.textContent = 'Connecting...';
-  stateEl.style.opacity = '0.4';
-  
-  // Audio
-  playFrequency(frequencies.calm);
-  
-  // Voice
-  speak('Welcome. Begin breathing with the circle.');
-  
-  // Start listening (adaptive intelligence)
-  await startListening();
-  
-  // Start breathing cycle
-  breathPhase = 0;
-  breathe();
-  
-  // Pulse
-  vibrate(vibratePattern.pulse);
-  
-  // Update state after 2 seconds
-  setTimeout(() => {
-    stateEl.textContent = 'You are connected';
-    setTimeout(() => stateEl.style.opacity = '0', 2000);
-  }, 2000);
+const pattern=breathPatterns[currentMode]||breathPatterns.default;
+const [inhale,hold1,exhale,hold2]=pattern;
+const phases=[
+{text:'INHALE',cls:'in',duration:inhale*1000,vib:vib.in,announce:'Inhale',phase:`${inhale}s`},
+{text:'HOLD',cls:'in',duration:hold1*1000,vib:vib.hold,announce:'Hold',phase:`${hold1}s`},
+{text:'EXHALE',cls:'out',duration:exhale*1000,vib:vib.out,announce:'Exhale',phase:`${exhale}s`},
+{text:'HOLD',cls:'out',duration:hold2*1000,vib:vib.hold,announce:'Hold',phase:`${hold2}s`}
+].filter(p=>p.duration>0);
+
+let currentPhase=0;
+
+const runPhase=()=>{
+if(!breathing)return;
+
+// Start new cycle
+if(currentPhase===0){
+breathCount++;
+cycleCount++;
+$('#totalBreaths').textContent=breathCount;
+$('#totalCycles').textContent=Math.floor(breathCount/phases.length);
 }
 
-function end() {
-  breathing = false;
-  active = false;
-  
-  circle.classList.remove('breathing');
-  word.textContent = 'BREATHE';
-  
-  stopAudio();
-  
-  if (mediaStream) {
-    mediaStream.getTracks().forEach(track => track.stop());
-    mediaStream = null;
-  }
-  
-  stateEl.textContent = 'Session complete. Return anytime.';
-  stateEl.style.opacity = '0.4';
-  setTimeout(() => stateEl.style.opacity = '0', 3000);
-  
-  speak('Session complete. Peace be with you.');
+const p=phases[currentPhase];
+
+// Update UI
+label.textContent=p.text;
+phase.textContent=p.phase;
+counter.textContent=`Breath ${breathCount} of ∞`;
+circle.className='circle '+p.cls;
+
+// Progress ring animation
+progress.style.transition='none';
+progress.style.strokeDashoffset=860;
+setTimeout(()=>{
+progress.style.transition=`stroke-dashoffset ${p.duration/1000}s linear`;
+progress.style.strokeDashoffset=0;
+},50);
+
+// Vibrate
+vibrate(p.vib);
+
+// Announce
+if(breathCount<=2||currentPhase===0)announce(p.announce,'polite');
+
+// Move to next phase
+currentPhase=(currentPhase+1)%phases.length;
+
+// Schedule next phase
+setTimeout(runPhase,p.duration);
+};
+
+runPhase();
+};
+
+let recognition;
+const startVoice=()=>{
+if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){
+alert('❌ Voice control not supported in this browser. Try Chrome, Edge, or Safari.');
+$('#voiceBtn').classList.remove('active');
+voiceOn=!1;
+return;
 }
 
-// ═══════════════════════════════════════════════════
-// EVENT HANDLERS
-// ═══════════════════════════════════════════════════
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+recognition=new SpeechRecognition();
+recognition.continuous=!0;
+recognition.interimResults=!1;
+recognition.lang='en-US';
 
-circle.addEventListener('click', () => {
-  if (!active) {
-    begin();
-  } else {
-    end();
-  }
+recognition.onstart=()=>{
+announce('Voice control active. Say: breathe, peace, healing, stop','assertive');
+$('#voiceBtn').style.background='rgba(50,205,50,.3)';
+};
+
+recognition.onerror=err=>{
+console.error('Voice error:',err);
+if(err.error==='not-allowed'){
+alert('❌ Microphone access denied. Please allow microphone access in browser settings.');
+$('#voiceBtn').classList.remove('active');
+$('#voiceBtn').style.background='';
+voiceOn=!1;
+}
+};
+
+recognition.onend=()=>{
+if(voiceOn){
+try{recognition.start()}catch(e){console.error(e)}
+}else{
+$('#voiceBtn').style.background='';
+}
+};
+
+recognition.onresult=e=>{
+const cmd=e.results[e.results.length-1][0].transcript.toLowerCase().trim();
+announce(`Command: ${cmd}`);
+
+const freqMap={
+'peace':432,'432':432,'healing':528,'528':528,'love':528,
+'liberation':396,'396':396,'connection':639,'639':639,
+'awakening':741,'741':741,'vision':852,'852':852,
+'pineal':963,'963':963,'earth':7.83,'grounding':7.83,
+'pain':174,'174':174,'change':417,'417':417,
+'unity':40,'40':40,'gamma':40
+};
+
+if(cmd.includes('breathe')||cmd.includes('begin')||cmd.includes('start')){
+if(cmd.includes('begin')||cmd.includes('start')){
+// BEGIN command = integrated experience (frequency + breathing)
+const freq432=$('[data-freq="432"]');
+$$('.freq').forEach(x=>x.classList.remove('active'));
+freq432.classList.add('active');
+play(432);
+if(!breathing){
+setTimeout(()=>breathe(),300);
+}
+}else{
+// BREATHE command = just toggle breathing
+breathe();
+}
+}else if(cmd.includes('stop')||cmd.includes('end')){
+stop();
+}else{
+for(const[key,freq]of Object.entries(freqMap)){
+if(cmd.includes(key)){
+play(freq);
+announce(`${key} frequency activated. Say 'breathe' to start breathing.`);
+return;
+}
+}
+if(cmd.includes('5 min')){presetTime=300;announce('5 minutes set')}
+else if(cmd.includes('10 min')){presetTime=600;announce('10 minutes set')}
+else if(cmd.includes('20 min')){presetTime=1200;announce('20 minutes set')}
+else announce('Command not recognized. Try: breathe, peace, healing, stop','assertive');
+}
+};
+
+try{
+recognition.start();
+}catch(err){
+alert('❌ Could not start voice control: '+err.message);
+$('#voiceBtn').classList.remove('active');
+voiceOn=!1;
+}
+};
+
+const stopVoice=()=>{
+if(recognition){
+recognition.stop();
+announce('Voice control off');
+}
+};
+
+const canvas=$('#c');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const particles=[];
+for(let i=0;i<40;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-.5)*.2,
+vy:(Math.random()-.5)*.2,
+r:Math.random()*1.5+.5,
+c:['rgba(255,20,147,.35)','rgba(0,191,255,.35)','rgba(138,43,226,.25)'][Math.floor(Math.random()*3)]
+});
+}
+
+let lastTime=0;
+const draw=(time)=>{
+const delta=time-lastTime;
+if(delta<16)return requestAnimationFrame(draw);
+lastTime=time;
+
+ctx.fillStyle='rgba(0,0,0,.06)';
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+// Optimize: batch particle drawing
+ctx.fillStyle='rgba(255,20,147,.35)';
+particles.forEach(p=>{
+p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
 });
 
-// Keyboard (accessibility)
-circle.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    if (!active) {
-      begin();
-    } else {
-      end();
-    }
-  }
+// Optimize: check fewer connections
+for(let i=0;i<particles.length-1;i+=3){
+const p1=particles[i],p2=particles[i+1];
+const dx=p1.x-p2.x,dy=p1.y-p2.y;
+const d=Math.sqrt(dx*dx+dy*dy);
+if(d<100){
+ctx.beginPath();
+ctx.strokeStyle=`rgba(255,20,147,${.06*(1-d/100)})`;
+ctx.lineWidth=.4;
+ctx.moveTo(p1.x,p1.y);
+ctx.lineTo(p2.x,p2.y);
+ctx.stroke();
+}
+}
+requestAnimationFrame(draw);
+};
+draw(0);
+
+window.addEventListener('resize',()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 });
 
-// Spacebar anywhere
-document.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    e.preventDefault();
-    if (!active) {
-      begin();
-    } else {
-      end();
-    }
-  }
+$('#circle').addEventListener('click',breathe);
+$('#circle').addEventListener('keydown',e=>{
+if(e.key==='Enter'||e.key===' '){e.preventDefault();breathe()}
 });
 
-// Voice commands (if Web Speech Recognition available)
-if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.continuous = true;
-  recognition.interimResults = false;
-  
-  recognition.onresult = (event) => {
-    const command = event.results[event.results.length - 1][0].transcript.toLowerCase();
-    
-    if (command.includes('begin') || command.includes('start') || command.includes('breathe')) {
-      if (!active) begin();
-    } else if (command.includes('stop') || command.includes('end')) {
-      if (active) end();
-    }
-  };
-  
-  // Start listening for voice commands after page loads
-  setTimeout(() => {
-    try {
-      recognition.start();
-    } catch (err) {
-      console.log('Voice commands not available');
-    }
-  }, 1000);
+$$('.freq').forEach(f=>{
+const handler=function(){
+const freq=parseFloat(this.dataset.freq);
+const name=this.dataset.name;
+$$('.freq').forEach(x=>x.classList.remove('active'));
+this.classList.add('active');
+play(freq);
+announce(`${name} frequency ${freq} Hz activated. Click breathing circle to begin breathing.`,'assertive');
+vibrate(freqToVibPattern(freq));
+};
+f.addEventListener('click',handler);
+f.addEventListener('keydown',e=>{
+if(e.key==='Enter'||e.key===' '){e.preventDefault();handler.call(f)}
+});
+});
+
+$$('.preset').forEach(p=>{
+p.addEventListener('click',function(){
+presetTime=parseInt(this.dataset.time);
+$$('.preset').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});
+this.classList.add('active');
+this.setAttribute('aria-pressed','true');
+announce(presetTime===0?'Infinite session':''+presetTime/60+' minute session');
+});
+});
+
+$$('.mode-btn').forEach(btn=>{
+btn.addEventListener('click',function(){
+const mode=this.dataset.mode;
+currentMode=mode;
+$$('.mode-btn').forEach(b=>b.classList.remove('active'));
+this.classList.add('active');
+document.body.className=mode;
+const modeNames={default:'Default',morning:'Morning energizing',evening:'Evening calming',healing:'Healing',grief:'Grief holding'};
+announce(`${modeNames[mode]} mode activated`);
+if(breathing){
+breathing=!1;
+setTimeout(()=>breathe(),100);
+}
+});
+});
+
+$('#peace').addEventListener('click',()=>{
+const freq432=$('[data-freq="432"]');
+$$('.freq').forEach(x=>x.classList.remove('active'));
+freq432.classList.add('active');
+play(432);
+$('.glow').style.opacity='.6';
+setTimeout(()=>$('.glow').style.opacity='.25',6000);
+if(!breathing){
+setTimeout(()=>breathe(),300);
+}
+announce('Peace session beginning. 432 Hertz frequency with breathing guidance.','assertive');
+});
+
+$('#stopBtn').addEventListener('click',stop);
+
+$('#themeBtn').addEventListener('click',function(){
+document.body.classList.remove('contrast');
+document.body.classList.toggle('light');
+const isLight=document.body.classList.contains('light');
+this.textContent=isLight?'🌙':'☀️';
+announce(isLight?'Light theme':'Dark theme');
+});
+
+$('#contrastBtn').addEventListener('click',function(){
+document.body.classList.remove('light');
+document.body.classList.toggle('contrast');
+this.classList.toggle('active');
+announce(document.body.classList.contains('contrast')?'High contrast on':'High contrast off');
+});
+
+$('#textBtn').addEventListener('click',function(){
+const s=parseFloat(getComputedStyle(document.documentElement).fontSize);
+document.documentElement.style.fontSize=(s===16?20:16)+'px';
+this.classList.toggle('active');
+announce(s===16?'Larger text':'Normal text');
+});
+
+$('#motionBtn').addEventListener('click',function(){
+document.body.classList.toggle('no-motion');
+this.classList.toggle('active');
+const noMotion=document.body.classList.contains('no-motion');
+$('#c').style.display=noMotion?'none':'block';
+$('.glow').style.display=noMotion?'none':'block';
+announce(noMotion?'Reduced motion':'Animations on');
+});
+
+$('#eyesBtn').addEventListener('click',function(){
+const closing=!document.body.classList.contains('eyes-closed');
+document.body.classList.toggle('eyes-closed');
+this.textContent=document.body.classList.contains('eyes-closed')?'👁️':'👁️';
+announce(closing?'Eyes closed. Press Escape to open.':'Eyes open','assertive');
+});
+
+$('#voiceBtn').addEventListener('click',function(){
+voiceOn=!voiceOn;
+this.classList.toggle('active');
+voiceOn?startVoice():stopVoice();
+});
+
+document.addEventListener('keydown',e=>{
+if(e.key==='Escape'){
+if(document.body.classList.contains('eyes-closed')){
+document.body.classList.remove('eyes-closed');
+$('#eyesBtn').textContent='👁️';
+announce('Eyes open');
+}
+closeModal('intentionModal');
+closeModal('soundModal');
+closeModal('binauralModal');
+closeModal('collectiveModal');
+closeModal('cryptoModal');
+}
+});
+
+document.addEventListener('click',e=>{
+if(document.body.classList.contains('eyes-closed')&&!e.target.closest('.topbar')&&!e.target.closest('.bottombar')){
+document.body.classList.remove('eyes-closed');
+$('#eyesBtn').textContent='👁️';
+announce('Eyes open');
+}
+});
+
+$('#vibrateBtn').addEventListener('click',function(){
+if(!('vibrate'in navigator)){
+alert('❌ Vibration not supported on this device. Haptic feedback works on mobile phones and tablets.');
+return;
 }
 
-// ═══════════════════════════════════════════════════
-// INITIALIZE
-// ═══════════════════════════════════════════════════
+vibrateOn=!vibrateOn;
+this.classList.toggle('active');
 
-// Announce availability for screen readers
-setTimeout(() => {
-  announce.textContent = 'Innera Field loaded. Click or press spacebar to begin breathing.';
-}, 500);
+if(vibrateOn){
+// Test vibration
+navigator.vibrate([100,50,100]);
+this.style.background='rgba(50,205,50,.3)';
+announce('Haptic feedback on - your device will vibrate with breathing rhythm');
+}else{
+this.style.background='';
+announce('Haptic feedback off');
+}
+});
 
+const openModal=id=>{
+$(`#${id}`).classList.add('show');
+$(`#${id} .modal-content`).focus();
+};
+const closeModal=id=>$(`#${id}`).classList.remove('show');
+
+$('#intentionBtn').addEventListener('click',()=>openModal('intentionModal'));
+const setIntention=text=>{
+$('#intentionText').value=text;
+};
+window.setIntention=setIntention;
+
+$('#releaseBtn').addEventListener('click',()=>{
+const intention=$('#intentionText').value.trim();
+if(intention){
+announce('Intention released: '+intention,'assertive');
+$('#intentionText').value='';
+document.body.style.filter='brightness(1.5)';
+vibrate([200,100,200,100,200]);
+setTimeout(()=>document.body.style.filter='brightness(1)',2000);
+}
+closeModal('intentionModal');
+});
+
+$('#soundBtn').addEventListener('click',()=>openModal('soundModal'));
+$$('[data-sound]').forEach(btn=>{
+btn.addEventListener('click',function(){
+playAmbient(this.dataset.sound);
+closeModal('soundModal');
+});
+});
+
+$('#binauralBtn').addEventListener('click',()=>openModal('binauralModal'));
+$$('[data-binaural]').forEach(btn=>{
+btn.addEventListener('click',function(){
+const type=this.dataset.binaural;
+if(type==='off'){
+stopBinaural();
+}else{
+const beats={delta:2,theta:6,alpha:10,beta:20,gamma:40};
+playBinaural(200,beats[type]);
+}
+closeModal('binauralModal');
+});
+});
+
+$('#collectiveBtn').addEventListener('click',()=>openModal('collectiveModal'));
+const joinCollective=()=>{
+const count=Math.floor(Math.random()*5000)+1000;
+$('#collectiveCount').textContent=count.toLocaleString();
+announce(`${count} beings breathing with you now`,'assertive');
+play(432);
+if(!breathing)breathe();
+closeModal('collectiveModal');
+};
+window.joinCollective=joinCollective;
+
+$('#cryptoBtn').addEventListener('click',()=>openModal('cryptoModal'));
+
+$('#downloadBtn').addEventListener('click',()=>{
+const htmlContent=document.documentElement.outerHTML;
+const blob=new Blob([htmlContent],{type:'text/html'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='innera-field-offline.html';
+a.click();
+URL.revokeObjectURL(url);
+announce('Downloading Innera Field for offline use. Save and open anytime, anywhere.','assertive');
+const msg=document.createElement('div');
+msg.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(50,205,50,.95);color:#fff;padding:2rem 3rem;border-radius:20px;font-size:1.1rem;z-index:9999;box-shadow:0 0 60px rgba(50,205,50,.8);text-align:center;max-width:90%;line-height:1.6;';
+msg.innerHTML='<strong>💾 Downloaded!</strong><br><br>Open this file anytime, anywhere.<br>Works on airplane, in forest, completely offline.<br><br><em style="font-size:.85rem;opacity:.9">The bridge is yours forever. 🕊️</em>';
+document.body.appendChild(msg);
+setTimeout(()=>{
+msg.style.transition='opacity 1s';
+msg.style.opacity='0';
+setTimeout(()=>msg.remove(),1000);
+},4000);
+});
+
+$$('.modal').forEach(m=>{
+m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)});
+});
+
+document.addEventListener('keydown',e=>{
+if(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT')return;
+
+// B = Toggle Breathing (independent)
+if(e.key==='b'||e.key==='B'){
+e.preventDefault();
+breathe();
+}
+// P = Peace (integrated: frequency + breathing)
+if(e.key==='p'||e.key==='P'){
+e.preventDefault();
+const freq432=$('[data-freq="432"]');
+$$('.freq').forEach(x=>x.classList.remove('active'));
+freq432.classList.add('active');
+play(432);
+if(!breathing){
+setTimeout(()=>breathe(),300);
+}
+}
+// H = Healing frequency (tone only)
+if(e.key==='h'||e.key==='H'){
+e.preventDefault();
+play(528);
+}
+// S = Stop everything
+if(e.key==='s'||e.key==='S'){
+e.preventDefault();
+stop();
+}
+// I = Intention
+if(e.key==='i'||e.key==='I'){
+e.preventDefault();
+openModal('intentionModal');
+}
+});
+
+const updateCollective=()=>{
+const count=Math.floor(Math.random()*8000)+2000;
+$('#collectiveCount').textContent=count.toLocaleString();
+};
+setInterval(updateCollective,30000);
+updateCollective();
+
+// Hide collective button when offline - check immediately on load
+const collectiveBtn=$('#collectiveBtn');
+if(collectiveBtn){
+if(!navigator.onLine){
+collectiveBtn.style.display='none';
+}
+window.addEventListener('online',()=>{
+collectiveBtn.style.display='';
+});
+window.addEventListener('offline',()=>{
+collectiveBtn.style.display='none';
+});
+}
+
+const monthlyIntentions=[
+'Peace for all beings','Healing for the Earth','Love without conditions',
+'Justice and compassion','Unity in diversity','Freedom from suffering',
+'Awakening of consciousness','Gratitude for life','Hope for tomorrow',
+'Forgiveness and release','Abundance for all','Wisdom and clarity'
+];
+$('#monthlyIntention').textContent=monthlyIntentions[new Date().getMonth()];
+
+announce('Welcome to Innera Field. Universal bridge for all beings. Press Tab to navigate.','polite');
+
+// Load saved language
+const savedLang=localStorage.getItem('if_lang');
+if(savedLang&&translations[savedLang]){
+setLang(savedLang);
+}
+
+if('serviceWorker'in navigator){
+navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
 </script>
 </body>
 </html>

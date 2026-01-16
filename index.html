@@ -81,11 +81,11 @@ body{
   text-align:center;
 }
 
-/* Title - ONE LINE, BOLD, LARGE */
+/* Title - ONE LINE, BIGGER, LOWER */
 .title{
   position:absolute;
-  top:max(9vh,50px);
-  font-size:clamp(1.4rem,5vw,3.2rem);
+  top:max(12vh,70px);
+  font-size:clamp(1.6rem,6vw,3.5rem);
   font-weight:700;
   letter-spacing:.5em;
   padding-left:.5em;
@@ -104,11 +104,11 @@ body{
   50%{background-position:100% 50%}
 }
 
-/* Controls - LARGER for all devices */
+/* Controls - CONSISTENT SIZE */
 .controls{
   position:absolute;
-  top:max(2.5vh,12px);
-  right:max(3vw,12px);
+  top:max(2.5vh,14px);
+  right:max(3vw,14px);
   display:flex;
   gap:1rem;
   z-index:100;
@@ -128,6 +128,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  line-height:1;
 }
 
 .ctrl:hover,.ctrl:focus{
@@ -159,7 +160,6 @@ body{
   transition:transform .4s ease-out,box-shadow .4s ease-out,border-color .4s ease;
 }
 
-/* Idle heartbeat */
 .circle.idle{
   animation:heartbeat 5s ease-in-out infinite;
 }
@@ -169,13 +169,11 @@ body{
   50%{transform:scale(1.02);box-shadow:0 0 100px var(--pink)}
 }
 
-/* Starting state - smooth entry */
 .circle.starting{
   transform:scale(1.08) translateZ(0);
   transition:transform .4s ease-out;
 }
 
-/* Breathing states - SMOOTH transitions */
 .circle.breathing{
   transition:transform 4s ease-in-out,box-shadow 4s ease-in-out,border-color 1s ease;
 }
@@ -655,21 +653,45 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 }
 
 /* ══════════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE - PHONE
    ══════════════════════════════════════════════════════════ */
+@media(max-width:600px){
+  .title{
+    top:max(9vh,50px);
+    font-size:clamp(1.4rem,5.5vw,2.2rem);
+    letter-spacing:.4em;
+    padding-left:.4em;
+  }
+  .controls{
+    gap:.8rem;
+    top:12px;
+    right:12px;
+  }
+  .ctrl{
+    font-size:1.6rem;
+    padding:.5rem;
+    min-width:46px;
+    min-height:46px;
+  }
+  .circle{
+    width:min(220px,54vw);
+    height:min(220px,54vw);
+  }
+  .wisdom-area{bottom:max(9vh,60px)}
+}
 
 /* Very small phones */
 @media(max-width:400px){
   .title{
-    font-size:1.3rem;
-    top:max(6vh,35px);
-    letter-spacing:.35em;
-    padding-left:.35em;
+    top:max(7vh,42px);
+    font-size:1.25rem;
+    letter-spacing:.32em;
+    padding-left:.32em;
   }
   .controls{
     gap:.6rem;
-    top:8px;
-    right:8px;
+    top:10px;
+    right:10px;
   }
   .ctrl{
     font-size:1.5rem;
@@ -678,66 +700,27 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     min-height:44px;
   }
   .circle{
-    width:min(190px,50vw);
-    height:min(190px,50vw);
+    width:min(190px,52vw);
+    height:min(190px,52vw);
   }
-  .wisdom-area{bottom:max(9vh,55px)}
-  .menu{width:92vw;padding:1.5rem}
-}
-
-/* Phones */
-@media(min-width:401px) and (max-width:600px){
-  .title{
-    font-size:1.6rem;
-    top:max(7vh,40px);
-    letter-spacing:.4em;
-    padding-left:.4em;
-  }
-  .controls{
-    gap:.8rem;
-    top:10px;
-    right:10px;
-  }
-  .ctrl{
-    font-size:1.6rem;
-    min-width:48px;
-    min-height:48px;
-  }
-  .circle{
-    width:min(210px,52vw);
-    height:min(210px,52vw);
-  }
-  .wisdom-area{bottom:max(10vh,60px)}
-}
-
-/* Tablets */
-@media(min-width:601px) and (max-width:900px){
-  .title{
-    font-size:2.2rem;
-    letter-spacing:.48em;
-    padding-left:.48em;
-  }
-  .ctrl{font-size:1.9rem}
-  .circle{
-    width:min(260px,42vw);
-    height:min(260px,42vw);
-  }
+  .menu{width:94vw;padding:1.5rem}
 }
 
 /* Large screens / TV */
 @media(min-width:1400px){
   .title{
-    font-size:3.8rem;
+    top:max(14vh,90px);
+    font-size:4rem;
     letter-spacing:.6em;
     padding-left:.6em;
   }
   .controls{
     gap:1.5rem;
-    top:20px;
-    right:25px;
+    top:24px;
+    right:28px;
   }
   .ctrl{
-    font-size:2.8rem;
+    font-size:2.6rem;
     padding:.8rem;
     min-width:64px;
     min-height:64px;
@@ -818,7 +801,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 <!-- Overlay -->
 <div class="overlay" id="overlay"></div>
 
-<!-- Menu - NO GREEK SYMBOLS -->
+<!-- Menu -->
 <nav class="menu" id="menu" aria-label="Settings">
   <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
 
@@ -872,68 +855,38 @@ const CRYPTO = {
   eth: '0x12e10C6aA1557A9B13c570c0070E223aec8dE498'
 };
 
+// BINAURAL CONFIG PER JOURNEY
 const JOURNEYS = {
-  heart: {
-    binaural: 6,
-    freqs: [528, 432, 396, 417],
-    wisdoms: [
-      "you are worthy of love. you always have been.",
-      "your heart knows the way. trust it.",
-      "love is not earned. it is remembered.",
-      "you are not broken. you are returning.",
-      "the heart that seeks connection is already connected.",
-      "every heartbeat is a prayer answered."
-    ]
-  },
-  awakening: {
-    binaural: 40,
-    freqs: [741, 852, 963, 639],
-    wisdoms: [
-      "consciousness is not found. it is unveiled.",
-      "you are not becoming aware. you are awareness itself.",
-      "the truth you seek is seeking you.",
-      "awakening is not an event. it is a recognition.",
-      "you have always been the light you're looking for.",
-      "stillness speaks louder than thought."
-    ]
-  },
-  grounding: {
-    binaural: 2,
-    freqs: [285, 432, 174, 128],
-    wisdoms: [
-      "you are held by the earth. always.",
-      "your body is your first home. return to it.",
-      "presence is the anchor. breath is the chain.",
-      "the ground beneath you is sacred ground.",
-      "you belong here. you have always belonged.",
-      "root down to rise up."
-    ]
-  },
-  unity: {
-    binaural: 10,
-    freqs: [528, 639, 111, 432],
-    wisdoms: [
-      "separation is the illusion. oneness is the truth.",
-      "you are the field. the field is you.",
-      "there is no other. there is only one.",
-      "peace begins when we remember we are one.",
-      "every breath connects you to all beings.",
-      "in unity, there is no war. only love."
-    ]
-  },
-  peace: {
-    binaural: 4,
-    freqs: [432, 396, 417, 432],
-    wisdoms: [
-      "peace is not found. it is remembered.",
-      "stillness is your nature. return to it.",
-      "in the quiet, God speaks.",
-      "surrender is not giving up. it is opening up.",
-      "rest is not weakness. it is wisdom.",
-      "the deepest peace is already within you."
-    ]
-  }
+  heart:     { binaural: 6,  freqs: [528, 432, 396, 417] },
+  awakening: { binaural: 40, freqs: [741, 852, 963, 639] },
+  grounding: { binaural: 2,  freqs: [285, 432, 174, 128] },
+  unity:     { binaural: 10, freqs: [528, 639, 111, 432] },
+  peace:     { binaural: 4,  freqs: [432, 396, 417, 432] }
 };
+
+// UNIVERSAL WISDOM POOL — Divine surprise
+const WISDOMS = [
+  "you are worthy of love. you always have been.",
+  "your heart knows the way. trust it.",
+  "love is not earned. it is remembered.",
+  "consciousness is not found. it is unveiled.",
+  "the truth you seek is seeking you.",
+  "you have always been the light you're looking for.",
+  "stillness speaks louder than thought.",
+  "you are held by the earth. always.",
+  "your body is your first home. return to it.",
+  "presence is the anchor. breath is the chain.",
+  "you belong here. you have always belonged.",
+  "separation is the illusion. oneness is the truth.",
+  "there is no other. there is only one.",
+  "peace begins when we remember we are one.",
+  "every breath connects you to all beings.",
+  "peace is not found. it is remembered.",
+  "stillness is your nature. return to it.",
+  "in the quiet, God speaks.",
+  "surrender is not giving up. it is opening up.",
+  "the deepest peace is already within you."
+];
 
 const S = {
   on: false,
@@ -1150,7 +1103,6 @@ function updateTimer(){
   S.tickTimer = setTimeout(updateTimer, 1000);
 }
 
-// FIXED: Smooth start animation
 function start(){
   if(S.on) return;
   S.on = true;
@@ -1165,9 +1117,9 @@ function start(){
   sessionMsg.innerHTML = '';
   hint.style.display = 'none';
   
-  wisdom.textContent = journey.wisdoms[Math.floor(Math.random() * journey.wisdoms.length)];
+  // Universal wisdom — divine surprise
+  wisdom.textContent = WISDOMS[Math.floor(Math.random() * WISDOMS.length)];
   
-  // Remove idle, add starting for smooth entry
   circle.classList.remove('idle');
   circle.classList.add('starting');
   
@@ -1178,7 +1130,6 @@ function start(){
     playSubBass();
   }
   
-  // Smooth entry then start breathing
   setTimeout(() => {
     circle.classList.remove('starting');
     setPhase(0);

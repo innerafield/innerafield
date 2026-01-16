@@ -16,14 +16,14 @@
 :root{
   --void:#000;
   --light:#fff;
-  --dim:rgba(255,255,255,.5);
-  --faint:rgba(255,255,255,.25);
-  --glass:rgba(255,255,255,.03);
-  --border:rgba(255,255,255,.08);
-  --pink:rgba(255,20,147,.35);
-  --blue:rgba(0,191,255,.35);
-  --purple:rgba(138,43,226,.3);
-  --gold:rgba(255,215,0,.4);
+  --dim:rgba(255,255,255,.55);
+  --faint:rgba(255,255,255,.3);
+  --glass:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.1);
+  --pink:rgba(255,20,147,.4);
+  --blue:rgba(0,191,255,.4);
+  --purple:rgba(138,43,226,.35);
+  --gold:rgba(255,215,0,.45);
 }
 
 html,body{
@@ -48,7 +48,7 @@ body{
   100%{opacity:1}
 }
 
-/* Cosmic background - optimized */
+/* Cosmic background - BRIGHTER */
 .cosmos{
   position:fixed;
   inset:0;
@@ -57,14 +57,14 @@ body{
     radial-gradient(ellipse at 30% 20%,var(--pink),transparent 50%),
     radial-gradient(ellipse at 70% 80%,var(--blue),transparent 50%),
     radial-gradient(circle at 50% 50%,var(--purple),transparent 60%);
-  opacity:.3;
+  opacity:.4;
   animation:cosmicPulse 12s ease-in-out infinite;
   pointer-events:none;
 }
 
 @keyframes cosmicPulse{
-  0%,100%{opacity:.25}
-  50%{opacity:.4}
+  0%,100%{opacity:.35}
+  50%{opacity:.55}
 }
 
 /* Main container */
@@ -81,21 +81,27 @@ body{
   text-align:center;
 }
 
-/* Title */
+/* Title - TWO LINES, LARGER, CENTERED */
 .title{
   position:absolute;
-  top:max(10vh,55px);
-  font-size:clamp(1.2rem,4vw,1.9rem);
+  top:max(8vh,45px);
+  text-align:center;
+  user-select:none;
+}
+
+.title-line{
+  display:block;
+  font-size:clamp(1.6rem,5.5vw,2.8rem);
   font-weight:600;
-  letter-spacing:.65em;
-  padding-left:.65em;
+  letter-spacing:.5em;
+  padding-left:.5em;
+  line-height:1.3;
   background:linear-gradient(135deg,#ff1493,#00bfff,#8a2be2,#ff1493);
   background-size:300% 300%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
   animation:titleShimmer 10s ease-in-out infinite;
-  user-select:none;
 }
 
 @keyframes titleShimmer{
@@ -103,13 +109,13 @@ body{
   50%{background-position:100% 50%}
 }
 
-/* Controls - top right - modern, no circles */
+/* Controls - LARGER */
 .controls{
   position:absolute;
-  top:max(3vh,16px);
-  right:max(3vw,16px);
+  top:max(2.5vh,14px);
+  right:max(3vw,14px);
   display:flex;
-  gap:.8rem;
+  gap:1rem;
   z-index:100;
 }
 
@@ -117,10 +123,10 @@ body{
   background:transparent;
   border:none;
   color:var(--dim);
-  font-size:1.1rem;
+  font-size:1.5rem;
   cursor:pointer;
   transition:all .25s ease;
-  padding:.4rem;
+  padding:.5rem;
   opacity:.5;
 }
 
@@ -134,22 +140,22 @@ body{
   color:#ff1493;
 }
 
-/* The Circle - optimized for mobile */
+/* The Circle - with binaural pulse */
 .circle{
   position:relative;
-  width:min(240px,58vw);
-  height:min(240px,58vw);
+  width:min(250px,55vw);
+  height:min(250px,55vw);
   border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,rgba(255,20,147,.04),transparent 60%);
+  background:radial-gradient(circle at 40% 35%,rgba(255,20,147,.05),transparent 60%);
   border:2px solid var(--border);
-  box-shadow:0 0 60px var(--pink);
+  box-shadow:0 0 80px var(--pink);
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
   cursor:pointer;
   transform:translateZ(0);
-  will-change:transform,box-shadow;
+  will-change:transform,box-shadow,filter;
   transition:transform 4s ease-out,box-shadow 4s ease-out,border-color 2s ease;
 }
 
@@ -158,68 +164,78 @@ body{
 }
 
 @keyframes heartbeat{
-  0%,100%{transform:scale(1);box-shadow:0 0 60px var(--pink)}
-  50%{transform:scale(1.02);box-shadow:0 0 80px var(--pink)}
+  0%,100%{transform:scale(1);box-shadow:0 0 80px var(--pink)}
+  50%{transform:scale(1.02);box-shadow:0 0 100px var(--pink)}
 }
 
-.circle:hover:not(.breathing){border-color:rgba(255,255,255,.15)}
-.circle:focus{outline:none}
-.circle:focus-visible{outline:2px solid rgba(255,255,255,.25);outline-offset:10px}
+/* Binaural visual pulse */
+.circle.pulse{
+  animation:binauralPulse var(--pulse-speed, 167ms) ease-in-out infinite;
+}
 
-/* Breathing states - optimized single shadows */
+@keyframes binauralPulse{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.08)}
+}
+
+.circle:hover:not(.breathing){border-color:rgba(255,255,255,.18)}
+.circle:focus{outline:none}
+.circle:focus-visible{outline:2px solid rgba(255,255,255,.3);outline-offset:12px}
+
+/* Breathing states - BRIGHTER */
 .circle.breathing.inhale{
-  transform:scale(1.3);
-  border-color:rgba(255,215,0,.35);
-  box-shadow:0 0 100px var(--gold);
+  transform:scale(1.32);
+  border-color:rgba(255,215,0,.4);
+  box-shadow:0 0 120px var(--gold);
 }
 
 .circle.breathing.hold-in{
-  transform:scale(1.3);
-  border-color:rgba(255,180,150,.3);
-  box-shadow:0 0 90px rgba(255,180,150,.35);
+  transform:scale(1.32);
+  border-color:rgba(255,180,150,.35);
+  box-shadow:0 0 100px rgba(255,180,150,.4);
 }
 
 .circle.breathing.exhale{
-  transform:scale(0.78);
-  border-color:rgba(0,191,255,.3);
-  box-shadow:0 0 50px var(--blue);
+  transform:scale(0.76);
+  border-color:rgba(0,191,255,.35);
+  box-shadow:0 0 60px var(--blue);
 }
 
 .circle.breathing.hold-out{
-  transform:scale(0.78);
-  border-color:rgba(138,43,226,.3);
-  box-shadow:0 0 45px var(--purple);
+  transform:scale(0.76);
+  border-color:rgba(138,43,226,.35);
+  box-shadow:0 0 55px var(--purple);
 }
 
-/* Circle text */
+/* Circle text - LARGER */
 .word{
-  font-size:clamp(.9rem,3vw,1.15rem);
+  font-size:clamp(1.1rem,3.5vw,1.4rem);
   font-weight:300;
-  letter-spacing:.32em;
-  padding-left:.32em;
+  letter-spacing:.3em;
+  padding-left:.3em;
   text-transform:uppercase;
-  opacity:.85;
+  opacity:.9;
   transition:all 1s ease;
   user-select:none;
 }
 
 .hint{
-  font-size:.7rem;
+  font-size:.9rem;
   font-weight:300;
   letter-spacing:.15em;
-  margin-top:.6rem;
-  opacity:.35;
+  margin-top:.7rem;
+  opacity:.4;
   transition:opacity 1s ease;
   color:var(--dim);
 }
 
-.breathing .hint{opacity:0}
+.breathing .hint{opacity:0;display:none}
 
 .phase{
-  font-size:clamp(.68rem,2vw,.8rem);
+  font-size:clamp(.85rem,2.5vw,1rem);
   font-weight:300;
   letter-spacing:.18em;
-  margin-top:.5rem;
+  margin-top:.6rem;
   opacity:0;
   transition:opacity 1s ease;
   color:var(--dim);
@@ -228,9 +244,9 @@ body{
 .breathing .phase{opacity:1}
 
 .timer{
-  font-size:.6rem;
+  font-size:.75rem;
   letter-spacing:.12em;
-  margin-top:.4rem;
+  margin-top:.5rem;
   opacity:0;
   color:var(--faint);
   transition:opacity 1s ease;
@@ -238,30 +254,30 @@ body{
 
 .breathing .timer{opacity:1}
 
-/* Wisdom area */
+/* Wisdom area - LARGER */
 .wisdom-area{
   position:absolute;
-  bottom:max(13vh,80px);
+  bottom:max(12vh,75px);
   text-align:center;
-  max-width:min(85%,380px);
+  max-width:min(88%,420px);
 }
 
 .wisdom{
-  font-size:clamp(.75rem,2vw,.88rem);
+  font-size:clamp(.9rem,2.5vw,1.05rem);
   font-weight:300;
   letter-spacing:.08em;
   line-height:1.8;
   opacity:0;
   transition:opacity 2s ease;
   font-style:italic;
-  color:rgba(255,255,255,.4);
+  color:rgba(255,255,255,.5);
 }
 
 .active .wisdom{opacity:1}
 
 .session-msg{
   margin-top:1rem;
-  font-size:.75rem;
+  font-size:.9rem;
   letter-spacing:.15em;
   opacity:0;
   color:var(--dim);
@@ -272,34 +288,34 @@ body{
 .session-msg.show{opacity:1}
 
 .session-msg .count{
-  color:rgba(255,20,147,.7);
+  color:rgba(255,20,147,.75);
 }
 
-/* Energy exchange */
+/* Energy exchange - LARGER */
 .energy{
   position:absolute;
-  bottom:max(4vh,18px);
-  font-size:.68rem;
+  bottom:max(3.5vh,16px);
+  font-size:.85rem;
   letter-spacing:.12em;
-  opacity:.2;
+  opacity:.25;
   transition:opacity .4s ease;
   color:var(--dim);
   display:flex;
   align-items:center;
-  gap:.6rem;
+  gap:.8rem;
 }
 
-.energy:hover{opacity:.5}
+.energy:hover{opacity:.55}
 
-.energy span{opacity:.6}
+.energy span{opacity:.65}
 
 .energy-btn{
   background:none;
   border:none;
   color:inherit;
-  font-size:.85rem;
+  font-size:1.1rem;
   cursor:pointer;
-  padding:.3rem;
+  padding:.4rem;
   opacity:.7;
   transition:all .3s;
 }
@@ -313,19 +329,21 @@ body{
 /* Toast notification */
 .toast{
   position:fixed;
-  bottom:15%;
+  bottom:18%;
   left:50%;
   transform:translateX(-50%) translateY(20px);
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.92);
   border:1px solid var(--border);
-  padding:.8rem 1.5rem;
-  border-radius:8px;
-  font-size:.75rem;
+  padding:1rem 1.8rem;
+  border-radius:10px;
+  font-size:.85rem;
   letter-spacing:.1em;
   opacity:0;
   pointer-events:none;
   transition:all .4s ease;
   z-index:300;
+  text-align:center;
+  max-width:90%;
 }
 
 .toast.show{
@@ -333,11 +351,16 @@ body{
   transform:translateX(-50%) translateY(0);
 }
 
+.toast .icon{
+  font-size:1.2rem;
+  margin-bottom:.5rem;
+}
+
 /* Donation modal */
 .donate-modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.88);
   z-index:250;
   display:flex;
   align-items:center;
@@ -353,29 +376,29 @@ body{
 }
 
 .donate-content{
-  background:rgba(20,20,20,.95);
+  background:rgba(15,15,15,.95);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:2rem;
+  border-radius:14px;
+  padding:2.2rem;
   text-align:center;
-  max-width:min(90%,320px);
+  max-width:min(92%,340px);
 }
 
 .donate-content h3{
-  font-size:.8rem;
+  font-size:.9rem;
   font-weight:400;
-  letter-spacing:.2em;
-  margin-bottom:1.5rem;
+  letter-spacing:.22em;
+  margin-bottom:1.6rem;
   color:var(--dim);
 }
 
 .donate-qr{
-  width:150px;
-  height:150px;
-  margin:0 auto 1rem;
+  width:160px;
+  height:160px;
+  margin:0 auto 1.2rem;
   background:#fff;
-  border-radius:8px;
-  padding:8px;
+  border-radius:10px;
+  padding:10px;
 }
 
 .donate-qr img{
@@ -384,14 +407,14 @@ body{
 }
 
 .donate-address{
-  font-size:.6rem;
+  font-size:.68rem;
   letter-spacing:.05em;
   color:var(--faint);
   word-break:break-all;
-  margin-bottom:1rem;
-  padding:.8rem;
+  margin-bottom:1.2rem;
+  padding:1rem;
   background:var(--glass);
-  border-radius:6px;
+  border-radius:8px;
   cursor:pointer;
   transition:all .3s;
 }
@@ -405,73 +428,74 @@ body{
   background:none;
   border:1px solid var(--border);
   color:var(--dim);
-  padding:.6rem 1.5rem;
-  font-size:.7rem;
+  padding:.7rem 1.8rem;
+  font-size:.8rem;
   letter-spacing:.15em;
   cursor:pointer;
-  border-radius:6px;
+  border-radius:8px;
   transition:all .3s;
 }
 
 .donate-close:hover{
-  border-color:rgba(255,255,255,.2);
+  border-color:rgba(255,255,255,.25);
   color:var(--light);
 }
 
-/* Menu panel */
+/* Menu panel - LARGER TEXT */
 .menu{
   position:fixed;
   top:0;
-  right:-300px;
-  width:min(280px,85vw);
+  right:-320px;
+  width:min(300px,88vw);
   height:100%;
-  background:rgba(5,5,5,.95);
+  background:rgba(5,5,5,.96);
   border-left:1px solid var(--border);
   z-index:200;
   transition:right .35s ease-out;
   overflow-y:auto;
-  padding:1.5rem;
+  padding:1.8rem;
 }
 
 .menu.open{right:0}
 
 .menu-close{
   position:absolute;
-  top:1rem;
-  right:1rem;
+  top:1.2rem;
+  right:1.2rem;
   background:none;
   border:none;
   color:var(--dim);
-  font-size:1.3rem;
+  font-size:1.6rem;
   cursor:pointer;
   transition:color .3s;
-  padding:.3rem;
+  padding:.4rem;
 }
 
 .menu-close:hover{color:var(--light)}
 
 .menu h3{
-  font-size:.65rem;
+  font-size:.75rem;
   font-weight:400;
   letter-spacing:.22em;
   color:var(--faint);
-  margin:1.8rem 0 .7rem;
+  margin:2rem 0 .9rem;
   text-transform:uppercase;
 }
 
-.menu h3:first-of-type{margin-top:.8rem}
+.menu h3:first-of-type{margin-top:1rem}
 
 .menu-item{
   display:flex;
   align-items:center;
-  padding:.65rem .9rem;
-  margin:.25rem 0;
+  justify-content:space-between;
+  padding:.8rem 1rem;
+  margin:.3rem 0;
   background:transparent;
   border:1px solid transparent;
-  border-radius:6px;
+  border-radius:8px;
   cursor:pointer;
   transition:all .25s ease;
-  font-size:.78rem;
+  font-size:.95rem;
   color:var(--dim);
 }
 
@@ -481,66 +505,77 @@ body{
 }
 
 .menu-item.selected{
-  border-color:rgba(255,20,147,.25);
-  background:rgba(255,20,147,.06);
+  border-color:rgba(255,20,147,.28);
+  background:rgba(255,20,147,.07);
   color:var(--light);
 }
 
+.menu-item .left{
+  display:flex;
+  align-items:center;
+}
+
 .menu-item .dot{
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
   border-radius:50%;
-  margin-right:.8rem;
+  margin-right:.9rem;
   background:var(--border);
   transition:all .25s;
 }
 
 .menu-item.selected .dot{
   background:#ff1493;
-  box-shadow:0 0 8px rgba(255,20,147,.5);
+  box-shadow:0 0 10px rgba(255,20,147,.6);
+}
+
+.menu-item .greek{
+  font-size:.75rem;
+  color:var(--faint);
+  letter-spacing:.1em;
 }
 
 .menu-divider{
   height:1px;
   background:var(--border);
-  margin:1.2rem 0;
+  margin:1.5rem 0;
 }
 
 .time-row{
   display:flex;
-  gap:.35rem;
+  gap:.5rem;
 }
 
 .time-btn{
   flex:1;
-  padding:.55rem .3rem;
+  padding:.7rem .4rem;
   background:transparent;
   border:1px solid transparent;
-  border-radius:6px;
+  border-radius:8px;
   color:var(--dim);
-  font-size:.72rem;
+  font-size:.88rem;
   cursor:pointer;
   transition:all .25s;
 }
 
 .time-btn:hover{background:var(--glass);color:var(--light)}
-.time-btn.selected{border-color:rgba(255,20,147,.25);background:rgba(255,20,147,.06);color:var(--light)}
+.time-btn.selected{border-color:rgba(255,20,147,.28);background:rgba(255,20,147,.07);color:var(--light)}
 
 .toggle-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:.6rem 0;
-  font-size:.78rem;
+  padding:.8rem 0;
+  font-size:.95rem;
   color:var(--dim);
 }
 
 .toggle{
-  width:38px;
-  height:20px;
+  width:44px;
+  height:24px;
   background:var(--glass);
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
   position:relative;
   transition:all .3s;
@@ -550,29 +585,46 @@ body{
   content:'';
   position:absolute;
   top:3px;
-  left:3px;
-  width:12px;
-  height:12px;
+  left:4px;
+  width:16px;
+  height:16px;
   background:var(--dim);
   border-radius:50%;
   transition:all .3s;
 }
 
 .toggle.on{
-  background:rgba(255,20,147,.15);
-  border-color:rgba(255,20,147,.35);
+  background:rgba(255,20,147,.18);
+  border-color:rgba(255,20,147,.4);
 }
 
 .toggle.on::after{
-  left:21px;
+  left:22px;
   background:#ff1493;
+}
+
+.headphones-note{
+  font-size:.78rem;
+  color:var(--faint);
+  margin-top:1.5rem;
+  padding:.9rem;
+  background:var(--glass);
+  border-radius:8px;
+  text-align:center;
+  line-height:1.6;
+}
+
+.headphones-note span{
+  font-size:1rem;
+  display:block;
+  margin-bottom:.4rem;
 }
 
 /* Overlay */
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.4);
+  background:rgba(0,0,0,.45);
   z-index:150;
   opacity:0;
   pointer-events:none;
@@ -592,8 +644,8 @@ body{
 }
 
 /* High contrast */
-body.contrast .circle{border:2px solid #fff;box-shadow:0 0 30px rgba(255,255,255,.2)}
-body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .title{
+body.contrast .circle{border:2px solid #fff;box-shadow:0 0 40px rgba(255,255,255,.25)}
+body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .title-line{
   -webkit-text-fill-color:#fff;color:#fff;opacity:1;
 }
 
@@ -602,13 +654,15 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   *{animation:none!important;transition-duration:.15s!important}
 }
 
-/* Mobile optimizations */
+/* Mobile */
 @media(max-width:500px){
-  .circle{width:min(200px,55vw);height:min(200px,55vw)}
-  .title{top:max(7vh,40px);font-size:clamp(1rem,3.5vw,1.5rem)}
-  .wisdom-area{bottom:max(11vh,65px)}
-  .controls{top:max(2vh,10px);right:max(2vw,10px);gap:.6rem}
-  .ctrl{font-size:1rem}
+  .circle{width:min(210px,52vw);height:min(210px,52vw)}
+  .title{top:max(6vh,35px)}
+  .title-line{font-size:clamp(1.4rem,5vw,2.2rem)}
+  .wisdom-area{bottom:max(10vh,60px)}
+  .controls{top:max(2vh,8px);right:max(2vw,8px);gap:.7rem}
+  .ctrl{font-size:1.3rem}
+  .word{font-size:clamp(1rem,3.2vw,1.25rem)}
 }
 </style>
 </head>
@@ -617,7 +671,10 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 <div class="cosmos"></div>
 
 <div class="field">
-  <h1 class="title">INNERA FIELD</h1>
+  <h1 class="title">
+    <span class="title-line">INNERA</span>
+    <span class="title-line">FIELD</span>
+  </h1>
 
   <div class="controls">
     <button class="ctrl" id="soundBtn" aria-label="Sound" aria-pressed="false" title="Sound">◉</button>
@@ -670,11 +727,26 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
 
   <h3>Journey</h3>
-  <div class="menu-item selected" data-journey="heart"><span class="dot"></span>Heart Opening</div>
-  <div class="menu-item" data-journey="awakening"><span class="dot"></span>Awakening</div>
-  <div class="menu-item" data-journey="grounding"><span class="dot"></span>Grounding</div>
-  <div class="menu-item" data-journey="unity"><span class="dot"></span>Unity</div>
-  <div class="menu-item" data-journey="peace"><span class="dot"></span>Deep Peace</div>
+  <div class="menu-item selected" data-journey="heart">
+    <div class="left"><span class="dot"></span>Heart Opening</div>
+    <span class="greek">θ</span>
+  </div>
+  <div class="menu-item" data-journey="awakening">
+    <div class="left"><span class="dot"></span>Awakening</div>
+    <span class="greek">γ</span>
+  </div>
+  <div class="menu-item" data-journey="grounding">
+    <div class="left"><span class="dot"></span>Grounding</div>
+    <span class="greek">δ</span>
+  </div>
+  <div class="menu-item" data-journey="unity">
+    <div class="left"><span class="dot"></span>Unity</div>
+    <span class="greek">α</span>
+  </div>
+  <div class="menu-item" data-journey="peace">
+    <div class="left"><span class="dot"></span>Deep Peace</div>
+    <span class="greek">θδ</span>
+  </div>
 
   <div class="menu-divider"></div>
 
@@ -693,6 +765,11 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     <span>Voice guidance</span>
     <div class="toggle" id="voiceToggle" role="switch" aria-checked="false"></div>
   </div>
+
+  <div class="headphones-note">
+    <span>🎧</span>
+    headphones enhance the binaural experience
+  </div>
 </nav>
 
 <script>
@@ -700,7 +777,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 'use strict';
 
 // ══════════════════════════════════════════════════════════
-// CRYPTO ADDRESSES
+// CRYPTO
 // ══════════════════════════════════════════════════════════
 const CRYPTO = {
   btc: 'bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz',
@@ -708,49 +785,79 @@ const CRYPTO = {
 };
 
 // ══════════════════════════════════════════════════════════
-// JOURNEY-SPECIFIC WISDOM
+// JOURNEY CONFIG — FUSED WITH BINAURAL
 // ══════════════════════════════════════════════════════════
-const WISDOMS = {
-  heart: [
-    "you are worthy of love. you always have been.",
-    "your heart knows the way. trust it.",
-    "love is not earned. it is remembered.",
-    "you are not broken. you are returning.",
-    "the heart that seeks connection is already connected.",
-    "every heartbeat is a prayer answered."
-  ],
-  awakening: [
-    "consciousness is not found. it is unveiled.",
-    "you are not becoming aware. you are awareness itself.",
-    "the truth you seek is seeking you.",
-    "awakening is not an event. it is a recognition.",
-    "you have always been the light you're looking for.",
-    "stillness speaks louder than thought."
-  ],
-  grounding: [
-    "you are held by the earth. always.",
-    "your body is your first home. return to it.",
-    "presence is the anchor. breath is the chain.",
-    "the ground beneath you is sacred ground.",
-    "you belong here. you have always belonged.",
-    "root down to rise up."
-  ],
-  unity: [
-    "separation is the illusion. oneness is the truth.",
-    "you are the field. the field is you.",
-    "there is no other. there is only one.",
-    "peace begins when we remember we are one.",
-    "every breath connects you to all beings.",
-    "in unity, there is no war. only love."
-  ],
-  peace: [
-    "peace is not found. it is remembered.",
-    "stillness is your nature. return to it.",
-    "in the quiet, God speaks.",
-    "surrender is not giving up. it is opening up.",
-    "rest is not weakness. it is wisdom.",
-    "the deepest peace is already within you."
-  ]
+const JOURNEYS = {
+  heart: {
+    name: 'Heart Opening',
+    binaural: 6,        // Theta - love, connection
+    freqs: [528, 432, 396, 417],
+    pulseSpeed: 167,    // ms (1000/6)
+    wisdoms: [
+      "you are worthy of love. you always have been.",
+      "your heart knows the way. trust it.",
+      "love is not earned. it is remembered.",
+      "you are not broken. you are returning.",
+      "the heart that seeks connection is already connected.",
+      "every heartbeat is a prayer answered."
+    ]
+  },
+  awakening: {
+    name: 'Awakening',
+    binaural: 40,       // Gamma - transcendence
+    freqs: [741, 852, 963, 639],
+    pulseSpeed: 25,     // ms (1000/40) - very fast, subtle shimmer
+    wisdoms: [
+      "consciousness is not found. it is unveiled.",
+      "you are not becoming aware. you are awareness itself.",
+      "the truth you seek is seeking you.",
+      "awakening is not an event. it is a recognition.",
+      "you have always been the light you're looking for.",
+      "stillness speaks louder than thought."
+    ]
+  },
+  grounding: {
+    name: 'Grounding',
+    binaural: 2,        // Delta - deep, primal
+    freqs: [285, 432, 174, 128],
+    pulseSpeed: 500,    // ms (1000/2) - slow, deep
+    wisdoms: [
+      "you are held by the earth. always.",
+      "your body is your first home. return to it.",
+      "presence is the anchor. breath is the chain.",
+      "the ground beneath you is sacred ground.",
+      "you belong here. you have always belonged.",
+      "root down to rise up."
+    ]
+  },
+  unity: {
+    name: 'Unity',
+    binaural: 10,       // Alpha - oneness
+    freqs: [528, 639, 111, 432],
+    pulseSpeed: 100,    // ms (1000/10)
+    wisdoms: [
+      "separation is the illusion. oneness is the truth.",
+      "you are the field. the field is you.",
+      "there is no other. there is only one.",
+      "peace begins when we remember we are one.",
+      "every breath connects you to all beings.",
+      "in unity, there is no war. only love."
+    ]
+  },
+  peace: {
+    name: 'Deep Peace',
+    binaural: 4,        // Theta-Delta blend
+    freqs: [432, 396, 417, 432],
+    pulseSpeed: 250,    // ms (1000/4)
+    wisdoms: [
+      "peace is not found. it is remembered.",
+      "stillness is your nature. return to it.",
+      "in the quiet, God speaks.",
+      "surrender is not giving up. it is opening up.",
+      "rest is not weakness. it is wisdom.",
+      "the deepest peace is already within you."
+    ]
+  }
 };
 
 // ══════════════════════════════════════════════════════════
@@ -769,8 +876,15 @@ const S = {
   tickTimer: null,
   audio: null,
   osc: null,
+  oscL: null,
+  oscR: null,
+  subOsc: null,
   gain: null,
-  hasStarted: false
+  gainL: null,
+  gainR: null,
+  subGain: null,
+  hasStarted: false,
+  headphonesShown: false
 };
 
 // Load preferences
@@ -805,27 +919,16 @@ const donateQR = document.getElementById('donateQR');
 const donateAddress = document.getElementById('donateAddress');
 const donateClose = document.getElementById('donateClose');
 const menuBtn = document.getElementById('menuBtn');
-const menuClose = document.getElementById('menuClose');
+const menuCloseBtn = document.getElementById('menuClose');
 const soundBtn = document.getElementById('soundBtn');
 const contrastBtn = document.getElementById('contrastBtn');
 const voiceToggle = document.getElementById('voiceToggle');
 const btcBtn = document.getElementById('btcBtn');
 const ethBtn = document.getElementById('ethBtn');
 
-// ══════════════════════════════════════════════════════════
-// DATA
-// ══════════════════════════════════════════════════════════
 const phases = ['inhale','hold-in','exhale','hold-out'];
 const words = ['breathe in','hold','release','rest'];
 const durations = [4000,4000,4000,4000];
-
-const journeys = {
-  heart:     [528,432,396,417],
-  awakening: [741,852,963,639],
-  grounding: [285,432,174,128],
-  unity:     [528,639,111,432],
-  peace:     [432,396,417,432]
-};
 
 // ══════════════════════════════════════════════════════════
 // SAVE PREFERENCES
@@ -842,14 +945,33 @@ function savePrefs(){
 }
 
 // ══════════════════════════════════════════════════════════
-// AUDIO ENGINE - OPTIMIZED
+// AUDIO ENGINE — WITH BINAURAL + SUB-BASS
 // ══════════════════════════════════════════════════════════
 function initAudio(){
   if(S.audio) return;
   S.audio = new (window.AudioContext||window.webkitAudioContext)();
+  
+  // Main solfeggio gain
   S.gain = S.audio.createGain();
   S.gain.gain.value = 0;
   S.gain.connect(S.audio.destination);
+  
+  // Binaural stereo setup
+  S.gainL = S.audio.createGain();
+  S.gainR = S.audio.createGain();
+  S.gainL.gain.value = 0;
+  S.gainR.gain.value = 0;
+  
+  const merger = S.audio.createChannelMerger(2);
+  S.gainL.connect(merger, 0, 0);
+  S.gainR.connect(merger, 0, 1);
+  merger.connect(S.audio.destination);
+  S.merger = merger;
+  
+  // Sub-bass for vibration
+  S.subGain = S.audio.createGain();
+  S.subGain.gain.value = 0;
+  S.subGain.connect(S.audio.destination);
 }
 
 function playFreq(hz){
@@ -863,11 +985,65 @@ function playFreq(hz){
     S.osc.connect(S.gain);
     S.osc.start();
   }
-  S.gain.gain.setTargetAtTime(0.06, S.audio.currentTime, 0.4);
+  S.gain.gain.setTargetAtTime(0.05, S.audio.currentTime, 0.4);
+}
+
+function playBinaural(beatHz){
+  if(!S.audio) return;
+  const baseHz = 200;
+  
+  // Left oscillator
+  if(!S.oscL){
+    S.oscL = S.audio.createOscillator();
+    S.oscL.type = 'sine';
+    S.oscL.connect(S.gainL);
+    S.oscL.start();
+  }
+  S.oscL.frequency.setTargetAtTime(baseHz, S.audio.currentTime, 0.3);
+  
+  // Right oscillator
+  if(!S.oscR){
+    S.oscR = S.audio.createOscillator();
+    S.oscR.type = 'sine';
+    S.oscR.connect(S.gainR);
+    S.oscR.start();
+  }
+  S.oscR.frequency.setTargetAtTime(baseHz + beatHz, S.audio.currentTime, 0.3);
+  
+  S.gainL.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.5);
+  S.gainR.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.5);
+}
+
+function playSubBass(){
+  if(!S.audio) return;
+  if(!S.subOsc){
+    S.subOsc = S.audio.createOscillator();
+    S.subOsc.type = 'sine';
+    S.subOsc.frequency.value = 50; // 50 Hz - can be felt
+    S.subOsc.connect(S.subGain);
+    S.subOsc.start();
+  }
+  S.subGain.gain.setTargetAtTime(0.15, S.audio.currentTime, 0.5);
 }
 
 function stopAudio(){
   if(S.gain) S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+  if(S.gainL) S.gainL.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+  if(S.gainR) S.gainR.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+  if(S.subGain) S.subGain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+}
+
+// ══════════════════════════════════════════════════════════
+// VISUAL BINAURAL PULSE
+// ══════════════════════════════════════════════════════════
+function startVisualPulse(){
+  const journey = JOURNEYS[S.journey];
+  circle.style.setProperty('--pulse-speed', journey.pulseSpeed + 'ms');
+  circle.classList.add('pulse');
+}
+
+function stopVisualPulse(){
+  circle.classList.remove('pulse');
 }
 
 // ══════════════════════════════════════════════════════════
@@ -884,13 +1060,23 @@ function speak(text){
 }
 
 // ══════════════════════════════════════════════════════════
-// BREATHING CYCLE
+// TOAST
+// ══════════════════════════════════════════════════════════
+function showToast(msg, icon = ''){
+  toast.innerHTML = icon ? '<div class="icon">' + icon + '</div>' + msg : msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ══════════════════════════════════════════════════════════
+// BREATHING
 // ══════════════════════════════════════════════════════════
 function setPhase(i){
   S.phase = i;
   const p = phases[i];
+  const journey = JOURNEYS[S.journey];
   
-  circle.className = 'circle breathing ' + p;
+  circle.className = 'circle breathing pulse ' + p;
   word.textContent = words[i];
   phase.textContent = p.replace('-in',' in').replace('-out',' out');
   sr.textContent = words[i];
@@ -898,8 +1084,7 @@ function setPhase(i){
   speak(words[i]);
   
   if(S.sound && S.audio){
-    const freqs = journeys[S.journey];
-    playFreq(freqs[i]);
+    playFreq(journey.freqs[i]);
   }
   
   if(i === 2) S.breaths++;
@@ -941,17 +1126,27 @@ function start(){
   S.elapsed = 0;
   S.hasStarted = true;
   
+  const journey = JOURNEYS[S.journey];
+  
   document.body.classList.add('active');
   sessionMsg.classList.remove('show');
   sessionMsg.innerHTML = '';
   hint.style.display = 'none';
   
-  const wisdomList = WISDOMS[S.journey];
-  wisdom.textContent = wisdomList[Math.floor(Math.random() * wisdomList.length)];
+  wisdom.textContent = journey.wisdoms[Math.floor(Math.random() * journey.wisdoms.length)];
+  
+  // Start visual pulse
+  startVisualPulse();
   
   if(S.sound){
     initAudio();
     if(S.audio.state === 'suspended') S.audio.resume();
+    
+    // Start binaural
+    playBinaural(journey.binaural);
+    
+    // Start sub-bass for vibration
+    playSubBass();
   }
   
   setPhase(0);
@@ -978,8 +1173,8 @@ function stop(){
   timerDisplay.textContent = '';
   
   stopAudio();
+  stopVisualPulse();
   
-  // Session message in wisdom area
   sessionMsg.innerHTML = '<span class="count">✧ ' + S.breaths + ' breaths with Source ✧</span><br>return when you forget.';
   sessionMsg.classList.add('show');
   
@@ -1008,7 +1203,6 @@ function closeMenu(){
   overlay.classList.remove('show');
 }
 
-// Init menu state from saved preferences
 function initMenuState(){
   document.querySelectorAll('[data-journey]').forEach(el => {
     el.classList.toggle('selected', el.dataset.journey === S.journey);
@@ -1054,7 +1248,7 @@ voiceToggle.addEventListener('click', () => {
 // CONTROLS
 // ══════════════════════════════════════════════════════════
 menuBtn.addEventListener('click', openMenu);
-menuClose.addEventListener('click', closeMenu);
+menuCloseBtn.addEventListener('click', closeMenu);
 overlay.addEventListener('click', () => {
   closeMenu();
   closeDonateModal();
@@ -1066,12 +1260,22 @@ soundBtn.addEventListener('click', () => {
   soundBtn.setAttribute('aria-pressed', S.sound);
   savePrefs();
   
-  if(S.sound && S.on){
-    initAudio();
-    if(S.audio.state === 'suspended') S.audio.resume();
-    const freqs = journeys[S.journey];
-    playFreq(freqs[S.phase]);
-  } else if(!S.sound){
+  if(S.sound){
+    // Show headphones toast
+    if(!S.headphonesShown){
+      showToast('headphones enhance<br>the binaural experience', '🎧');
+      S.headphonesShown = true;
+    }
+    
+    if(S.on){
+      initAudio();
+      if(S.audio.state === 'suspended') S.audio.resume();
+      const journey = JOURNEYS[S.journey];
+      playFreq(journey.freqs[S.phase]);
+      playBinaural(journey.binaural);
+      playSubBass();
+    }
+  } else {
     stopAudio();
   }
 });
@@ -1086,12 +1290,6 @@ contrastBtn.addEventListener('click', () => {
 // ══════════════════════════════════════════════════════════
 // DONATIONS
 // ══════════════════════════════════════════════════════════
-function showToast(msg){
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
-}
-
 function copyToClipboard(text){
   navigator.clipboard.writeText(text).then(() => {
     showToast('address copied ✓');
@@ -1106,7 +1304,7 @@ function showDonateModal(type){
   
   donateTitle.textContent = name;
   donateAddress.textContent = addr;
-  donateQR.src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(addr);
+  donateQR.src = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(addr);
   
   donateModal.classList.add('show');
 }
@@ -1147,9 +1345,9 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Hide hint after first interaction or 8 seconds
+// Hide hint after 8 seconds
 setTimeout(() => {
-  if(!S.hasStarted) hint.style.opacity = '0';
+  if(!S.hasStarted && hint) hint.style.opacity = '0';
 }, 8000);
 
 // ══════════════════════════════════════════════════════════

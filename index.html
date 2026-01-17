@@ -107,14 +107,14 @@ body{
 }
 
 /* ══════════════════════════════════════════════════════════
-   NAVIGATION - All icons TRULY consistent
+   NAVIGATION - Icons visually matched
    ══════════════════════════════════════════════════════════ */
 .controls{
   position:absolute;
   top:max(2vh,12px);
   right:max(2.5vw,12px);
   display:flex;
-  gap:.8rem;
+  gap:.6rem;
   z-index:100;
 }
 
@@ -122,9 +122,8 @@ body{
   background:transparent;
   border:none;
   color:var(--dim);
-  width:48px;
-  height:48px;
-  font-size:1.5rem;
+  width:46px;
+  height:46px;
   cursor:pointer;
   transition:all .25s ease;
   opacity:.55;
@@ -133,6 +132,11 @@ body{
   justify-content:center;
   border-radius:50%;
 }
+
+/* Individual icon sizes to match visually */
+#soundBtn{font-size:1.65rem}
+#contrastBtn{font-size:1.5rem}
+#menuBtn{font-size:1.7rem}
 
 .ctrl:hover,.ctrl:focus{
   opacity:1;
@@ -656,7 +660,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 }
 
 /* ══════════════════════════════════════════════════════════
-   PHONE - Fixed icon consistency
+   PHONE - Fixed icon visual consistency
    ══════════════════════════════════════════════════════════ */
 @media(max-width:600px){
   .title{
@@ -666,15 +670,19 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     padding-left:.4em;
   }
   .controls{
-    gap:.5rem;
+    gap:.4rem;
     top:10px;
     right:10px;
   }
   .ctrl{
-    width:44px;
-    height:44px;
-    font-size:1.4rem;
+    width:42px;
+    height:42px;
   }
+  /* Visually matched on mobile */
+  #soundBtn{font-size:1.5rem}
+  #contrastBtn{font-size:1.35rem}
+  #menuBtn{font-size:1.55rem}
+  
   .circle{
     width:min(200px,52vw);
     height:min(200px,52vw);
@@ -692,15 +700,19 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     padding-left:.32em;
   }
   .controls{
-    gap:.4rem;
+    gap:.3rem;
     top:8px;
     right:8px;
   }
   .ctrl{
-    width:40px;
-    height:40px;
-    font-size:1.25rem;
+    width:38px;
+    height:38px;
   }
+  /* Visually matched on tiny screens */
+  #soundBtn{font-size:1.35rem}
+  #contrastBtn{font-size:1.2rem}
+  #menuBtn{font-size:1.4rem}
+  
   .circle{
     width:min(180px,50vw);
     height:min(180px,50vw);
@@ -717,8 +729,11 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   .ctrl{
     width:52px;
     height:52px;
-    font-size:1.7rem;
   }
+  #soundBtn{font-size:1.85rem}
+  #contrastBtn{font-size:1.7rem}
+  #menuBtn{font-size:1.9rem}
+  
   .circle{
     width:min(300px,32vw);
     height:min(300px,32vw);

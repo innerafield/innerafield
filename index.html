@@ -81,11 +81,13 @@ body{
   text-align:center;
 }
 
-/* Title - ONE LINE, BIGGER, LOWER */
+/* ══════════════════════════════════════════════════════════
+   TITLE - Restored to original good position
+   ══════════════════════════════════════════════════════════ */
 .title{
   position:absolute;
-  top:max(12vh,70px);
-  font-size:clamp(1.6rem,6vw,3.5rem);
+  top:max(10vh,55px);
+  font-size:clamp(1.5rem,5.5vw,3rem);
   font-weight:700;
   letter-spacing:.5em;
   padding-left:.5em;
@@ -104,13 +106,15 @@ body{
   50%{background-position:100% 50%}
 }
 
-/* Controls - CONSISTENT SIZE */
+/* ══════════════════════════════════════════════════════════
+   NAVIGATION - All icons TRULY consistent
+   ══════════════════════════════════════════════════════════ */
 .controls{
   position:absolute;
-  top:max(2.5vh,14px);
-  right:max(3vw,14px);
+  top:max(2vh,12px);
+  right:max(2.5vw,12px);
   display:flex;
-  gap:1rem;
+  gap:.8rem;
   z-index:100;
 }
 
@@ -118,22 +122,22 @@ body{
   background:transparent;
   border:none;
   color:var(--dim);
-  font-size:1.8rem;
+  width:48px;
+  height:48px;
+  font-size:1.5rem;
   cursor:pointer;
   transition:all .25s ease;
-  padding:.6rem;
   opacity:.55;
-  min-width:48px;
-  min-height:48px;
   display:flex;
   align-items:center;
   justify-content:center;
-  line-height:1;
+  border-radius:50%;
 }
 
 .ctrl:hover,.ctrl:focus{
   opacity:1;
   color:var(--light);
+  background:rgba(255,255,255,.05);
 }
 
 .ctrl.on{
@@ -144,8 +148,8 @@ body{
 /* The Circle */
 .circle{
   position:relative;
-  width:min(280px,52vw);
-  height:min(280px,52vw);
+  width:min(260px,50vw);
+  height:min(260px,50vw);
   border-radius:50%;
   background:radial-gradient(circle at 40% 35%,rgba(255,20,147,.06),transparent 60%);
   border:2px solid var(--border);
@@ -208,7 +212,7 @@ body{
 
 /* Circle text */
 .word{
-  font-size:clamp(1.1rem,3.5vw,1.5rem);
+  font-size:clamp(1.05rem,3.2vw,1.4rem);
   font-weight:400;
   letter-spacing:.28em;
   padding-left:.28em;
@@ -219,10 +223,10 @@ body{
 }
 
 .hint{
-  font-size:clamp(.85rem,2.5vw,1.05rem);
+  font-size:clamp(.8rem,2.2vw,1rem);
   font-weight:300;
   letter-spacing:.15em;
-  margin-top:.8rem;
+  margin-top:.7rem;
   opacity:.45;
   transition:opacity .8s ease;
   color:var(--dim);
@@ -231,10 +235,10 @@ body{
 .breathing .hint{opacity:0;display:none}
 
 .phase{
-  font-size:clamp(.8rem,2.2vw,1rem);
+  font-size:clamp(.75rem,2vw,.95rem);
   font-weight:300;
   letter-spacing:.16em;
-  margin-top:.6rem;
+  margin-top:.5rem;
   opacity:0;
   transition:opacity .8s ease;
   color:var(--dim);
@@ -243,9 +247,9 @@ body{
 .breathing .phase{opacity:1}
 
 .timer{
-  font-size:clamp(.7rem,1.8vw,.85rem);
+  font-size:clamp(.65rem,1.6vw,.8rem);
   letter-spacing:.1em;
-  margin-top:.5rem;
+  margin-top:.4rem;
   opacity:0;
   color:var(--faint);
   transition:opacity .8s ease;
@@ -258,13 +262,13 @@ body{
   position:absolute;
   bottom:max(11vh,70px);
   text-align:center;
-  max-width:min(90%,450px);
+  max-width:min(88%,420px);
 }
 
 .wisdom{
-  font-size:clamp(.9rem,2.5vw,1.1rem);
+  font-size:clamp(.85rem,2.3vw,1.05rem);
   font-weight:300;
-  letter-spacing:.06em;
+  letter-spacing:.05em;
   line-height:1.8;
   opacity:0;
   transition:opacity 2s ease;
@@ -276,8 +280,8 @@ body{
 
 .session-msg{
   margin-top:1rem;
-  font-size:clamp(.85rem,2.2vw,1rem);
-  letter-spacing:.14em;
+  font-size:clamp(.8rem,2vw,.95rem);
+  letter-spacing:.12em;
   opacity:0;
   color:var(--dim);
   transition:opacity 1.5s ease;
@@ -293,15 +297,15 @@ body{
 /* Energy exchange */
 .energy{
   position:absolute;
-  bottom:max(3vh,14px);
-  font-size:clamp(.8rem,2vw,.95rem);
+  bottom:max(2.5vh,12px);
+  font-size:clamp(.75rem,1.8vw,.9rem);
   letter-spacing:.1em;
   opacity:.3;
   transition:opacity .4s ease;
   color:var(--dim);
   display:flex;
   align-items:center;
-  gap:.8rem;
+  gap:.6rem;
 }
 
 .energy:hover{opacity:.6}
@@ -312,13 +316,13 @@ body{
   background:none;
   border:none;
   color:inherit;
-  font-size:clamp(1rem,2.5vw,1.2rem);
+  font-size:1.1rem;
   cursor:pointer;
-  padding:.5rem;
+  padding:.4rem;
   opacity:.75;
   transition:all .3s;
-  min-width:44px;
-  min-height:44px;
+  min-width:40px;
+  min-height:40px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -338,9 +342,9 @@ body{
   transform:translateX(-50%) translateY(20px);
   background:rgba(0,0,0,.94);
   border:1px solid var(--border);
-  padding:1.1rem 2rem;
+  padding:1rem 1.8rem;
   border-radius:12px;
-  font-size:clamp(.85rem,2vw,.95rem);
+  font-size:.9rem;
   letter-spacing:.08em;
   opacity:0;
   pointer-events:none;
@@ -356,8 +360,8 @@ body{
 }
 
 .toast .icon{
-  font-size:1.4rem;
-  margin-bottom:.6rem;
+  font-size:1.3rem;
+  margin-bottom:.5rem;
 }
 
 /* Donation modal */
@@ -380,29 +384,29 @@ body{
 }
 
 .donate-content{
-  background:rgba(12,12,12,.98);
+  background:rgba(10,10,10,.98);
   border:1px solid var(--border);
   border-radius:16px;
-  padding:2.5rem;
+  padding:2.2rem;
   text-align:center;
-  max-width:min(92%,360px);
+  max-width:min(90%,340px);
 }
 
 .donate-content h3{
-  font-size:1rem;
+  font-size:.95rem;
   font-weight:500;
-  letter-spacing:.22em;
-  margin-bottom:1.8rem;
+  letter-spacing:.2em;
+  margin-bottom:1.6rem;
   color:var(--dim);
 }
 
 .donate-qr{
-  width:170px;
-  height:170px;
-  margin:0 auto 1.4rem;
+  width:160px;
+  height:160px;
+  margin:0 auto 1.2rem;
   background:#fff;
   border-radius:12px;
-  padding:12px;
+  padding:10px;
 }
 
 .donate-qr img{
@@ -411,12 +415,12 @@ body{
 }
 
 .donate-address{
-  font-size:.72rem;
-  letter-spacing:.04em;
+  font-size:.7rem;
+  letter-spacing:.03em;
   color:var(--faint);
   word-break:break-all;
-  margin-bottom:1.4rem;
-  padding:1.1rem;
+  margin-bottom:1.2rem;
+  padding:1rem;
   background:var(--glass);
   border-radius:10px;
   cursor:pointer;
@@ -432,9 +436,9 @@ body{
   background:none;
   border:1px solid var(--border);
   color:var(--dim);
-  padding:.8rem 2rem;
+  padding:.75rem 1.8rem;
   font-size:.85rem;
-  letter-spacing:.15em;
+  letter-spacing:.12em;
   cursor:pointer;
   border-radius:10px;
   transition:all .3s;
@@ -450,31 +454,30 @@ body{
   position:fixed;
   top:0;
   right:-340px;
-  width:min(320px,90vw);
+  width:min(300px,88vw);
   height:100%;
   background:rgba(5,5,5,.97);
   border-left:1px solid var(--border);
   z-index:200;
   transition:right .35s ease-out;
   overflow-y:auto;
-  padding:2rem;
+  padding:1.8rem;
 }
 
 .menu.open{right:0}
 
 .menu-close{
   position:absolute;
-  top:1.2rem;
-  right:1.2rem;
+  top:1rem;
+  right:1rem;
   background:none;
   border:none;
   color:var(--dim);
-  font-size:2rem;
+  font-size:1.8rem;
   cursor:pointer;
   transition:color .3s;
-  padding:.5rem;
-  min-width:48px;
-  min-height:48px;
+  width:44px;
+  height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -483,27 +486,27 @@ body{
 .menu-close:hover{color:var(--light)}
 
 .menu h3{
-  font-size:.8rem;
+  font-size:.75rem;
   font-weight:500;
-  letter-spacing:.22em;
+  letter-spacing:.2em;
   color:var(--faint);
-  margin:2.2rem 0 1rem;
+  margin:2rem 0 .9rem;
   text-transform:uppercase;
 }
 
-.menu h3:first-of-type{margin-top:1.2rem}
+.menu h3:first-of-type{margin-top:1rem}
 
 .menu-item{
   display:flex;
   align-items:center;
-  padding:1rem 1.2rem;
-  margin:.35rem 0;
+  padding:.9rem 1.1rem;
+  margin:.3rem 0;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   cursor:pointer;
   transition:all .25s ease;
-  font-size:1.05rem;
+  font-size:1rem;
   color:var(--dim);
 }
 
@@ -522,7 +525,7 @@ body{
   width:8px;
   height:8px;
   border-radius:50%;
-  margin-right:1rem;
+  margin-right:.9rem;
   background:var(--border);
   transition:all .25s;
   flex-shrink:0;
@@ -536,22 +539,22 @@ body{
 .menu-divider{
   height:1px;
   background:var(--border);
-  margin:1.6rem 0;
+  margin:1.5rem 0;
 }
 
 .time-row{
   display:flex;
-  gap:.6rem;
+  gap:.5rem;
 }
 
 .time-btn{
   flex:1;
-  padding:.85rem .5rem;
+  padding:.8rem .4rem;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   color:var(--dim);
-  font-size:.95rem;
+  font-size:.9rem;
   cursor:pointer;
   transition:all .25s;
 }
@@ -563,17 +566,17 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:1rem 0;
-  font-size:1.05rem;
+  padding:.9rem 0;
+  font-size:1rem;
   color:var(--dim);
 }
 
 .toggle{
-  width:52px;
-  height:28px;
+  width:50px;
+  height:26px;
   background:var(--glass);
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:13px;
   cursor:pointer;
   position:relative;
   transition:all .3s;
@@ -582,7 +585,7 @@ body{
 .toggle::after{
   content:'';
   position:absolute;
-  top:4px;
+  top:3px;
   left:4px;
   width:18px;
   height:18px;
@@ -597,15 +600,15 @@ body{
 }
 
 .toggle.on::after{
-  left:28px;
+  left:26px;
   background:#ff1493;
 }
 
 .headphones-note{
-  font-size:.85rem;
+  font-size:.8rem;
   color:var(--faint);
-  margin-top:1.8rem;
-  padding:1rem;
+  margin-top:1.6rem;
+  padding:.9rem;
   background:var(--glass);
   border-radius:10px;
   text-align:center;
@@ -613,9 +616,9 @@ body{
 }
 
 .headphones-note span{
-  font-size:1.2rem;
+  font-size:1.1rem;
   display:block;
-  margin-bottom:.5rem;
+  margin-bottom:.4rem;
 }
 
 /* Overlay */
@@ -653,98 +656,73 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 }
 
 /* ══════════════════════════════════════════════════════════
-   RESPONSIVE - PHONE
+   PHONE - Fixed icon consistency
    ══════════════════════════════════════════════════════════ */
 @media(max-width:600px){
   .title{
-    top:max(9vh,50px);
-    font-size:clamp(1.4rem,5.5vw,2.2rem);
+    top:max(8vh,48px);
+    font-size:clamp(1.3rem,5vw,1.9rem);
     letter-spacing:.4em;
     padding-left:.4em;
   }
   .controls{
-    gap:.8rem;
-    top:12px;
-    right:12px;
-  }
-  .ctrl{
-    font-size:1.6rem;
-    padding:.5rem;
-    min-width:46px;
-    min-height:46px;
-  }
-  .circle{
-    width:min(220px,54vw);
-    height:min(220px,54vw);
-  }
-  .wisdom-area{bottom:max(9vh,60px)}
-}
-
-/* Very small phones */
-@media(max-width:400px){
-  .title{
-    top:max(7vh,42px);
-    font-size:1.25rem;
-    letter-spacing:.32em;
-    padding-left:.32em;
-  }
-  .controls{
-    gap:.6rem;
+    gap:.5rem;
     top:10px;
     right:10px;
   }
   .ctrl{
-    font-size:1.5rem;
-    padding:.4rem;
-    min-width:44px;
-    min-height:44px;
+    width:44px;
+    height:44px;
+    font-size:1.4rem;
   }
   .circle{
-    width:min(190px,52vw);
-    height:min(190px,52vw);
+    width:min(200px,52vw);
+    height:min(200px,52vw);
   }
-  .menu{width:94vw;padding:1.5rem}
+  .wisdom-area{bottom:max(9vh,58px)}
+  .energy{gap:.5rem}
 }
 
-/* Large screens / TV */
-@media(min-width:1400px){
+/* Very small phones */
+@media(max-width:380px){
   .title{
-    top:max(14vh,90px);
-    font-size:4rem;
-    letter-spacing:.6em;
-    padding-left:.6em;
+    top:max(6vh,40px);
+    font-size:1.2rem;
+    letter-spacing:.32em;
+    padding-left:.32em;
   }
   .controls{
-    gap:1.5rem;
-    top:24px;
-    right:28px;
+    gap:.4rem;
+    top:8px;
+    right:8px;
   }
   .ctrl{
-    font-size:2.6rem;
-    padding:.8rem;
-    min-width:64px;
-    min-height:64px;
+    width:40px;
+    height:40px;
+    font-size:1.25rem;
   }
   .circle{
-    width:min(380px,28vw);
-    height:min(380px,28vw);
+    width:min(180px,50vw);
+    height:min(180px,50vw);
   }
-  .word{font-size:1.9rem}
-  .hint{font-size:1.2rem}
-  .phase{font-size:1.15rem}
-  .timer{font-size:1rem}
-  .wisdom{font-size:1.35rem}
-  .energy{font-size:1.1rem}
-  .energy-btn{font-size:1.5rem}
-  .menu{width:420px;padding:2.5rem}
-  .menu-item{font-size:1.2rem;padding:1.2rem 1.4rem}
-  .menu h3{font-size:.9rem}
-  .time-btn{font-size:1.1rem;padding:1rem}
-  .toggle-row{font-size:1.2rem}
-  .toggle{width:60px;height:32px}
-  .toggle::after{width:22px;height:22px;top:4px;left:5px}
-  .toggle.on::after{left:32px}
-  .headphones-note{font-size:1rem}
+  .menu{width:92vw;padding:1.4rem}
+  .wisdom-area{bottom:max(8vh,50px)}
+}
+
+/* Large screens */
+@media(min-width:1200px){
+  .title{
+    font-size:3.2rem;
+  }
+  .ctrl{
+    width:52px;
+    height:52px;
+    font-size:1.7rem;
+  }
+  .circle{
+    width:min(300px,32vw);
+    height:min(300px,32vw);
+  }
 }
 </style>
 </head>
@@ -842,7 +820,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 
   <div class="headphones-note">
     <span>🎧</span>
-    headphones enhance the binaural experience
+    headphones enhance the experience
   </div>
 </nav>
 
@@ -855,7 +833,6 @@ const CRYPTO = {
   eth: '0x12e10C6aA1557A9B13c570c0070E223aec8dE498'
 };
 
-// BINAURAL CONFIG PER JOURNEY
 const JOURNEYS = {
   heart:     { binaural: 6,  freqs: [528, 432, 396, 417] },
   awakening: { binaural: 40, freqs: [741, 852, 963, 639] },
@@ -864,7 +841,6 @@ const JOURNEYS = {
   peace:     { binaural: 4,  freqs: [432, 396, 417, 432] }
 };
 
-// UNIVERSAL WISDOM POOL — Divine surprise
 const WISDOMS = [
   "you are worthy of love. you always have been.",
   "your heart knows the way. trust it.",
@@ -923,29 +899,22 @@ try {
   }
 } catch(e){}
 
-const circle = document.getElementById('circle');
-const word = document.getElementById('word');
-const hint = document.getElementById('hint');
-const phase = document.getElementById('phase');
-const timerDisplay = document.getElementById('timerDisplay');
-const wisdom = document.getElementById('wisdom');
-const sessionMsg = document.getElementById('sessionMsg');
-const sr = document.getElementById('sr');
-const menu = document.getElementById('menu');
-const overlay = document.getElementById('overlay');
-const toast = document.getElementById('toast');
-const donateModal = document.getElementById('donateModal');
-const donateTitle = document.getElementById('donateTitle');
-const donateQR = document.getElementById('donateQR');
-const donateAddress = document.getElementById('donateAddress');
-const donateClose = document.getElementById('donateClose');
-const menuBtn = document.getElementById('menuBtn');
-const menuCloseBtn = document.getElementById('menuClose');
-const soundBtn = document.getElementById('soundBtn');
-const contrastBtn = document.getElementById('contrastBtn');
-const voiceToggle = document.getElementById('voiceToggle');
-const btcBtn = document.getElementById('btcBtn');
-const ethBtn = document.getElementById('ethBtn');
+const $ = id => document.getElementById(id);
+const circle = $('circle');
+const word = $('word');
+const hint = $('hint');
+const phase = $('phase');
+const timerDisplay = $('timerDisplay');
+const wisdom = $('wisdom');
+const sessionMsg = $('sessionMsg');
+const sr = $('sr');
+const menu = $('menu');
+const overlay = $('overlay');
+const toast = $('toast');
+const donateModal = $('donateModal');
+const donateTitle = $('donateTitle');
+const donateQR = $('donateQR');
+const donateAddress = $('donateAddress');
 
 const phases = ['inhale','hold-in','exhale','hold-out'];
 const words = ['breathe in','hold','release','rest'];
@@ -1036,10 +1005,12 @@ function playSubBass(){
 }
 
 function stopAudio(){
-  if(S.gain) S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
-  if(S.gainL) S.gainL.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
-  if(S.gainR) S.gainR.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
-  if(S.subGain) S.subGain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+  if(S.audio){
+    if(S.gain) S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+    if(S.gainL) S.gainL.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+    if(S.gainR) S.gainR.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+    if(S.subGain) S.subGain.gain.setTargetAtTime(0, S.audio.currentTime, 0.4);
+  }
 }
 
 function speak(text){
@@ -1117,7 +1088,6 @@ function start(){
   sessionMsg.innerHTML = '';
   hint.style.display = 'none';
   
-  // Universal wisdom — divine surprise
   wisdom.textContent = WISDOMS[Math.floor(Math.random() * WISDOMS.length)];
   
   circle.classList.remove('idle');
@@ -1166,7 +1136,7 @@ function stop(){
     wisdom.textContent = '';
   }, 6000);
   
-  sr.textContent = S.breaths + ' breaths complete. You are infinite.';
+  sr.textContent = S.breaths + ' breaths complete.';
 }
 
 function toggle(){
@@ -1190,10 +1160,10 @@ function initMenuState(){
   document.querySelectorAll('[data-time]').forEach(el => {
     el.classList.toggle('selected', parseInt(el.dataset.time) === S.duration);
   });
-  soundBtn.classList.toggle('on', S.sound);
-  soundBtn.setAttribute('aria-pressed', S.sound);
-  voiceToggle.classList.toggle('on', S.voice);
-  voiceToggle.setAttribute('aria-checked', S.voice);
+  $('soundBtn').classList.toggle('on', S.sound);
+  $('soundBtn').setAttribute('aria-pressed', S.sound);
+  $('voiceToggle').classList.toggle('on', S.voice);
+  $('voiceToggle').setAttribute('aria-checked', S.voice);
 }
 
 document.querySelectorAll('[data-journey]').forEach(el => {
@@ -1214,29 +1184,29 @@ document.querySelectorAll('[data-time]').forEach(el => {
   });
 });
 
-voiceToggle.addEventListener('click', () => {
+$('voiceToggle').addEventListener('click', () => {
   S.voice = !S.voice;
-  voiceToggle.classList.toggle('on', S.voice);
-  voiceToggle.setAttribute('aria-checked', S.voice);
+  $('voiceToggle').classList.toggle('on', S.voice);
+  $('voiceToggle').setAttribute('aria-checked', S.voice);
   savePrefs();
 });
 
-menuBtn.addEventListener('click', openMenu);
-menuCloseBtn.addEventListener('click', closeMenu);
+$('menuBtn').addEventListener('click', openMenu);
+$('menuClose').addEventListener('click', closeMenu);
 overlay.addEventListener('click', () => {
   closeMenu();
   closeDonateModal();
 });
 
-soundBtn.addEventListener('click', () => {
+$('soundBtn').addEventListener('click', () => {
   S.sound = !S.sound;
-  soundBtn.classList.toggle('on', S.sound);
-  soundBtn.setAttribute('aria-pressed', S.sound);
+  $('soundBtn').classList.toggle('on', S.sound);
+  $('soundBtn').setAttribute('aria-pressed', S.sound);
   savePrefs();
   
   if(S.sound){
     if(!S.headphonesShown){
-      showToast('headphones enhance<br>the binaural experience', '🎧');
+      showToast('headphones enhance<br>the experience', '🎧');
       S.headphonesShown = true;
     }
     
@@ -1253,11 +1223,11 @@ soundBtn.addEventListener('click', () => {
   }
 });
 
-contrastBtn.addEventListener('click', () => {
+$('contrastBtn').addEventListener('click', () => {
   document.body.classList.toggle('contrast');
   const on = document.body.classList.contains('contrast');
-  contrastBtn.classList.toggle('on', on);
-  contrastBtn.setAttribute('aria-pressed', on);
+  $('contrastBtn').classList.toggle('on', on);
+  $('contrastBtn').setAttribute('aria-pressed', on);
 });
 
 function copyToClipboard(text){
@@ -1274,7 +1244,7 @@ function showDonateModal(type){
   
   donateTitle.textContent = name;
   donateAddress.textContent = addr;
-  donateQR.src = 'https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=' + encodeURIComponent(addr);
+  donateQR.src = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=' + encodeURIComponent(addr);
   
   donateModal.classList.add('show');
 }
@@ -1283,9 +1253,9 @@ function closeDonateModal(){
   donateModal.classList.remove('show');
 }
 
-btcBtn.addEventListener('click', () => showDonateModal('btc'));
-ethBtn.addEventListener('click', () => showDonateModal('eth'));
-donateClose.addEventListener('click', closeDonateModal);
+$('btcBtn').addEventListener('click', () => showDonateModal('btc'));
+$('ethBtn').addEventListener('click', () => showDonateModal('eth'));
+$('donateClose').addEventListener('click', closeDonateModal);
 donateAddress.addEventListener('click', () => copyToClipboard(donateAddress.textContent));
 
 circle.addEventListener('click', toggle);
@@ -1320,8 +1290,8 @@ initMenuState();
 
 if(window.matchMedia('(prefers-contrast:more)').matches){
   document.body.classList.add('contrast');
-  contrastBtn.classList.add('on');
-  contrastBtn.setAttribute('aria-pressed', 'true');
+  $('contrastBtn').classList.add('on');
+  $('contrastBtn').setAttribute('aria-pressed', 'true');
 }
 
 })();

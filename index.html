@@ -183,13 +183,15 @@ body{
 }
 
 .circle.breathing{
-  transition:transform 4s ease-in-out,box-shadow 4s ease-in-out,border-color 1s ease;
+  transition:transform 4s cubic-bezier(0.4,0,0.2,1),box-shadow 4s ease-in-out,border-color 1s ease;
 }
 
+/* Smoother return from hold-out to inhale */
 .circle.breathing.inhale{
   transform:scale(1.35) translateZ(0);
   border-color:rgba(255,215,0,.45);
   box-shadow:0 0 120px var(--gold);
+  transition:transform 4.5s cubic-bezier(0.25,0.1,0.25,1),box-shadow 4s ease-in-out,border-color 1s ease;
 }
 
 .circle.breathing.hold-in{
@@ -608,21 +610,25 @@ body{
   background:#ff1493;
 }
 
-.headphones-note{
-  font-size:.8rem;
-  color:var(--faint);
-  margin-top:1.6rem;
-  padding:.9rem;
+.share-btn{
   background:var(--glass);
-  border-radius:10px;
-  text-align:center;
-  line-height:1.7;
+  border:1px solid var(--border);
+  color:var(--dim);
+  width:42px;
+  height:28px;
+  font-size:1.1rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all .3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.headphones-note span{
-  font-size:1.1rem;
-  display:block;
-  margin-bottom:.4rem;
+.share-btn:hover{
+  background:rgba(255,20,147,.15);
+  border-color:rgba(255,20,147,.4);
+  color:var(--light);
 }
 
 /* Overlay */
@@ -833,9 +839,9 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     <div class="toggle" id="voiceToggle" role="switch" aria-checked="false"></div>
   </div>
 
-  <div class="headphones-note">
-    <span>🎧</span>
-    headphones enhance the experience
+  <div class="toggle-row">
+    <span>Share</span>
+    <button class="share-btn" id="shareBtn" aria-label="Share Innera Field">↗</button>
   </div>
 </nav>
 
@@ -1205,6 +1211,35 @@ $('voiceToggle').addEventListener('click', () => {
   $('voiceToggle').setAttribute('aria-checked', S.voice);
   savePrefs();
 });
+
+// Share functionality
+$('shareBtn').addEventListener('click', async () => {
+  const shareData = {
+    title: 'Innera Field',
+    text: 'Find your peace. Connect to Source. Free meditation app for all beings.',
+    url: 'https://innerafield.com'
+  };
+  
+  if(navigator.share){
+    try {
+      await navigator.share(shareData);
+    } catch(e){
+      if(e.name !== 'AbortError'){
+        copyShareLink();
+      }
+    }
+  } else {
+    copyShareLink();
+  }
+});
+
+function copyShareLink(){
+  navigator.clipboard.writeText('https://innerafield.com').then(() => {
+    showToast('link copied ✓<br>share the peace');
+  }).catch(() => {
+    showToast('innerafield.com');
+  });
+}
 
 $('menuBtn').addEventListener('click', openMenu);
 $('menuClose').addEventListener('click', closeMenu);

@@ -114,6 +114,8 @@ body{
   position:absolute;
   top:max(2vh,12px);
   left:max(2.5vw,12px);
+  display:flex;
+  gap:.5rem;
   z-index:100;
 }
 
@@ -151,6 +153,10 @@ body{
 .ctrl.on{
   opacity:1;
   color:#ff1493;
+}
+
+.ctrl.hidden{
+  display:none;
 }
 
 /* The Circle */
@@ -715,6 +721,12 @@ body{
   border-color:rgba(255,255,255,.2);
 }
 
+.menu-icon-btn.on{
+  background:rgba(255,20,147,.15);
+  border-color:rgba(255,20,147,.4);
+  color:#ff1493;
+}
+
 .menu-icon-btn.hidden{
   display:none;
 }
@@ -854,9 +866,10 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 <div class="field">
   <h1 class="title">INNERA FIELD</h1>
 
-  <!-- Share button on LEFT -->
+  <!-- Share & Install on LEFT -->
   <div class="controls-left">
     <button class="ctrl" id="shareBtn" aria-label="Share" title="Share">↗</button>
+    <button class="ctrl" id="installBtnTop" aria-label="Install" title="Install">⬇</button>
   </div>
 
   <!-- Sound, Contrast, Menu on RIGHT -->
@@ -952,23 +965,16 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 
   <div class="menu-divider"></div>
 
-  <h3>Options</h3>
-  <div class="toggle-row">
-    <span>Voice guidance</span>
-    <div class="toggle" id="voiceToggle" role="switch" aria-checked="false"></div>
-  </div>
-
-  <!-- Google Translate Widget -->
-  <div class="toggle-row">
-    <span>Language</span>
-    <div id="google_translate_element"></div>
-  </div>
-
-  <!-- Icon row at bottom: Voice, Share, Install -->
+  <!-- Icon row at bottom: Voice, Language, Share, Install -->
   <div class="menu-icons">
+    <button class="menu-icon-btn" id="voiceBtn" title="Voice Guidance" aria-label="Voice Guidance">🔈</button>
+    <button class="menu-icon-btn" id="langBtn" title="Language" aria-label="Language">🌐</button>
     <button class="menu-icon-btn" id="menuShareBtn" title="Share" aria-label="Share">↗</button>
     <button class="menu-icon-btn" id="installBtn" title="Install App" aria-label="Install">⬇</button>
   </div>
+
+  <!-- Hidden Google Translate (triggered by langBtn) -->
+  <div id="google_translate_element" style="display:none"></div>
 </nav>
 
 <!-- Google Translate Script -->
@@ -1366,8 +1372,8 @@ function initMenuState(){
   });
   $('soundBtn').classList.toggle('on', S.sound);
   $('soundBtn').setAttribute('aria-pressed', S.sound);
-  $('voiceToggle').classList.toggle('on', S.voice);
-  $('voiceToggle').setAttribute('aria-checked', S.voice);
+  $('voiceBtn').classList.toggle('on', S.voice);
+  $('voiceBtn').setAttribute('aria-pressed', S.voice);
 }
 
 document.querySelectorAll('[data-journey]').forEach(el => {
@@ -1388,11 +1394,24 @@ document.querySelectorAll('[data-time]').forEach(el => {
   });
 });
 
-$('voiceToggle').addEventListener('click', () => {
+// Voice button
+$('voiceBtn').addEventListener('click', () => {
   S.voice = !S.voice;
-  $('voiceToggle').classList.toggle('on', S.voice);
-  $('voiceToggle').setAttribute('aria-checked', S.voice);
+  $('voiceBtn').classList.toggle('on', S.voice);
+  $('voiceBtn').setAttribute('aria-pressed', S.voice);
   savePrefs();
+  showToast(S.voice ? 'voice on' : 'voice off');
+});
+
+// Language button - trigger Google Translate
+$('langBtn').addEventListener('click', () => {
+  const select = document.querySelector('.goog-te-combo');
+  if(select){
+    select.focus();
+    select.click();
+  } else {
+    showToast('loading languages...');
+  }
 });
 
 $('menuBtn').addEventListener('click', openMenu);
@@ -1505,6 +1524,8 @@ $('iosClose').addEventListener('click', closeIosModal);
    PWA INSTALL
    ══════════════════════════════════════════════════════════ */
 
+const installBtnTop = $('installBtnTop');
+
 // Detect iOS
 function isIOS(){
   return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
@@ -1517,15 +1538,8 @@ function isStandalone(){
          window.navigator.standalone === true;
 }
 
-// Listen for install prompt (Android/Desktop)
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  S.deferredPrompt = e;
-  installBtn.classList.remove('hidden');
-});
-
-// Handle install button click
-installBtn.addEventListener('click', async () => {
+// Shared install handler
+async function handleInstall(){
   if(S.deferredPrompt){
     // Android/Desktop - show native prompt
     S.deferredPrompt.prompt();
@@ -1534,6 +1548,7 @@ installBtn.addEventListener('click', async () => {
     if(result.outcome === 'accepted'){
       showToast('installing...', '✓');
       installBtn.classList.add('hidden');
+      installBtnTop.classList.add('hidden');
     }
   } else if(isIOS()){
     // iOS - show instructions
@@ -1542,16 +1557,30 @@ installBtn.addEventListener('click', async () => {
     // Fallback
     showToast('add to home screen<br>from browser menu');
   }
-});
-
-// Hide install button if already installed
-if(isStandalone()){
-  installBtn.classList.add('hidden');
 }
 
-// Show install button for iOS (they can't auto-detect)
+// Listen for install prompt (Android/Desktop)
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  S.deferredPrompt = e;
+  installBtn.classList.remove('hidden');
+  installBtnTop.classList.remove('hidden');
+});
+
+// Handle install button clicks
+installBtn.addEventListener('click', handleInstall);
+installBtnTop.addEventListener('click', handleInstall);
+
+// Hide install buttons if already installed
+if(isStandalone()){
+  installBtn.classList.add('hidden');
+  installBtnTop.classList.add('hidden');
+}
+
+// Show install buttons for iOS (they can't auto-detect)
 if(isIOS() && !isStandalone()){
   installBtn.classList.remove('hidden');
+  installBtnTop.classList.remove('hidden');
 }
 
 circle.addEventListener('click', toggle);

@@ -6,6 +6,9 @@
 <meta name="description" content="Find your purpose. Connect to Source. For all beings. For peace.">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Innera Field">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100'/><circle cx='50' cy='50' r='30' fill='none' stroke='%23ff1493' stroke-width='2'/></svg>">
 <title>Innera Field</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,9 +84,7 @@ body{
   text-align:center;
 }
 
-/* ══════════════════════════════════════════════════════════
-   TITLE - Restored to original good position
-   ══════════════════════════════════════════════════════════ */
+/* Title */
 .title{
   position:absolute;
   top:max(10vh,55px);
@@ -107,14 +108,21 @@ body{
 }
 
 /* ══════════════════════════════════════════════════════════
-   NAVIGATION - Icons visually matched
+   CONTROLS - Share on LEFT, others on RIGHT
    ══════════════════════════════════════════════════════════ */
-.controls{
+.controls-left{
+  position:absolute;
+  top:max(2vh,12px);
+  left:max(2.5vw,12px);
+  z-index:100;
+}
+
+.controls-right{
   position:absolute;
   top:max(2vh,12px);
   right:max(2.5vw,12px);
   display:flex;
-  gap:.6rem;
+  gap:.5rem;
   z-index:100;
 }
 
@@ -131,12 +139,8 @@ body{
   align-items:center;
   justify-content:center;
   border-radius:50%;
+  font-size:1.4rem;
 }
-
-/* Individual icon sizes - Contrast & Menu BIGGER to match Sound */
-#soundBtn{font-size:1.65rem}
-#contrastBtn{font-size:1.85rem}
-#menuBtn{font-size:1.95rem}
 
 .ctrl:hover,.ctrl:focus{
   opacity:1;
@@ -186,7 +190,6 @@ body{
   transition:transform 4s cubic-bezier(0.4,0,0.2,1),box-shadow 4s ease-in-out,border-color 1s ease;
 }
 
-/* Smoother return from hold-out to inhale */
 .circle.breathing.inhale{
   transform:scale(1.35) translateZ(0);
   border-color:rgba(255,215,0,.45);
@@ -455,6 +458,72 @@ body{
   color:var(--light);
 }
 
+/* iOS Install Modal */
+.ios-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:250;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+
+.ios-modal.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.ios-content{
+  background:rgba(10,10,10,.98);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:2rem;
+  text-align:center;
+  max-width:min(90%,320px);
+}
+
+.ios-content h3{
+  font-size:1rem;
+  font-weight:500;
+  letter-spacing:.15em;
+  margin-bottom:1.2rem;
+  color:var(--light);
+}
+
+.ios-steps{
+  text-align:left;
+  font-size:.9rem;
+  line-height:2;
+  color:var(--dim);
+  margin-bottom:1.5rem;
+}
+
+.ios-steps span{
+  font-size:1.1rem;
+  margin-right:.5rem;
+}
+
+.ios-close{
+  background:none;
+  border:1px solid var(--border);
+  color:var(--dim);
+  padding:.75rem 1.8rem;
+  font-size:.85rem;
+  letter-spacing:.12em;
+  cursor:pointer;
+  border-radius:10px;
+  transition:all .3s;
+}
+
+.ios-close:hover{
+  border-color:rgba(255,255,255,.3);
+  color:var(--light);
+}
+
 /* Menu panel */
 .menu{
   position:fixed;
@@ -467,7 +536,9 @@ body{
   z-index:200;
   transition:right .35s ease-out;
   overflow-y:auto;
-  padding:1.8rem;
+  padding:1.5rem;
+  display:flex;
+  flex-direction:column;
 }
 
 .menu.open{right:0}
@@ -492,27 +563,28 @@ body{
 .menu-close:hover{color:var(--light)}
 
 .menu h3{
-  font-size:.75rem;
+  font-size:.7rem;
   font-weight:500;
   letter-spacing:.2em;
   color:var(--faint);
-  margin:2rem 0 .9rem;
+  margin:1.5rem 0 .7rem;
   text-transform:uppercase;
 }
 
-.menu h3:first-of-type{margin-top:1rem}
+.menu h3:first-of-type{margin-top:.8rem}
 
+/* Journey items with ICONS */
 .menu-item{
   display:flex;
   align-items:center;
-  padding:.9rem 1.1rem;
-  margin:.3rem 0;
+  padding:.7rem .9rem;
+  margin:.2rem 0;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   cursor:pointer;
   transition:all .25s ease;
-  font-size:1rem;
+  font-size:.95rem;
   color:var(--dim);
 }
 
@@ -527,40 +599,42 @@ body{
   color:var(--light);
 }
 
-.menu-item .dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  margin-right:.9rem;
-  background:var(--border);
-  transition:all .25s;
+.menu-item .journey-icon{
+  width:24px;
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:.7rem;
+  font-size:1rem;
+  opacity:.7;
   flex-shrink:0;
 }
 
-.menu-item.selected .dot{
-  background:#ff1493;
-  box-shadow:0 0 12px rgba(255,20,147,.65);
+.menu-item.selected .journey-icon{
+  opacity:1;
+  color:#ff1493;
 }
 
 .menu-divider{
   height:1px;
   background:var(--border);
-  margin:1.5rem 0;
+  margin:1rem 0;
 }
 
 .time-row{
   display:flex;
-  gap:.5rem;
+  gap:.4rem;
 }
 
 .time-btn{
   flex:1;
-  padding:.8rem .4rem;
+  padding:.7rem .3rem;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   color:var(--dim);
-  font-size:.9rem;
+  font-size:.85rem;
   cursor:pointer;
   transition:all .25s;
 }
@@ -572,17 +646,17 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:.9rem 0;
-  font-size:1rem;
+  padding:.7rem 0;
+  font-size:.95rem;
   color:var(--dim);
 }
 
 .toggle{
-  width:50px;
-  height:26px;
+  width:46px;
+  height:24px;
   background:var(--glass);
   border:1px solid var(--border);
-  border-radius:13px;
+  border-radius:12px;
   cursor:pointer;
   position:relative;
   transition:all .3s;
@@ -591,8 +665,8 @@ body{
 .toggle::after{
   content:'';
   position:absolute;
-  top:3px;
-  left:4px;
+  top:2px;
+  left:3px;
   width:18px;
   height:18px;
   background:var(--dim);
@@ -606,30 +680,64 @@ body{
 }
 
 .toggle.on::after{
-  left:26px;
+  left:23px;
   background:#ff1493;
 }
 
-.share-btn{
+/* Menu icon row at bottom */
+.menu-icons{
+  margin-top:auto;
+  padding-top:1rem;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:center;
+  gap:.3rem;
+}
+
+.menu-icon-btn{
+  width:48px;
+  height:48px;
   background:var(--glass);
   border:1px solid var(--border);
+  border-radius:12px;
   color:var(--dim);
-  width:42px;
-  height:28px;
-  font-size:1.1rem;
-  border-radius:8px;
+  font-size:1.2rem;
   cursor:pointer;
-  transition:all .3s;
   display:flex;
   align-items:center;
   justify-content:center;
+  transition:all .3s;
 }
 
-.share-btn:hover{
-  background:rgba(255,20,147,.15);
-  border-color:rgba(255,20,147,.4);
+.menu-icon-btn:hover{
+  background:rgba(255,255,255,.1);
   color:var(--light);
+  border-color:rgba(255,255,255,.2);
 }
+
+.menu-icon-btn.hidden{
+  display:none;
+}
+
+/* Google Translate - hide branding */
+.goog-te-gadget{
+  font-family:inherit!important;
+  font-size:0!important;
+}
+.goog-te-gadget span{display:none!important}
+.goog-te-gadget select{
+  background:var(--glass)!important;
+  border:1px solid var(--border)!important;
+  border-radius:8px!important;
+  color:var(--dim)!important;
+  padding:.5rem!important;
+  font-size:.85rem!important;
+  font-family:inherit!important;
+  cursor:pointer!important;
+}
+.goog-te-banner-frame{display:none!important}
+body{top:0!important}
+.skiptranslate{display:none!important}
 
 /* Overlay */
 .overlay{
@@ -666,8 +774,10 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 }
 
 /* ══════════════════════════════════════════════════════════
-   PHONE - Icons matched to Sound button size
+   RESPONSIVE
    ══════════════════════════════════════════════════════════ */
+
+/* Phone */
 @media(max-width:600px){
   .title{
     top:max(8vh,48px);
@@ -675,26 +785,25 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     letter-spacing:.4em;
     padding-left:.4em;
   }
-  .controls{
-    gap:.5rem;
+  .controls-left,.controls-right{
     top:10px;
-    right:10px;
   }
+  .controls-left{left:10px}
+  .controls-right{right:10px;gap:.4rem}
   .ctrl{
     width:44px;
     height:44px;
+    font-size:1.3rem;
   }
-  /* ALL icons same visual size as Sound */
-  #soundBtn{font-size:1.5rem}
-  #contrastBtn{font-size:1.7rem}
-  #menuBtn{font-size:1.8rem}
-  
   .circle{
     width:min(200px,52vw);
     height:min(200px,52vw);
   }
   .wisdom-area{bottom:max(9vh,58px)}
   .energy{gap:.5rem}
+  .menu{padding:1.2rem}
+  .menu-icons{gap:.2rem}
+  .menu-icon-btn{width:44px;height:44px;font-size:1.1rem}
 }
 
 /* Very small phones */
@@ -705,26 +814,20 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     letter-spacing:.32em;
     padding-left:.32em;
   }
-  .controls{
-    gap:.4rem;
-    top:8px;
-    right:8px;
-  }
+  .controls-left{left:8px}
+  .controls-right{right:8px;gap:.3rem}
   .ctrl{
     width:40px;
     height:40px;
+    font-size:1.2rem;
   }
-  /* ALL icons same visual size */
-  #soundBtn{font-size:1.35rem}
-  #contrastBtn{font-size:1.5rem}
-  #menuBtn{font-size:1.6rem}
-  
   .circle{
     width:min(180px,50vw);
     height:min(180px,50vw);
   }
-  .menu{width:92vw;padding:1.4rem}
+  .menu{width:92vw;padding:1rem}
   .wisdom-area{bottom:max(8vh,50px)}
+  .menu-icon-btn{width:40px;height:40px;font-size:1rem}
 }
 
 /* Large screens */
@@ -735,11 +838,8 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   .ctrl{
     width:52px;
     height:52px;
+    font-size:1.6rem;
   }
-  #soundBtn{font-size:1.85rem}
-  #contrastBtn{font-size:2.05rem}
-  #menuBtn{font-size:2.15rem}
-  
   .circle{
     width:min(300px,32vw);
     height:min(300px,32vw);
@@ -754,10 +854,16 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 <div class="field">
   <h1 class="title">INNERA FIELD</h1>
 
-  <div class="controls">
-    <button class="ctrl" id="soundBtn" aria-label="Sound" aria-pressed="false" title="Sound">◉</button>
+  <!-- Share button on LEFT -->
+  <div class="controls-left">
+    <button class="ctrl" id="shareBtn" aria-label="Share" title="Share">↗</button>
+  </div>
+
+  <!-- Sound, Contrast, Menu on RIGHT -->
+  <div class="controls-right">
+    <button class="ctrl" id="soundBtn" aria-label="Sound" aria-pressed="false" title="Sound">♪</button>
     <button class="ctrl" id="contrastBtn" aria-label="High contrast" aria-pressed="false" title="Contrast">◐</button>
-    <button class="ctrl" id="menuBtn" aria-label="Open menu" title="Menu">≡</button>
+    <button class="ctrl" id="menuBtn" aria-label="Open menu" title="Menu">☰</button>
   </div>
 
   <div class="circle idle" id="circle" role="button" tabindex="0" aria-label="Breathing circle. Tap to begin.">
@@ -797,6 +903,19 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   </div>
 </div>
 
+<!-- iOS Install Modal -->
+<div class="ios-modal" id="iosModal">
+  <div class="ios-content">
+    <h3>Add to Home Screen</h3>
+    <div class="ios-steps">
+      <div><span>1.</span> Tap the Share button <b>⎙</b></div>
+      <div><span>2.</span> Scroll and tap <b>Add to Home Screen</b></div>
+      <div><span>3.</span> Tap <b>Add</b></div>
+    </div>
+    <button class="ios-close" id="iosClose">got it</button>
+  </div>
+</div>
+
 <!-- Overlay -->
 <div class="overlay" id="overlay"></div>
 
@@ -806,19 +925,19 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 
   <h3>Journey</h3>
   <div class="menu-item selected" data-journey="heart">
-    <span class="dot"></span>Heart Opening
+    <span class="journey-icon">♡</span>Heart Opening
   </div>
   <div class="menu-item" data-journey="awakening">
-    <span class="dot"></span>Awakening
+    <span class="journey-icon">✧</span>Awakening
   </div>
   <div class="menu-item" data-journey="grounding">
-    <span class="dot"></span>Grounding
+    <span class="journey-icon">⬡</span>Grounding
   </div>
   <div class="menu-item" data-journey="unity">
-    <span class="dot"></span>Unity
+    <span class="journey-icon">∞</span>Unity
   </div>
   <div class="menu-item" data-journey="peace">
-    <span class="dot"></span>Deep Peace
+    <span class="journey-icon">◯</span>Deep Peace
   </div>
 
   <div class="menu-divider"></div>
@@ -839,27 +958,75 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     <div class="toggle" id="voiceToggle" role="switch" aria-checked="false"></div>
   </div>
 
+  <!-- Google Translate Widget -->
   <div class="toggle-row">
-    <span>Share</span>
-    <button class="share-btn" id="shareBtn" aria-label="Share Innera Field">↗</button>
+    <span>Language</span>
+    <div id="google_translate_element"></div>
+  </div>
+
+  <!-- Icon row at bottom: Voice, Share, Install -->
+  <div class="menu-icons">
+    <button class="menu-icon-btn" id="menuShareBtn" title="Share" aria-label="Share">↗</button>
+    <button class="menu-icon-btn" id="installBtn" title="Install App" aria-label="Install">⬇</button>
   </div>
 </nav>
+
+<!-- Google Translate Script -->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
 (function(){
 'use strict';
+
+// Google Translate init
+window.googleTranslateElementInit = function() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,es,zh-CN,hi,ar,pt,ru,ja,ko,fr,de,it,vi,th,id',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+};
 
 const CRYPTO = {
   btc: 'bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz',
   eth: '0x12e10C6aA1557A9B13c570c0070E223aec8dE498'
 };
 
+/* ══════════════════════════════════════════════════════════
+   JOURNEYS with BINAURAL SHIFTS
+   ══════════════════════════════════════════════════════════ */
 const JOURNEYS = {
-  heart:     { binaural: 6,  freqs: [528, 432, 396, 417] },
-  awakening: { binaural: 40, freqs: [741, 852, 963, 639] },
-  grounding: { binaural: 2,  freqs: [285, 432, 174, 128] },
-  unity:     { binaural: 10, freqs: [528, 639, 111, 432] },
-  peace:     { binaural: 4,  freqs: [432, 396, 417, 432] }
+  heart: {
+    base: 6,
+    shifts: [2, 1, -1, -2],
+    freqs: [528, 432, 396, 417],
+    volumes: [0.06, 0.05, 0.04, 0.025]
+  },
+  awakening: {
+    base: 40,
+    shifts: [3, 1, -1, -3],
+    freqs: [741, 852, 963, 639],
+    volumes: [0.06, 0.05, 0.04, 0.025]
+  },
+  grounding: {
+    base: 2,
+    shifts: [1, 0.5, -0.5, -1],
+    freqs: [285, 432, 174, 128],
+    volumes: [0.06, 0.05, 0.04, 0.025]
+  },
+  unity: {
+    base: 10,
+    shifts: [2, 1, -1, -2],
+    freqs: [528, 639, 111, 432],
+    volumes: [0.06, 0.05, 0.04, 0.025]
+  },
+  peace: {
+    base: 4,
+    shifts: [1.5, 0.5, -0.5, -1.5],
+    freqs: [432, 396, 417, 528],
+    volumes: [0.05, 0.04, 0.03, 0.02]
+  }
 };
 
 const WISDOMS = [
@@ -906,7 +1073,8 @@ const S = {
   gainR: null,
   subGain: null,
   hasStarted: false,
-  headphonesShown: false
+  headphonesShown: false,
+  deferredPrompt: null
 };
 
 try {
@@ -936,6 +1104,8 @@ const donateModal = $('donateModal');
 const donateTitle = $('donateTitle');
 const donateQR = $('donateQR');
 const donateAddress = $('donateAddress');
+const iosModal = $('iosModal');
+const installBtn = $('installBtn');
 
 const phases = ['inhale','hold-in','exhale','hold-out'];
 const words = ['breathe in','hold','release','rest'];
@@ -975,10 +1145,16 @@ function initAudio(){
   S.subGain.connect(S.audio.destination);
 }
 
-function playFreq(hz){
+function fadeOutSolfeggio(){
+  if(!S.audio || !S.gain) return;
+  S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.1);
+}
+
+function playFreq(hz, volume){
   if(!S.audio) return;
+  
   if(S.osc){
-    S.osc.frequency.setTargetAtTime(hz, S.audio.currentTime, 0.6);
+    S.osc.frequency.setTargetAtTime(hz, S.audio.currentTime, 0.3);
   } else {
     S.osc = S.audio.createOscillator();
     S.osc.type = 'sine';
@@ -986,7 +1162,8 @@ function playFreq(hz){
     S.osc.connect(S.gain);
     S.osc.start();
   }
-  S.gain.gain.setTargetAtTime(0.05, S.audio.currentTime, 0.4);
+  
+  S.gain.gain.setTargetAtTime(volume, S.audio.currentTime, 0.3);
 }
 
 function playBinaural(beatHz){
@@ -999,7 +1176,7 @@ function playBinaural(beatHz){
     S.oscL.connect(S.gainL);
     S.oscL.start();
   }
-  S.oscL.frequency.setTargetAtTime(baseHz, S.audio.currentTime, 0.3);
+  S.oscL.frequency.setTargetAtTime(baseHz, S.audio.currentTime, 0.2);
   
   if(!S.oscR){
     S.oscR = S.audio.createOscillator();
@@ -1007,10 +1184,10 @@ function playBinaural(beatHz){
     S.oscR.connect(S.gainR);
     S.oscR.start();
   }
-  S.oscR.frequency.setTargetAtTime(baseHz + beatHz, S.audio.currentTime, 0.3);
+  S.oscR.frequency.setTargetAtTime(baseHz + beatHz, S.audio.currentTime, 0.2);
   
-  S.gainL.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.5);
-  S.gainR.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.5);
+  S.gainL.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.3);
+  S.gainR.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.3);
 }
 
 function playSubBass(){
@@ -1022,7 +1199,7 @@ function playSubBass(){
     S.subOsc.connect(S.subGain);
     S.subOsc.start();
   }
-  S.subGain.gain.setTargetAtTime(0.15, S.audio.currentTime, 0.5);
+  S.subGain.gain.setTargetAtTime(0.12, S.audio.currentTime, 0.5);
 }
 
 function stopAudio(){
@@ -1063,7 +1240,14 @@ function setPhase(i){
   speak(words[i]);
   
   if(S.sound && S.audio){
-    playFreq(journey.freqs[i]);
+    fadeOutSolfeggio();
+    
+    setTimeout(() => {
+      if(!S.on) return;
+      playFreq(journey.freqs[i], journey.volumes[i]);
+      const binauralHz = journey.base + journey.shifts[i];
+      playBinaural(binauralHz);
+    }, 150);
   }
   
   if(i === 2) S.breaths++;
@@ -1117,7 +1301,6 @@ function start(){
   if(S.sound){
     initAudio();
     if(S.audio.state === 'suspended') S.audio.resume();
-    playBinaural(journey.binaural);
     playSubBass();
   }
   
@@ -1212,11 +1395,52 @@ $('voiceToggle').addEventListener('click', () => {
   savePrefs();
 });
 
+$('menuBtn').addEventListener('click', openMenu);
+$('menuClose').addEventListener('click', closeMenu);
+overlay.addEventListener('click', () => {
+  closeMenu();
+  closeDonateModal();
+  closeIosModal();
+});
+
+$('soundBtn').addEventListener('click', () => {
+  S.sound = !S.sound;
+  $('soundBtn').classList.toggle('on', S.sound);
+  $('soundBtn').setAttribute('aria-pressed', S.sound);
+  savePrefs();
+  
+  if(S.sound){
+    if(!S.headphonesShown){
+      showToast('headphones enhance<br>the binaural experience', '🎧');
+      S.headphonesShown = true;
+    }
+    
+    if(S.on){
+      initAudio();
+      if(S.audio.state === 'suspended') S.audio.resume();
+      const journey = JOURNEYS[S.journey];
+      playFreq(journey.freqs[S.phase], journey.volumes[S.phase]);
+      const binauralHz = journey.base + journey.shifts[S.phase];
+      playBinaural(binauralHz);
+      playSubBass();
+    }
+  } else {
+    stopAudio();
+  }
+});
+
+$('contrastBtn').addEventListener('click', () => {
+  document.body.classList.toggle('contrast');
+  const on = document.body.classList.contains('contrast');
+  $('contrastBtn').classList.toggle('on', on);
+  $('contrastBtn').setAttribute('aria-pressed', on);
+});
+
 // Share functionality
-$('shareBtn').addEventListener('click', async () => {
+async function shareApp(){
   const shareData = {
     title: 'Innera Field',
-    text: 'Find your peace. Connect to Source. Free meditation app for all beings.',
+    text: 'Find your peace. Connect to Source. Free meditation for all beings.',
     url: 'https://innerafield.com'
   };
   
@@ -1231,7 +1455,7 @@ $('shareBtn').addEventListener('click', async () => {
   } else {
     copyShareLink();
   }
-});
+}
 
 function copyShareLink(){
   navigator.clipboard.writeText('https://innerafield.com').then(() => {
@@ -1241,44 +1465,8 @@ function copyShareLink(){
   });
 }
 
-$('menuBtn').addEventListener('click', openMenu);
-$('menuClose').addEventListener('click', closeMenu);
-overlay.addEventListener('click', () => {
-  closeMenu();
-  closeDonateModal();
-});
-
-$('soundBtn').addEventListener('click', () => {
-  S.sound = !S.sound;
-  $('soundBtn').classList.toggle('on', S.sound);
-  $('soundBtn').setAttribute('aria-pressed', S.sound);
-  savePrefs();
-  
-  if(S.sound){
-    if(!S.headphonesShown){
-      showToast('headphones enhance<br>the experience', '🎧');
-      S.headphonesShown = true;
-    }
-    
-    if(S.on){
-      initAudio();
-      if(S.audio.state === 'suspended') S.audio.resume();
-      const journey = JOURNEYS[S.journey];
-      playFreq(journey.freqs[S.phase]);
-      playBinaural(journey.binaural);
-      playSubBass();
-    }
-  } else {
-    stopAudio();
-  }
-});
-
-$('contrastBtn').addEventListener('click', () => {
-  document.body.classList.toggle('contrast');
-  const on = document.body.classList.contains('contrast');
-  $('contrastBtn').classList.toggle('on', on);
-  $('contrastBtn').setAttribute('aria-pressed', on);
-});
+$('shareBtn').addEventListener('click', shareApp);
+$('menuShareBtn').addEventListener('click', shareApp);
 
 function copyToClipboard(text){
   navigator.clipboard.writeText(text).then(() => {
@@ -1303,10 +1491,68 @@ function closeDonateModal(){
   donateModal.classList.remove('show');
 }
 
+function closeIosModal(){
+  iosModal.classList.remove('show');
+}
+
 $('btcBtn').addEventListener('click', () => showDonateModal('btc'));
 $('ethBtn').addEventListener('click', () => showDonateModal('eth'));
 $('donateClose').addEventListener('click', closeDonateModal);
 donateAddress.addEventListener('click', () => copyToClipboard(donateAddress.textContent));
+$('iosClose').addEventListener('click', closeIosModal);
+
+/* ══════════════════════════════════════════════════════════
+   PWA INSTALL
+   ══════════════════════════════════════════════════════════ */
+
+// Detect iOS
+function isIOS(){
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+// Detect if already installed
+function isStandalone(){
+  return window.matchMedia('(display-mode: standalone)').matches ||
+         window.navigator.standalone === true;
+}
+
+// Listen for install prompt (Android/Desktop)
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  S.deferredPrompt = e;
+  installBtn.classList.remove('hidden');
+});
+
+// Handle install button click
+installBtn.addEventListener('click', async () => {
+  if(S.deferredPrompt){
+    // Android/Desktop - show native prompt
+    S.deferredPrompt.prompt();
+    const result = await S.deferredPrompt.userChoice;
+    S.deferredPrompt = null;
+    if(result.outcome === 'accepted'){
+      showToast('installing...', '✓');
+      installBtn.classList.add('hidden');
+    }
+  } else if(isIOS()){
+    // iOS - show instructions
+    iosModal.classList.add('show');
+  } else {
+    // Fallback
+    showToast('add to home screen<br>from browser menu');
+  }
+});
+
+// Hide install button if already installed
+if(isStandalone()){
+  installBtn.classList.add('hidden');
+}
+
+// Show install button for iOS (they can't auto-detect)
+if(isIOS() && !isStandalone()){
+  installBtn.classList.remove('hidden');
+}
 
 circle.addEventListener('click', toggle);
 circle.addEventListener('keydown', e => {
@@ -1324,6 +1570,8 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape'){
     if(donateModal.classList.contains('show')){
       closeDonateModal();
+    } else if(iosModal.classList.contains('show')){
+      closeIosModal();
     } else if(menu.classList.contains('open')){
       closeMenu();
     } else if(S.on){
@@ -1343,6 +1591,62 @@ if(window.matchMedia('(prefers-contrast:more)').matches){
   $('contrastBtn').classList.add('on');
   $('contrastBtn').setAttribute('aria-pressed', 'true');
 }
+
+/* ══════════════════════════════════════════════════════════
+   PWA SERVICE WORKER REGISTRATION
+   ══════════════════════════════════════════════════════════ */
+
+// Register service worker for offline support
+if('serviceWorker' in navigator){
+  // Create a minimal service worker inline
+  const swCode = `
+    const CACHE = 'innera-v2';
+    self.addEventListener('install', e => {
+      e.waitUntil(
+        caches.open(CACHE).then(c => c.addAll(['/']))
+      );
+      self.skipWaiting();
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(
+        caches.match(e.request).then(r => r || fetch(e.request))
+      );
+    });
+  `;
+  
+  const swBlob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(swBlob);
+  
+  navigator.serviceWorker.register(swUrl).catch(() => {
+    // Service worker registration failed, but app still works
+  });
+}
+
+// Create manifest dynamically for PWA
+const manifest = {
+  name: 'Innera Field',
+  short_name: 'Innera',
+  description: 'Connect to Source. Find your peace.',
+  start_url: '/',
+  display: 'standalone',
+  background_color: '#000000',
+  theme_color: '#ff1493',
+  icons: [
+    {
+      src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect fill="%23000" width="512" height="512" rx="90"/><circle cx="256" cy="256" r="120" fill="none" stroke="%23ff1493" stroke-width="8"/><circle cx="256" cy="256" r="80" fill="none" stroke="%23ff149366" stroke-width="4"/></svg>',
+      sizes: '512x512',
+      type: 'image/svg+xml',
+      purpose: 'any maskable'
+    }
+  ]
+};
+
+const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+const manifestUrl = URL.createObjectURL(manifestBlob);
+const manifestLink = document.createElement('link');
+manifestLink.rel = 'manifest';
+manifestLink.href = manifestUrl;
+document.head.appendChild(manifestLink);
 
 })();
 </script>

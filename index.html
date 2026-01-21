@@ -3,15 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
-<meta name="description" content="Find your purpose. Connect to Source. For all beings. For peace.">
+<meta name="description" content="Free breathing meditation. No account. No tracking. Just peace. For all beings.">
 <meta name="theme-color" content="#000000">
+<meta name="google" content="notranslate">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Innera Field">
-<link rel="manifest" href="manifest.json">
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<!-- Open Graph for Social Sharing -->
+<meta property="og:title" content="Innera Field">
+<meta property="og:description" content="Free breathing meditation. No account. No tracking. Just peace.">
+<meta property="og:image" content="https://innerafield.com/icons/icon-512.png">
+<meta property="og:url" content="https://innerafield.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Innera Field">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Innera Field">
+<meta name="twitter:description" content="Free breathing meditation. No account. No tracking. Just peace.">
+<meta name="twitter:image" content="https://innerafield.com/icons/icon-512.png">
+
 <title>Innera Field</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,10 +46,10 @@
   --faint:rgba(255,255,255,.35);
   --glass:rgba(255,255,255,.05);
   --border:rgba(255,255,255,.12);
-  --pink:rgba(255,20,147,.45);
+  --gold:rgba(212,175,55,.5);
+  --gold-bright:rgba(245,220,120,.6);
   --blue:rgba(0,191,255,.45);
   --purple:rgba(138,43,226,.4);
-  --gold:rgba(255,215,0,.5);
 }
 
 html,body{
@@ -59,17 +79,17 @@ body{
   inset:0;
   z-index:0;
   background:
-    radial-gradient(ellipse at 30% 20%,var(--pink),transparent 50%),
+    radial-gradient(ellipse at 30% 20%,var(--gold),transparent 50%),
     radial-gradient(ellipse at 70% 80%,var(--blue),transparent 50%),
     radial-gradient(circle at 50% 50%,var(--purple),transparent 60%);
-  opacity:.45;
+  opacity:.4;
   animation:cosmicPulse 12s ease-in-out infinite;
   pointer-events:none;
 }
 
 @keyframes cosmicPulse{
-  0%,100%{opacity:.4}
-  50%{opacity:.6}
+  0%,100%{opacity:.35}
+  50%{opacity:.55}
 }
 
 .field{
@@ -85,6 +105,7 @@ body{
   text-align:center;
 }
 
+/* Title - PROTECTED from translation */
 .title{
   position:absolute;
   top:max(10vh,55px);
@@ -159,7 +180,7 @@ body{
   width:min(260px,50vw);
   height:min(260px,50vw);
   border-radius:50%;
-  background:radial-gradient(circle at 40% 35%,rgba(212,175,55,.06),transparent 60%);
+  background:radial-gradient(circle at 50% 50%,rgba(212,175,55,.08),transparent 70%);
   border:2px solid var(--border);
   box-shadow:0 0 80px rgba(212,175,55,.3);
   display:flex;
@@ -187,20 +208,20 @@ body{
 }
 
 .circle.breathing{
-  transition:transform 4s cubic-bezier(0.4,0,0.2,1),box-shadow 4s ease-in-out,border-color 1s ease;
+  transition-property:transform,box-shadow,border-color;
+  transition-timing-function:cubic-bezier(0.4,0,0.2,1);
 }
 
 .circle.breathing.inhale{
   transform:scale(1.35) translateZ(0);
   border-color:rgba(255,215,0,.45);
-  box-shadow:0 0 120px var(--gold);
-  transition:transform 4.5s cubic-bezier(0.25,0.1,0.25,1),box-shadow 4s ease-in-out,border-color 1s ease;
+  box-shadow:0 0 120px rgba(255,215,0,.5);
 }
 
 .circle.breathing.hold-in{
   transform:scale(1.35) translateZ(0);
-  border-color:rgba(255,180,150,.4);
-  box-shadow:0 0 100px rgba(255,180,150,.45);
+  border-color:rgba(255,200,100,.4);
+  box-shadow:0 0 100px rgba(255,200,100,.45);
 }
 
 .circle.breathing.exhale{
@@ -272,6 +293,7 @@ body{
   max-width:min(88%,420px);
 }
 
+/* Wisdom - PROTECTED from translation */
 .wisdom{
   font-size:clamp(.85rem,2.3vw,1.05rem);
   font-weight:300;
@@ -311,7 +333,7 @@ body{
   color:var(--dim);
   display:flex;
   align-items:center;
-  gap:.6rem;
+  gap:.5rem;
 }
 
 .energy:hover{opacity:.6}
@@ -332,6 +354,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  text-decoration:none;
 }
 
 .energy-btn:hover{
@@ -508,7 +531,7 @@ body{
   font-weight:500;
   letter-spacing:.2em;
   color:var(--faint);
-  margin:1.5rem 0 .7rem;
+  margin:1.2rem 0 .6rem;
   text-transform:uppercase;
 }
 
@@ -517,14 +540,14 @@ body{
 .menu-item{
   display:flex;
   align-items:center;
-  padding:.7rem .9rem;
-  margin:.2rem 0;
+  padding:.65rem .9rem;
+  margin:.15rem 0;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   cursor:pointer;
   transition:all .25s ease;
-  font-size:.95rem;
+  font-size:.9rem;
   color:var(--dim);
 }
 
@@ -540,13 +563,13 @@ body{
 }
 
 .menu-item .journey-icon{
-  width:24px;
-  height:24px;
+  width:22px;
+  height:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-right:.7rem;
-  font-size:1rem;
+  margin-right:.6rem;
+  font-size:.95rem;
   opacity:.7;
   flex-shrink:0;
 }
@@ -559,32 +582,32 @@ body{
 .menu-divider{
   height:1px;
   background:var(--border);
-  margin:1rem 0;
+  margin:.8rem 0;
 }
 
-.time-row{
+.breath-row,.time-row{
   display:flex;
-  gap:.4rem;
+  gap:.35rem;
 }
 
-.time-btn{
+.breath-btn,.time-btn{
   flex:1;
-  padding:.7rem .3rem;
+  padding:.6rem .2rem;
   background:transparent;
   border:1px solid transparent;
-  border-radius:10px;
+  border-radius:8px;
   color:var(--dim);
-  font-size:.85rem;
+  font-size:.8rem;
   cursor:pointer;
   transition:all .25s;
 }
 
-.time-btn:hover{background:var(--glass);color:var(--light)}
-.time-btn.selected{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.08);color:var(--light)}
+.breath-btn:hover,.time-btn:hover{background:var(--glass);color:var(--light)}
+.breath-btn.selected,.time-btn.selected{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.08);color:var(--light)}
 
 .menu-icons{
   margin-top:auto;
-  padding-top:1rem;
+  padding-top:.8rem;
   border-top:1px solid var(--border);
   display:flex;
   justify-content:center;
@@ -592,13 +615,13 @@ body{
 }
 
 .menu-icon-btn{
-  width:48px;
-  height:48px;
+  width:44px;
+  height:44px;
   background:var(--glass);
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:10px;
   color:var(--dim);
-  font-size:1.2rem;
+  font-size:1.1rem;
   cursor:pointer;
   display:flex;
   align-items:center;
@@ -620,18 +643,17 @@ body{
 
 .menu-icon-btn.hidden{display:none}
 
-/* Language selector */
 .lang-select{
   background:var(--glass);
   border:1px solid var(--border);
   border-radius:8px;
   color:var(--dim);
-  padding:.5rem .8rem;
-  font-size:.85rem;
+  padding:.45rem .7rem;
+  font-size:.8rem;
   font-family:inherit;
   cursor:pointer;
   width:100%;
-  margin-top:.5rem;
+  margin-top:.4rem;
 }
 
 .lang-select:focus{
@@ -687,10 +709,10 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   .ctrl{width:44px;height:44px;font-size:1.3rem}
   .circle{width:min(200px,52vw);height:min(200px,52vw)}
   .wisdom-area{bottom:max(9vh,58px)}
-  .energy{gap:.5rem}
+  .energy{gap:.4rem}
   .menu{padding:1.2rem}
   .menu-icons{gap:.2rem}
-  .menu-icon-btn{width:44px;height:44px;font-size:1.1rem}
+  .menu-icon-btn{width:40px;height:40px;font-size:1rem}
 }
 
 @media(max-width:380px){
@@ -706,7 +728,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   .circle{width:min(180px,50vw);height:min(180px,50vw)}
   .menu{width:92vw;padding:1rem}
   .wisdom-area{bottom:max(8vh,50px)}
-  .menu-icon-btn{width:40px;height:40px;font-size:1rem}
+  .menu-icon-btn{width:38px;height:38px;font-size:.95rem}
 }
 
 @media(min-width:1200px){
@@ -721,7 +743,8 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 <div class="cosmos"></div>
 
 <div class="field">
-  <h1 class="title">INNERA FIELD</h1>
+  <!-- Title: PROTECTED from translation -->
+  <h1 class="title notranslate" translate="no">INNERA FIELD</h1>
 
   <div class="controls-left">
     <button class="ctrl" id="shareBtn" aria-label="Share" title="Share">↗</button>
@@ -742,13 +765,15 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
   </div>
 
   <div class="wisdom-area">
-    <p class="wisdom" id="wisdom"></p>
+    <!-- Wisdom: PROTECTED from translation -->
+    <p class="wisdom notranslate" translate="no" id="wisdom"></p>
     <p class="session-msg" id="sessionMsg"></p>
   </div>
 
   <div class="energy">
     <span id="energyText">if this serves you</span>
     <a class="energy-btn" href="https://ko-fi.com/innerafield" target="_blank" rel="noopener" title="Ko-fi">♡</a>
+    <a class="energy-btn" href="https://www.paypal.com/ncp/payment/3MLTXSEW9L3RL" target="_blank" rel="noopener" title="PayPal">$</a>
     <button class="energy-btn" id="btcBtn" title="Bitcoin">₿</button>
     <button class="energy-btn" id="ethBtn" title="Ethereum">Ξ</button>
   </div>
@@ -805,6 +830,16 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 
   <div class="menu-divider"></div>
 
+  <h3 id="breathworkLabel">Breathwork</h3>
+  <div class="breath-row">
+    <button class="breath-btn selected" data-breath="balance">Balance</button>
+    <button class="breath-btn" data-breath="calm">Calm</button>
+    <button class="breath-btn" data-breath="energy">Energy</button>
+    <button class="breath-btn" data-breath="deep">Deep</button>
+  </div>
+
+  <div class="menu-divider"></div>
+
   <h3 id="durationLabel">Duration</h3>
   <div class="time-row">
     <button class="time-btn" data-time="300">5 min</button>
@@ -829,8 +864,6 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
     <option value="fr">Français</option>
   </select>
 
-  <div class="menu-divider"></div>
-
   <div class="menu-icons">
     <button class="menu-icon-btn" id="voiceBtn" title="Voice Guidance" aria-label="Voice Guidance">🔈</button>
     <button class="menu-icon-btn" id="menuShareBtn" title="Share" aria-label="Share">↗</button>
@@ -843,7 +876,7 @@ body.contrast .word,body.contrast .phase,body.contrast .wisdom,body.contrast .ti
 'use strict';
 
 /* ══════════════════════════════════════════════════════════
-   TRANSLATIONS - 10 Languages for All Beings
+   TRANSLATIONS - 10 Languages
    ══════════════════════════════════════════════════════════ */
 const LANG = {
   en: {
@@ -851,6 +884,7 @@ const LANG = {
     breatheIn: 'breathe in',
     hold: 'hold',
     release: 'release',
+    releaseSlow: 'release slowly',
     rest: 'rest',
     tapToBegin: 'tap to begin',
     heart: 'Heart Opening',
@@ -859,6 +893,7 @@ const LANG = {
     unity: 'Unity',
     peace: 'Deep Peace',
     journey: 'Journey',
+    breathwork: 'Breathwork',
     duration: 'Duration',
     language: 'Language',
     ifServes: 'if this serves you',
@@ -879,6 +914,7 @@ const LANG = {
     breatheIn: 'inhala',
     hold: 'sostén',
     release: 'exhala',
+    releaseSlow: 'exhala lento',
     rest: 'descansa',
     tapToBegin: 'toca para comenzar',
     heart: 'Apertura del Corazón',
@@ -887,6 +923,7 @@ const LANG = {
     unity: 'Unidad',
     peace: 'Paz Profunda',
     journey: 'Viaje',
+    breathwork: 'Respiración',
     duration: 'Duración',
     language: 'Idioma',
     ifServes: 'si te sirve',
@@ -907,6 +944,7 @@ const LANG = {
     breatheIn: '吸气',
     hold: '屏息',
     release: '呼气',
+    releaseSlow: '慢慢呼气',
     rest: '休息',
     tapToBegin: '点击开始',
     heart: '心轮开启',
@@ -915,6 +953,7 @@ const LANG = {
     unity: '合一',
     peace: '深度平静',
     journey: '旅程',
+    breathwork: '呼吸法',
     duration: '时长',
     language: '语言',
     ifServes: '如果对你有帮助',
@@ -935,6 +974,7 @@ const LANG = {
     breatheIn: 'साँस लो',
     hold: 'रोको',
     release: 'छोड़ो',
+    releaseSlow: 'धीरे छोड़ो',
     rest: 'विश्राम',
     tapToBegin: 'शुरू करने के लिए टैप करें',
     heart: 'हृदय खोलना',
@@ -943,6 +983,7 @@ const LANG = {
     unity: 'एकता',
     peace: 'गहरी शांति',
     journey: 'यात्रा',
+    breathwork: 'श्वास क्रिया',
     duration: 'अवधि',
     language: 'भाषा',
     ifServes: 'अगर यह आपकी मदद करे',
@@ -963,6 +1004,7 @@ const LANG = {
     breatheIn: 'شهيق',
     hold: 'احبس',
     release: 'زفير',
+    releaseSlow: 'زفير ببطء',
     rest: 'استرح',
     tapToBegin: 'انقر للبدء',
     heart: 'فتح القلب',
@@ -971,6 +1013,7 @@ const LANG = {
     unity: 'الوحدة',
     peace: 'السلام العميق',
     journey: 'الرحلة',
+    breathwork: 'تمارين التنفس',
     duration: 'المدة',
     language: 'اللغة',
     ifServes: 'إذا أفادك هذا',
@@ -982,7 +1025,7 @@ const LANG = {
     shareThePeace: 'شارك السلام',
     installing: 'جاري التثبيت...',
     addToHome: 'أضف إلى الشاشة الرئيسية',
-    headphones: 'سماعات الرأس تعزز تجربة الصوت ثنائي الأذن',
+    headphones: 'سماعات الرأس تعزز تجربة الصوت',
     close: 'إغلاق',
     gotIt: 'فهمت'
   },
@@ -991,6 +1034,7 @@ const LANG = {
     breatheIn: 'inspire',
     hold: 'segure',
     release: 'expire',
+    releaseSlow: 'expire devagar',
     rest: 'descanse',
     tapToBegin: 'toque para começar',
     heart: 'Abertura do Coração',
@@ -999,6 +1043,7 @@ const LANG = {
     unity: 'Unidade',
     peace: 'Paz Profunda',
     journey: 'Jornada',
+    breathwork: 'Respiração',
     duration: 'Duração',
     language: 'Idioma',
     ifServes: 'se isso te servir',
@@ -1010,7 +1055,7 @@ const LANG = {
     shareThePeace: 'compartilhe a paz',
     installing: 'instalando...',
     addToHome: 'Adicionar à Tela Inicial',
-    headphones: 'fones de ouvido melhoram a experiência binaural',
+    headphones: 'fones melhoram a experiência binaural',
     close: 'fechar',
     gotIt: 'entendi'
   },
@@ -1019,6 +1064,7 @@ const LANG = {
     breatheIn: 'вдох',
     hold: 'задержка',
     release: 'выдох',
+    releaseSlow: 'медленный выдох',
     rest: 'отдых',
     tapToBegin: 'нажмите, чтобы начать',
     heart: 'Открытие Сердца',
@@ -1027,18 +1073,19 @@ const LANG = {
     unity: 'Единство',
     peace: 'Глубокий Покой',
     journey: 'Путешествие',
+    breathwork: 'Дыхание',
     duration: 'Длительность',
     language: 'Язык',
-    ifServes: 'если это поможет вам',
+    ifServes: 'если это поможет',
     breathsWith: 'вдохов с Источником',
-    returnWhen: 'возвращайтесь, когда забудете.',
-    voiceOn: 'голос включен',
-    voiceOff: 'голос выключен',
+    returnWhen: 'возвращайтесь.',
+    voiceOn: 'голос вкл',
+    voiceOff: 'голос выкл',
     linkCopied: 'ссылка скопирована ✓',
     shareThePeace: 'поделитесь покоем',
     installing: 'установка...',
-    addToHome: 'Добавить на главный экран',
-    headphones: 'наушники усиливают бинауральный эффект',
+    addToHome: 'На главный экран',
+    headphones: 'наушники усиливают эффект',
     close: 'закрыть',
     gotIt: 'понятно'
   },
@@ -1047,6 +1094,7 @@ const LANG = {
     breatheIn: '吸う',
     hold: '止める',
     release: '吐く',
+    releaseSlow: 'ゆっくり吐く',
     rest: '休む',
     tapToBegin: 'タップして開始',
     heart: 'ハートを開く',
@@ -1055,18 +1103,19 @@ const LANG = {
     unity: '統一',
     peace: '深い平和',
     journey: 'ジャーニー',
+    breathwork: '呼吸法',
     duration: '時間',
     language: '言語',
     ifServes: 'お役に立てれば',
-    breathsWith: '回の呼吸（ソースと共に）',
-    returnWhen: '忘れた時に戻ってください。',
+    breathsWith: '回の呼吸',
+    returnWhen: '忘れた時に。',
     voiceOn: '音声オン',
     voiceOff: '音声オフ',
-    linkCopied: 'リンクをコピー ✓',
+    linkCopied: 'コピー ✓',
     shareThePeace: '平和を共有',
     installing: 'インストール中...',
-    addToHome: 'ホーム画面に追加',
-    headphones: 'ヘッドホンでバイノーラル体験が向上します',
+    addToHome: 'ホームに追加',
+    headphones: 'ヘッドホン推奨',
     close: '閉じる',
     gotIt: '了解'
   },
@@ -1075,26 +1124,28 @@ const LANG = {
     breatheIn: '들이쉬기',
     hold: '멈추기',
     release: '내쉬기',
+    releaseSlow: '천천히 내쉬기',
     rest: '쉬기',
-    tapToBegin: '시작하려면 탭하세요',
+    tapToBegin: '탭하여 시작',
     heart: '심장 열기',
     awakening: '각성',
     grounding: '그라운딩',
     unity: '하나됨',
     peace: '깊은 평화',
     journey: '여정',
+    breathwork: '호흡법',
     duration: '시간',
     language: '언어',
     ifServes: '도움이 된다면',
-    breathsWith: '번의 호흡 (근원과 함께)',
+    breathsWith: '번의 호흡',
     returnWhen: '잊을 때 돌아오세요.',
     voiceOn: '음성 켜기',
     voiceOff: '음성 끄기',
-    linkCopied: '링크 복사됨 ✓',
+    linkCopied: '복사됨 ✓',
     shareThePeace: '평화를 나누세요',
     installing: '설치 중...',
-    addToHome: '홈 화면에 추가',
-    headphones: '헤드폰으로 바이노럴 경험을 향상시키세요',
+    addToHome: '홈에 추가',
+    headphones: '헤드폰 권장',
     close: '닫기',
     gotIt: '알겠습니다'
   },
@@ -1103,6 +1154,7 @@ const LANG = {
     breatheIn: 'inspire',
     hold: 'retiens',
     release: 'expire',
+    releaseSlow: 'expire lentement',
     rest: 'repose',
     tapToBegin: 'touche pour commencer',
     heart: 'Ouverture du Cœur',
@@ -1111,20 +1163,43 @@ const LANG = {
     unity: 'Unité',
     peace: 'Paix Profonde',
     journey: 'Voyage',
+    breathwork: 'Respiration',
     duration: 'Durée',
     language: 'Langue',
     ifServes: 'si cela vous aide',
-    breathsWith: 'respirations avec la Source',
-    returnWhen: 'revenez quand vous oubliez.',
-    voiceOn: 'voix activée',
-    voiceOff: 'voix désactivée',
+    breathsWith: 'respirations',
+    returnWhen: 'revenez.',
+    voiceOn: 'voix on',
+    voiceOff: 'voix off',
     linkCopied: 'lien copié ✓',
     shareThePeace: 'partagez la paix',
     installing: 'installation...',
-    addToHome: 'Ajouter à l\'écran d\'accueil',
-    headphones: 'les écouteurs améliorent l\'expérience binaurale',
+    addToHome: 'Ajouter à l\'écran',
+    headphones: 'écouteurs recommandés',
     close: 'fermer',
     gotIt: 'compris'
+  }
+};
+
+/* ══════════════════════════════════════════════════════════
+   BREATHWORK PATTERNS
+   ══════════════════════════════════════════════════════════ */
+const BREATHWORK = {
+  balance: {
+    pattern: [4, 4, 4, 4],
+    getWords: (L) => [L.breatheIn, L.hold, L.release, L.rest]
+  },
+  calm: {
+    pattern: [4, 7, 8, 0],
+    getWords: (L) => [L.breatheIn, L.hold, L.releaseSlow, '']
+  },
+  energy: {
+    pattern: [4, 0, 4, 0],
+    getWords: (L) => [L.breatheIn, '', L.release, '']
+  },
+  deep: {
+    pattern: [4, 0, 8, 0],
+    getWords: (L) => [L.breatheIn, '', L.releaseSlow, '']
   }
 };
 
@@ -1134,36 +1209,11 @@ const CRYPTO = {
 };
 
 const JOURNEYS = {
-  heart: {
-    base: 6,
-    shifts: [2, 1, -1, -2],
-    freqs: [528, 432, 396, 417],
-    volumes: [0.06, 0.05, 0.04, 0.025]
-  },
-  awakening: {
-    base: 40,
-    shifts: [3, 1, -1, -3],
-    freqs: [741, 852, 963, 639],
-    volumes: [0.06, 0.05, 0.04, 0.025]
-  },
-  grounding: {
-    base: 2,
-    shifts: [1, 0.5, -0.5, -1],
-    freqs: [285, 432, 174, 128],
-    volumes: [0.06, 0.05, 0.04, 0.025]
-  },
-  unity: {
-    base: 10,
-    shifts: [2, 1, -1, -2],
-    freqs: [528, 639, 111, 432],
-    volumes: [0.06, 0.05, 0.04, 0.025]
-  },
-  peace: {
-    base: 4,
-    shifts: [1.5, 0.5, -0.5, -1.5],
-    freqs: [432, 396, 417, 528],
-    volumes: [0.05, 0.04, 0.03, 0.02]
-  }
+  heart: { base: 6, shifts: [2, 1, -1, -2], freqs: [528, 432, 396, 417], volumes: [0.06, 0.05, 0.04, 0.025] },
+  awakening: { base: 40, shifts: [3, 1, -1, -3], freqs: [741, 852, 963, 639], volumes: [0.06, 0.05, 0.04, 0.025] },
+  grounding: { base: 2, shifts: [1, 0.5, -0.5, -1], freqs: [285, 432, 174, 128], volumes: [0.06, 0.05, 0.04, 0.025] },
+  unity: { base: 10, shifts: [2, 1, -1, -2], freqs: [528, 639, 111, 432], volumes: [0.06, 0.05, 0.04, 0.025] },
+  peace: { base: 4, shifts: [1.5, 0.5, -0.5, -1.5], freqs: [432, 396, 417, 528], volumes: [0.05, 0.04, 0.03, 0.02] }
 };
 
 const WISDOMS = [
@@ -1196,19 +1246,14 @@ const S = {
   sound: false,
   voice: false,
   journey: 'heart',
+  breathwork: 'balance',
   duration: 600,
   elapsed: 0,
   timer: null,
   tickTimer: null,
   audio: null,
-  osc: null,
-  oscL: null,
-  oscR: null,
-  subOsc: null,
-  gain: null,
-  gainL: null,
-  gainR: null,
-  subGain: null,
+  osc: null, oscL: null, oscR: null, subOsc: null,
+  gain: null, gainL: null, gainR: null, subGain: null,
   hasStarted: false,
   headphonesShown: false,
   deferredPrompt: null,
@@ -1220,6 +1265,7 @@ try {
   if(saved){
     const p = JSON.parse(saved);
     S.journey = p.journey || 'heart';
+    S.breathwork = p.breathwork || 'balance';
     S.duration = p.duration ?? 600;
     S.sound = p.sound || false;
     S.voice = p.voice || false;
@@ -1246,37 +1292,31 @@ const installBtnTop = $('installBtnTop');
 const langSelect = $('langSelect');
 
 const phases = ['inhale','hold-in','exhale','hold-out'];
-const durations = [4000,4000,4000,4000];
 
-function t(key){
-  return LANG[S.lang]?.[key] || LANG.en[key] || key;
-}
+function t(key){ return LANG[S.lang]?.[key] || LANG.en[key] || key; }
 
-function getWords(){
-  return [t('breatheIn'), t('hold'), t('release'), t('rest')];
-}
+function getPattern(){ return BREATHWORK[S.breathwork].pattern; }
+function getDurations(){ return getPattern().map(s => s * 1000); }
+function getWords(){ return BREATHWORK[S.breathwork].getWords(LANG[S.lang] || LANG.en); }
 
 function updateUI(){
   const L = LANG[S.lang] || LANG.en;
-  
   if(!S.on){
     word.textContent = L.breathe;
     hint.textContent = L.tapToBegin;
   }
-  
   $('energyText').textContent = L.ifServes;
   $('journeyLabel').textContent = L.journey;
+  $('breathworkLabel').textContent = L.breathwork;
   $('durationLabel').textContent = L.duration;
   $('languageLabel').textContent = L.language;
   $('donateClose').textContent = L.close;
   $('iosTitle').textContent = L.addToHome;
   $('iosClose').textContent = L.gotIt;
-  
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
     if(L[key]) el.textContent = L[key];
   });
-  
   langSelect.value = S.lang;
 }
 
@@ -1284,6 +1324,7 @@ function savePrefs(){
   try {
     localStorage.setItem('innerafield', JSON.stringify({
       journey: S.journey,
+      breathwork: S.breathwork,
       duration: S.duration,
       sound: S.sound,
       voice: S.voice,
@@ -1295,61 +1336,30 @@ function savePrefs(){
 function initAudio(){
   if(S.audio) return;
   S.audio = new (window.AudioContext||window.webkitAudioContext)();
-  
-  S.gain = S.audio.createGain();
-  S.gain.gain.value = 0;
-  S.gain.connect(S.audio.destination);
-  
-  S.gainL = S.audio.createGain();
-  S.gainR = S.audio.createGain();
-  S.gainL.gain.value = 0;
-  S.gainR.gain.value = 0;
-  
+  S.gain = S.audio.createGain(); S.gain.gain.value = 0; S.gain.connect(S.audio.destination);
+  S.gainL = S.audio.createGain(); S.gainR = S.audio.createGain();
+  S.gainL.gain.value = 0; S.gainR.gain.value = 0;
   const merger = S.audio.createChannelMerger(2);
-  S.gainL.connect(merger, 0, 0);
-  S.gainR.connect(merger, 0, 1);
+  S.gainL.connect(merger, 0, 0); S.gainR.connect(merger, 0, 1);
   merger.connect(S.audio.destination);
-  
-  S.subGain = S.audio.createGain();
-  S.subGain.gain.value = 0;
-  S.subGain.connect(S.audio.destination);
+  S.subGain = S.audio.createGain(); S.subGain.gain.value = 0; S.subGain.connect(S.audio.destination);
 }
 
-function fadeOutSolfeggio(){
-  if(!S.audio || !S.gain) return;
-  S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.1);
-}
+function fadeOutSolfeggio(){ if(S.audio && S.gain) S.gain.gain.setTargetAtTime(0, S.audio.currentTime, 0.1); }
 
 function playFreq(hz, volume){
   if(!S.audio) return;
-  if(S.osc){
-    S.osc.frequency.setTargetAtTime(hz, S.audio.currentTime, 0.3);
-  } else {
-    S.osc = S.audio.createOscillator();
-    S.osc.type = 'sine';
-    S.osc.frequency.value = hz;
-    S.osc.connect(S.gain);
-    S.osc.start();
-  }
+  if(S.osc){ S.osc.frequency.setTargetAtTime(hz, S.audio.currentTime, 0.3); }
+  else { S.osc = S.audio.createOscillator(); S.osc.type = 'sine'; S.osc.frequency.value = hz; S.osc.connect(S.gain); S.osc.start(); }
   S.gain.gain.setTargetAtTime(volume, S.audio.currentTime, 0.3);
 }
 
 function playBinaural(beatHz){
   if(!S.audio) return;
   const baseHz = 200;
-  if(!S.oscL){
-    S.oscL = S.audio.createOscillator();
-    S.oscL.type = 'sine';
-    S.oscL.connect(S.gainL);
-    S.oscL.start();
-  }
+  if(!S.oscL){ S.oscL = S.audio.createOscillator(); S.oscL.type = 'sine'; S.oscL.connect(S.gainL); S.oscL.start(); }
   S.oscL.frequency.setTargetAtTime(baseHz, S.audio.currentTime, 0.2);
-  if(!S.oscR){
-    S.oscR = S.audio.createOscillator();
-    S.oscR.type = 'sine';
-    S.oscR.connect(S.gainR);
-    S.oscR.start();
-  }
+  if(!S.oscR){ S.oscR = S.audio.createOscillator(); S.oscR.type = 'sine'; S.oscR.connect(S.gainR); S.oscR.start(); }
   S.oscR.frequency.setTargetAtTime(baseHz + beatHz, S.audio.currentTime, 0.2);
   S.gainL.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.3);
   S.gainR.gain.setTargetAtTime(0.04, S.audio.currentTime, 0.3);
@@ -1357,13 +1367,7 @@ function playBinaural(beatHz){
 
 function playSubBass(){
   if(!S.audio) return;
-  if(!S.subOsc){
-    S.subOsc = S.audio.createOscillator();
-    S.subOsc.type = 'sine';
-    S.subOsc.frequency.value = 50;
-    S.subOsc.connect(S.subGain);
-    S.subOsc.start();
-  }
+  if(!S.subOsc){ S.subOsc = S.audio.createOscillator(); S.subOsc.type = 'sine'; S.subOsc.frequency.value = 50; S.subOsc.connect(S.subGain); S.subOsc.start(); }
   S.subGain.gain.setTargetAtTime(0.12, S.audio.currentTime, 0.5);
 }
 
@@ -1377,13 +1381,10 @@ function stopAudio(){
 }
 
 function speak(text){
-  if(!S.voice || !window.speechSynthesis) return;
+  if(!S.voice || !text || !window.speechSynthesis) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.rate = 0.75;
-  u.pitch = 0.85;
-  u.volume = 0.6;
-  u.lang = S.lang;
+  u.rate = 0.75; u.pitch = 0.85; u.volume = 0.6; u.lang = S.lang;
   speechSynthesis.speak(u);
 }
 
@@ -1394,11 +1395,23 @@ function showToast(msg, icon = ''){
 }
 
 function setPhase(i){
+  const pattern = getPattern();
+  const words = getWords();
+  const durations = getDurations();
+  
+  // Skip phases with 0 duration
+  if(pattern[i] === 0){
+    S.phase = (i + 1) % 4;
+    next();
+    return;
+  }
+  
   S.phase = i;
   const p = phases[i];
   const journey = JOURNEYS[S.journey];
-  const words = getWords();
   
+  // Set transition duration based on breathwork pattern
+  circle.style.transitionDuration = (pattern[i] * 0.9) + 's';
   circle.className = 'circle breathing ' + p;
   word.textContent = words[i];
   phaseEl.textContent = p.replace('-in',' in').replace('-out',' out');
@@ -1420,9 +1433,12 @@ function setPhase(i){
 }
 
 function next(){
+  const durations = getDurations();
   const n = (S.phase + 1) % 4;
   setPhase(n);
-  S.timer = setTimeout(next, durations[n]);
+  if(getPattern()[n] > 0){
+    S.timer = setTimeout(next, durations[n]);
+  }
 }
 
 function updateTimer(){
@@ -1430,10 +1446,7 @@ function updateTimer(){
   S.elapsed++;
   if(S.duration > 0){
     const remaining = S.duration - S.elapsed;
-    if(remaining <= 0){
-      stop();
-      return;
-    }
+    if(remaining <= 0){ stop(); return; }
     const min = Math.floor(remaining / 60);
     const sec = remaining % 60;
     timerDisplay.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
@@ -1469,6 +1482,7 @@ function start(){
   setTimeout(() => {
     circle.classList.remove('starting');
     setPhase(0);
+    const durations = getDurations();
     S.timer = setTimeout(next, durations[0]);
     updateTimer();
   }, 400);
@@ -1481,12 +1495,12 @@ function stop(){
   S.on = false;
   
   document.body.classList.remove('active');
-  
   clearTimeout(S.timer);
   clearTimeout(S.tickTimer);
   S.timer = null;
   S.tickTimer = null;
   
+  circle.style.transitionDuration = '';
   circle.className = 'circle idle';
   word.textContent = t('breathe');
   phaseEl.textContent = '';
@@ -1497,35 +1511,18 @@ function stop(){
   sessionMsg.innerHTML = '<span class="count">✧ ' + S.breaths + ' ' + t('breathsWith') + ' ✧</span><br>' + t('returnWhen');
   sessionMsg.classList.add('show');
   
-  setTimeout(() => {
-    sessionMsg.classList.remove('show');
-    wisdom.textContent = '';
-  }, 6000);
-  
+  setTimeout(() => { sessionMsg.classList.remove('show'); wisdom.textContent = ''; }, 6000);
   sr.textContent = S.breaths + ' breaths complete.';
 }
 
-function toggle(){
-  S.on ? stop() : start();
-}
-
-function openMenu(){
-  menu.classList.add('open');
-  overlay.classList.add('show');
-}
-
-function closeMenu(){
-  menu.classList.remove('open');
-  overlay.classList.remove('show');
-}
+function toggle(){ S.on ? stop() : start(); }
+function openMenu(){ menu.classList.add('open'); overlay.classList.add('show'); }
+function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('show'); }
 
 function initMenuState(){
-  document.querySelectorAll('[data-journey]').forEach(el => {
-    el.classList.toggle('selected', el.dataset.journey === S.journey);
-  });
-  document.querySelectorAll('[data-time]').forEach(el => {
-    el.classList.toggle('selected', parseInt(el.dataset.time) === S.duration);
-  });
+  document.querySelectorAll('[data-journey]').forEach(el => el.classList.toggle('selected', el.dataset.journey === S.journey));
+  document.querySelectorAll('[data-breath]').forEach(el => el.classList.toggle('selected', el.dataset.breath === S.breathwork));
+  document.querySelectorAll('[data-time]').forEach(el => el.classList.toggle('selected', parseInt(el.dataset.time) === S.duration));
   $('soundBtn').classList.toggle('on', S.sound);
   $('voiceBtn').classList.toggle('on', S.voice);
   langSelect.value = S.lang;
@@ -1537,6 +1534,15 @@ document.querySelectorAll('[data-journey]').forEach(el => {
     document.querySelectorAll('[data-journey]').forEach(e => e.classList.remove('selected'));
     el.classList.add('selected');
     S.journey = el.dataset.journey;
+    savePrefs();
+  });
+});
+
+document.querySelectorAll('[data-breath]').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('[data-breath]').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    S.breathwork = el.dataset.breath;
     savePrefs();
   });
 });
@@ -1557,83 +1563,46 @@ $('voiceBtn').addEventListener('click', () => {
   showToast(S.voice ? t('voiceOn') : t('voiceOff'));
 });
 
-langSelect.addEventListener('change', () => {
-  S.lang = langSelect.value;
-  savePrefs();
-  updateUI();
-});
+langSelect.addEventListener('change', () => { S.lang = langSelect.value; savePrefs(); updateUI(); });
 
 $('menuBtn').addEventListener('click', openMenu);
 $('menuClose').addEventListener('click', closeMenu);
-overlay.addEventListener('click', () => {
-  closeMenu();
-  donateModal.classList.remove('show');
-  iosModal.classList.remove('show');
-});
+overlay.addEventListener('click', () => { closeMenu(); donateModal.classList.remove('show'); iosModal.classList.remove('show'); });
 
 $('soundBtn').addEventListener('click', () => {
   S.sound = !S.sound;
   $('soundBtn').classList.toggle('on', S.sound);
   savePrefs();
-  
   if(S.sound){
-    if(!S.headphonesShown){
-      showToast(t('headphones'), '🎧');
-      S.headphonesShown = true;
-    }
+    if(!S.headphonesShown){ showToast(t('headphones'), '🎧'); S.headphonesShown = true; }
     if(S.on){
       initAudio();
       if(S.audio.state === 'suspended') S.audio.resume();
       const journey = JOURNEYS[S.journey];
       playFreq(journey.freqs[S.phase], journey.volumes[S.phase]);
-      const binauralHz = journey.base + journey.shifts[S.phase];
-      playBinaural(binauralHz);
+      playBinaural(journey.base + journey.shifts[S.phase]);
       playSubBass();
     }
-  } else {
-    stopAudio();
-  }
+  } else { stopAudio(); }
 });
 
 $('contrastBtn').addEventListener('click', () => {
   document.body.classList.toggle('contrast');
-  const on = document.body.classList.contains('contrast');
-  $('contrastBtn').classList.toggle('on', on);
+  $('contrastBtn').classList.toggle('on', document.body.classList.contains('contrast'));
 });
 
 async function shareApp(){
-  const shareData = {
-    title: 'Innera Field',
-    text: 'Find your peace. Connect to Source. Free meditation for all beings.',
-    url: 'https://innerafield.com'
-  };
-  if(navigator.share){
-    try {
-      await navigator.share(shareData);
-    } catch(e){
-      if(e.name !== 'AbortError') copyShareLink();
-    }
-  } else {
-    copyShareLink();
-  }
+  const shareData = { title: 'Innera Field', text: 'Free breathing meditation. No account. No tracking. Just peace.', url: 'https://innerafield.com' };
+  if(navigator.share){ try { await navigator.share(shareData); } catch(e){ if(e.name !== 'AbortError') copyShareLink(); } }
+  else { copyShareLink(); }
 }
 
 function copyShareLink(){
-  navigator.clipboard.writeText('https://innerafield.com').then(() => {
-    showToast(t('linkCopied') + '<br>' + t('shareThePeace'));
-  }).catch(() => {
-    showToast('innerafield.com');
-  });
+  navigator.clipboard.writeText('https://innerafield.com').then(() => showToast(t('linkCopied') + '<br>' + t('shareThePeace'))).catch(() => showToast('innerafield.com'));
 }
 
 $('shareBtn').addEventListener('click', shareApp);
 $('menuShareBtn').addEventListener('click', shareApp);
-
-function copyToClipboard(text){
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('address copied ✓');
-  }).catch(() => {});
-}
 
 function showDonateModal(type){
   const addr = type === 'btc' ? CRYPTO.btc : CRYPTO.eth;
@@ -1646,97 +1615,49 @@ function showDonateModal(type){
 $('btcBtn').addEventListener('click', () => showDonateModal('btc'));
 $('ethBtn').addEventListener('click', () => showDonateModal('eth'));
 $('donateClose').addEventListener('click', () => donateModal.classList.remove('show'));
-$('donateAddress').addEventListener('click', function(){ copyToClipboard(this.textContent); });
+$('donateAddress').addEventListener('click', function(){ navigator.clipboard.writeText(this.textContent).then(() => showToast('address copied ✓')); });
 $('iosClose').addEventListener('click', () => iosModal.classList.remove('show'));
 
-function isIOS(){
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
-
-function isStandalone(){
-  return window.matchMedia('(display-mode: standalone)').matches ||
-         window.navigator.standalone === true;
-}
+function isIOS(){ return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
+function isStandalone(){ return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; }
 
 async function handleInstall(){
   if(S.deferredPrompt){
     S.deferredPrompt.prompt();
     const result = await S.deferredPrompt.userChoice;
     S.deferredPrompt = null;
-    if(result.outcome === 'accepted'){
-      showToast(t('installing'), '✓');
-      installBtn.classList.add('hidden');
-      installBtnTop.classList.add('hidden');
-    }
-  } else if(isIOS()){
-    iosModal.classList.add('show');
-  } else {
-    showToast(t('addToHome'));
-  }
+    if(result.outcome === 'accepted'){ showToast(t('installing'), '✓'); installBtn.classList.add('hidden'); installBtnTop.classList.add('hidden'); }
+  } else if(isIOS()){ iosModal.classList.add('show'); }
+  else { showToast(t('addToHome')); }
 }
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  S.deferredPrompt = e;
-  installBtn.classList.remove('hidden');
-  installBtnTop.classList.remove('hidden');
-});
-
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); S.deferredPrompt = e; installBtn.classList.remove('hidden'); installBtnTop.classList.remove('hidden'); });
 installBtn.addEventListener('click', handleInstall);
 installBtnTop.addEventListener('click', handleInstall);
 
-if(isStandalone()){
-  installBtn.classList.add('hidden');
-  installBtnTop.classList.add('hidden');
-}
-
-if(isIOS() && !isStandalone()){
-  installBtn.classList.remove('hidden');
-  installBtnTop.classList.remove('hidden');
-}
+if(isStandalone()){ installBtn.classList.add('hidden'); installBtnTop.classList.add('hidden'); }
+if(isIOS() && !isStandalone()){ installBtn.classList.remove('hidden'); installBtnTop.classList.remove('hidden'); }
 
 circle.addEventListener('click', toggle);
-circle.addEventListener('keydown', e => {
-  if(e.key === 'Enter' || e.key === ' '){
-    e.preventDefault();
-    toggle();
-  }
-});
+circle.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); } });
 
 document.addEventListener('keydown', e => {
-  if(e.key === ' ' && document.activeElement === document.body){
-    e.preventDefault();
-    toggle();
-  }
+  if(e.key === ' ' && document.activeElement === document.body){ e.preventDefault(); toggle(); }
   if(e.key === 'Escape'){
-    if(donateModal.classList.contains('show')){
-      donateModal.classList.remove('show');
-    } else if(iosModal.classList.contains('show')){
-      iosModal.classList.remove('show');
-    } else if(menu.classList.contains('open')){
-      closeMenu();
-    } else if(S.on){
-      stop();
-    }
+    if(donateModal.classList.contains('show')) donateModal.classList.remove('show');
+    else if(iosModal.classList.contains('show')) iosModal.classList.remove('show');
+    else if(menu.classList.contains('open')) closeMenu();
+    else if(S.on) stop();
   }
 });
 
-setTimeout(() => {
-  if(!S.hasStarted && hint) hint.style.opacity = '0';
-}, 8000);
+setTimeout(() => { if(!S.hasStarted && hint) hint.style.opacity = '0'; }, 8000);
 
 initMenuState();
 
-if(window.matchMedia('(prefers-contrast:more)').matches){
-  document.body.classList.add('contrast');
-  $('contrastBtn').classList.add('on');
-}
+if(window.matchMedia('(prefers-contrast:more)').matches){ document.body.classList.add('contrast'); $('contrastBtn').classList.add('on'); }
 
-// Register Service Worker
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(() => {}); }
 
 })();
 </script>

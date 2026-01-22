@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://innerafield.com/icons/icon-512.png">
 <meta property="og:url" content="https://innerafield.com">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Innera Field">
 <meta name="twitter:description" content="Free breathing meditation. No account. No tracking. Just peace.">
 <meta name="twitter:image" content="https://innerafield.com/icons/icon-512.png">
@@ -50,6 +50,8 @@
   --gold:rgba(255,215,0,.3);
   --accent:#ff69b4;
   --accent-dim:rgba(255,105,180,.4);
+  --green:#4ade80;
+  --green-dim:rgba(74,222,128,.4);
 }
 html{height:100%;-webkit-text-size-adjust:100%}
 body{
@@ -68,9 +70,7 @@ body{
 }
 @keyframes awakening{0%{opacity:0}100%{opacity:1}}
 
-/* ═══════════════════════════════════════════════════════════
-   RAINBOW COSMOS - Living, Breathing Background
-   ═══════════════════════════════════════════════════════════ */
+/* Rainbow Cosmos */
 .cosmos{
   position:fixed;
   inset:0;
@@ -125,9 +125,7 @@ body{
   text-align:center;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   GOLD TITLE - Shimmering like Sunlight
-   ═══════════════════════════════════════════════════════════ */
+/* Gold Title */
 .title{
   position:absolute;
   top:max(10vh,55px);
@@ -153,7 +151,7 @@ body{
   top:max(2.5vh,14px);
   left:50%;
   transform:translateX(-50%);
-  font-size:.8rem;
+  font-size:.85rem;
   font-weight:500;
   letter-spacing:.08em;
   color:var(--faint);
@@ -161,19 +159,19 @@ body{
   transition:opacity .6s ease;
   display:flex;
   align-items:center;
-  gap:.35rem;
+  gap:.4rem;
 }
 .streak.show{opacity:1}
-.streak .flame{font-size:1rem;filter:drop-shadow(0 0 4px rgba(255,100,0,.5))}
+.streak .flame{font-size:1.1rem;filter:drop-shadow(0 0 4px rgba(255,100,0,.5))}
 
-/* Controls */
-.controls-left{position:absolute;top:max(2vh,12px);left:max(2.5vw,12px);display:flex;gap:.4rem;z-index:100}
-.controls-right{position:absolute;top:max(2vh,12px);right:max(2.5vw,12px);display:flex;gap:.4rem;z-index:100}
+/* Controls - BIGGER ICONS */
+.controls-left{position:absolute;top:max(2vh,12px);left:max(2.5vw,12px);display:flex;gap:.5rem;z-index:100}
+.controls-right{position:absolute;top:max(2vh,12px);right:max(2.5vw,12px);display:flex;gap:.5rem;z-index:100}
 .ctrl{
   background:transparent;
   border:none;
   color:var(--dim);
-  width:44px;height:44px;
+  width:50px;height:50px;
   cursor:pointer;
   transition:all .3s cubic-bezier(.4,0,.2,1);
   opacity:.5;
@@ -181,18 +179,42 @@ body{
   align-items:center;
   justify-content:center;
   border-radius:50%;
-  font-size:1.3rem;
+  font-size:1.5rem;
 }
-.ctrl:hover,.ctrl:focus{opacity:1;color:var(--light);background:rgba(255,255,255,.06)}
-.ctrl:active{transform:scale(.95)}
+.ctrl:hover,.ctrl:focus{opacity:1;color:var(--light);background:rgba(255,255,255,.08)}
+.ctrl:active{transform:scale(.92)}
 .ctrl.on{opacity:1;color:var(--accent)}
 .ctrl.hidden{display:none}
-.ctrl.update{color:#4ade80;animation:gentlePulse 2s ease-in-out infinite}
-@keyframes gentlePulse{0%,100%{opacity:.7}50%{opacity:1}}
 
-/* ═══════════════════════════════════════════════════════════
-   BREATHING CIRCLE - The Heart of Everything
-   ═══════════════════════════════════════════════════════════ */
+/* UPDATE BUTTON - Special styling */
+.ctrl.update{
+  display:none;
+  color:var(--green);
+  opacity:0;
+  background:rgba(74,222,128,.1);
+  border:1px solid var(--green-dim);
+  animation:updatePulse 2s ease-in-out infinite;
+}
+.ctrl.update.show{
+  display:flex;
+  opacity:1;
+}
+@keyframes updatePulse{
+  0%,100%{
+    box-shadow:0 0 0 0 rgba(74,222,128,.4),0 0 15px rgba(74,222,128,.2);
+    transform:scale(1);
+  }
+  50%{
+    box-shadow:0 0 0 8px rgba(74,222,128,0),0 0 25px rgba(74,222,128,.4);
+    transform:scale(1.05);
+  }
+}
+.ctrl.update:hover{
+  background:rgba(74,222,128,.2);
+  color:#fff;
+}
+
+/* Breathing Circle */
 .circle{
   position:relative;
   width:min(240px,48vw);
@@ -257,7 +279,7 @@ body{
   user-select:none;
 }
 .hint{
-  font-size:clamp(.75rem,2vw,.92rem);
+  font-size:clamp(.78rem,2.1vw,.95rem);
   font-weight:300;
   letter-spacing:.12em;
   margin-top:.6rem;
@@ -267,7 +289,7 @@ body{
 }
 .breathing .hint{opacity:0;pointer-events:none}
 .phase{
-  font-size:clamp(.7rem,1.8vw,.88rem);
+  font-size:clamp(.72rem,1.9vw,.9rem);
   font-weight:300;
   letter-spacing:.14em;
   margin-top:.45rem;
@@ -277,7 +299,7 @@ body{
 }
 .breathing .phase{opacity:1}
 .timer{
-  font-size:clamp(.6rem,1.5vw,.75rem);
+  font-size:clamp(.62rem,1.6vw,.78rem);
   font-weight:400;
   letter-spacing:.08em;
   margin-top:.35rem;
@@ -332,26 +354,26 @@ body{
   color:var(--dim);
   display:flex;
   align-items:center;
-  gap:.4rem;
+  gap:.5rem;
 }
 .energy:hover{opacity:.55}
 .energy-btn{
   background:none;
   border:none;
   color:inherit;
-  font-size:1.05rem;
+  font-size:1.15rem;
   cursor:pointer;
-  padding:.35rem;
+  padding:.4rem;
   opacity:.7;
   transition:all .3s cubic-bezier(.4,0,.2,1);
-  min-width:38px;min-height:38px;
+  min-width:42px;min-height:42px;
   display:flex;
   align-items:center;
   justify-content:center;
   text-decoration:none;
   border-radius:50%;
 }
-.energy-btn:hover{opacity:1;color:var(--light);transform:scale(1.08);background:rgba(255,255,255,.05)}
+.energy-btn:hover{opacity:1;color:var(--light);transform:scale(1.1);background:rgba(255,255,255,.06)}
 
 /* Toast */
 .toast{
@@ -378,15 +400,15 @@ body{
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast .icon{font-size:1.2rem;margin-bottom:.4rem;display:block}
 
-/* Update banner */
+/* Update banner (backup) */
 .update-banner{
   position:fixed;
   top:0;
   left:0;
   right:0;
-  background:linear-gradient(135deg,rgba(74,222,128,.15),rgba(34,197,94,.1));
-  border-bottom:1px solid rgba(74,222,128,.3);
-  padding:.7rem 1rem;
+  background:linear-gradient(135deg,rgba(74,222,128,.12),rgba(34,197,94,.08));
+  border-bottom:1px solid rgba(74,222,128,.25);
+  padding:.65rem 1rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -398,20 +420,20 @@ body{
   -webkit-backdrop-filter:blur(10px);
 }
 .update-banner.show{transform:translateY(0)}
-.update-banner span{font-size:.82rem;letter-spacing:.05em;color:rgba(255,255,255,.8)}
+.update-banner span{font-size:.8rem;letter-spacing:.05em;color:rgba(255,255,255,.8)}
 .update-banner button{
-  background:rgba(74,222,128,.2);
-  border:1px solid rgba(74,222,128,.4);
-  color:#4ade80;
-  padding:.4rem 1rem;
-  font-size:.78rem;
+  background:rgba(74,222,128,.15);
+  border:1px solid rgba(74,222,128,.35);
+  color:var(--green);
+  padding:.35rem .9rem;
+  font-size:.75rem;
   font-weight:500;
   letter-spacing:.08em;
   cursor:pointer;
   border-radius:8px;
   transition:all .3s;
 }
-.update-banner button:hover{background:rgba(74,222,128,.3);color:#fff}
+.update-banner button:hover{background:rgba(74,222,128,.25);color:#fff}
 
 /* Modals */
 .modal{
@@ -490,12 +512,12 @@ body{
 .lang-btn:hover{background:rgba(255,255,255,.08);color:var(--light)}
 .lang-btn.selected{border-color:var(--accent-dim);background:rgba(255,105,180,.08);color:var(--light)}
 
-/* Menu */
+/* Menu - BIGGER ICONS */
 .menu{
   position:fixed;
   top:0;
   right:-320px;
-  width:min(280px,85vw);
+  width:min(285px,85vw);
   height:100%;
   background:rgba(5,5,5,.98);
   border-left:1px solid var(--border);
@@ -516,10 +538,10 @@ body{
   background:none;
   border:none;
   color:var(--dim);
-  font-size:1.6rem;
+  font-size:1.8rem;
   cursor:pointer;
   transition:all .3s;
-  width:40px;height:40px;
+  width:44px;height:44px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -527,7 +549,7 @@ body{
 }
 .menu-close:hover{color:var(--light);background:rgba(255,255,255,.05)}
 .menu h3{
-  font-size:.65rem;
+  font-size:.68rem;
   font-weight:500;
   letter-spacing:.18em;
   color:var(--faint);
@@ -538,40 +560,40 @@ body{
 .menu-item{
   display:flex;
   align-items:center;
-  padding:.6rem .8rem;
+  padding:.65rem .85rem;
   margin:.12rem 0;
   background:transparent;
   border:1px solid transparent;
   border-radius:10px;
   cursor:pointer;
   transition:all .25s;
-  font-size:.85rem;
+  font-size:.88rem;
   font-weight:400;
   color:var(--dim);
 }
 .menu-item:hover{background:var(--glass);color:var(--light)}
 .menu-item.selected{border-color:var(--accent-dim);background:rgba(255,105,180,.06);color:var(--light)}
 .menu-item .journey-icon{
-  width:20px;height:20px;
+  width:22px;height:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-right:.55rem;
-  font-size:.9rem;
+  margin-right:.6rem;
+  font-size:1rem;
   opacity:.65;
   flex-shrink:0;
 }
 .menu-item.selected .journey-icon{opacity:1;color:var(--accent)}
 .menu-divider{height:1px;background:var(--border);margin:.7rem 0}
-.breath-row,.time-row{display:flex;gap:.3rem}
+.breath-row,.time-row{display:flex;gap:.35rem}
 .breath-btn,.time-btn{
   flex:1;
-  padding:.55rem .15rem;
+  padding:.58rem .15rem;
   background:transparent;
   border:1px solid transparent;
   border-radius:8px;
   color:var(--dim);
-  font-size:.7rem;
+  font-size:.72rem;
   font-weight:400;
   cursor:pointer;
   transition:all .25s;
@@ -584,15 +606,15 @@ body{
   border-top:1px solid var(--border);
   display:flex;
   justify-content:center;
-  gap:.25rem;
+  gap:.3rem;
 }
 .menu-icon-btn{
-  width:40px;height:40px;
+  width:46px;height:46px;
   background:var(--glass);
   border:1px solid var(--border);
   border-radius:10px;
   color:var(--dim);
-  font-size:1rem;
+  font-size:1.15rem;
   cursor:pointer;
   display:flex;
   align-items:center;
@@ -604,7 +626,7 @@ body{
 .menu-icon-btn.hidden{display:none}
 .menu-version{
   text-align:center;
-  font-size:.65rem;
+  font-size:.68rem;
   letter-spacing:.08em;
   color:var(--faint);
   opacity:.5;
@@ -632,33 +654,35 @@ body.contrast .cosmos{opacity:.3}
 
 /* Responsive */
 @media(max-width:600px){
-  .title{top:max(8vh,48px);font-size:clamp(1.25rem,4.5vw,1.7rem);letter-spacing:.35em;padding-left:.35em}
+  .title{top:max(8vh,50px);font-size:clamp(1.25rem,4.5vw,1.7rem);letter-spacing:.35em;padding-left:.35em}
   .controls-left,.controls-right{top:10px}
   .controls-left{left:10px}
-  .controls-right{right:10px;gap:.3rem}
-  .ctrl{width:40px;height:40px;font-size:1.2rem}
-  .circle{width:min(190px,50vw);height:min(190px,50vw)}
+  .controls-right{right:10px;gap:.35rem}
+  .ctrl{width:46px;height:46px;font-size:1.35rem}
+  .circle{width:min(195px,50vw);height:min(195px,50vw)}
   .wisdom-area{bottom:max(8vh,55px)}
-  .energy{gap:.3rem}
+  .energy{gap:.35rem}
+  .energy-btn{min-width:40px;min-height:40px;font-size:1.1rem}
   .menu{padding:1.1rem}
-  .menu-icons{gap:.2rem}
-  .menu-icon-btn{width:38px;height:38px;font-size:.95rem}
-  .breath-btn,.time-btn{font-size:.65rem;padding:.5rem .1rem}
+  .menu-icons{gap:.25rem}
+  .menu-icon-btn{width:44px;height:44px;font-size:1.05rem}
+  .breath-btn,.time-btn{font-size:.68rem;padding:.52rem .1rem}
 }
 @media(max-width:380px){
-  .title{top:max(6vh,40px);font-size:1.15rem;letter-spacing:.28em;padding-left:.28em}
+  .title{top:max(6vh,42px);font-size:1.15rem;letter-spacing:.28em;padding-left:.28em}
   .controls-left{left:8px}
-  .controls-right{right:8px;gap:.25rem}
-  .ctrl{width:38px;height:38px;font-size:1.1rem}
-  .circle{width:min(170px,48vw);height:min(170px,48vw)}
+  .controls-right{right:8px;gap:.3rem}
+  .ctrl{width:42px;height:42px;font-size:1.25rem}
+  .circle{width:min(175px,48vw);height:min(175px,48vw)}
   .menu{width:90vw;padding:1rem}
   .wisdom-area{bottom:max(7vh,48px)}
-  .menu-icon-btn{width:36px;height:36px;font-size:.9rem}
+  .menu-icon-btn{width:40px;height:40px;font-size:1rem}
 }
 @media(min-width:1200px){
   .title{font-size:3rem}
-  .ctrl{width:48px;height:48px;font-size:1.5rem}
+  .ctrl{width:54px;height:54px;font-size:1.6rem}
   .circle{width:min(280px,30vw);height:min(280px,30vw)}
+  .menu-icon-btn{width:50px;height:50px;font-size:1.25rem}
 }
 @media(min-height:900px){
   .wisdom-area{bottom:max(12vh,90px)}
@@ -668,10 +692,10 @@ body.contrast .cosmos{opacity:.3}
 <body>
 <div class="cosmos"></div>
 
-<!-- Update Banner -->
+<!-- Update Banner (backup/alternative) -->
 <div class="update-banner" id="updateBanner">
   <span>✨ New version available</span>
-  <button id="updateBtn">Update</button>
+  <button id="bannerUpdateBtn">Update</button>
 </div>
 
 <div class="field">
@@ -679,6 +703,8 @@ body.contrast .cosmos{opacity:.3}
   <div class="streak" id="streak"><span class="flame">🔥</span><span id="streakCount">0</span></div>
   
   <div class="controls-left">
+    <!-- UPDATE BUTTON - Hidden by default, shows when update available -->
+    <button class="ctrl update" id="updateBtn" aria-label="Update available" title="Update available">↑</button>
     <button class="ctrl" id="shareBtn" aria-label="Share" title="Share">↗</button>
     <button class="ctrl hidden" id="installBtnTop" aria-label="Install" title="Install">⬇</button>
   </div>
@@ -753,28 +779,26 @@ body.contrast .cosmos{opacity:.3}
     <button class="menu-icon-btn" id="menuShareBtn" title="Share" aria-label="Share">↗</button>
     <button class="menu-icon-btn hidden" id="installBtn" title="Install" aria-label="Install">⬇</button>
   </div>
-  <div class="menu-version" id="versionDisplay">v3.3</div>
+  <div class="menu-version" id="versionDisplay">v3.3.1</div>
 </nav>
 
 <script>
 (function(){'use strict';
 
-const VERSION='3.3.0';
+const VERSION='3.3.1';
 
-/* ═══════════════════════════════════════════════════════════
-   TRANSLATIONS
-   ═══════════════════════════════════════════════════════════ */
+/* Translations */
 const LANG={
-  en:{breathe:'breathe',breatheIn:'breathe in',hold:'hold',release:'release',releaseSlow:'release slowly',rest:'rest',tapToBegin:'tap to begin',heart:'Heart Opening',awakening:'Awakening',grounding:'Grounding',unity:'Unity',peace:'Deep Peace',journey:'Journey',breathwork:'Breathwork',duration:'Duration',language:'Language',ifServes:'if this serves you',breathsWith:'breaths with Source',returnWhen:'return when you forget.',voiceOn:'voice on',voiceOff:'voice off',linkCopied:'link copied ✓',shareThePeace:'share the peace',installing:'installing...',addToHome:'Add to Home Screen',headphones:'headphones enhance the experience',close:'close',gotIt:'got it',balance:'Balance',calm:'Calm',energy:'Energy',deep:'Deep',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'lifetime breaths',welcomeBack:'welcome back',dayStreak:'day streak',updateAvailable:'Update available',update:'Update'},
-  es:{breathe:'respira',breatheIn:'inhala',hold:'sostén',release:'exhala',releaseSlow:'exhala lento',rest:'descansa',tapToBegin:'toca para comenzar',heart:'Apertura del Corazón',awakening:'Despertar',grounding:'Arraigo',unity:'Unidad',peace:'Paz Profunda',journey:'Viaje',breathwork:'Respiración',duration:'Duración',language:'Idioma',ifServes:'si te sirve',breathsWith:'respiraciones con la Fuente',returnWhen:'regresa cuando olvides.',voiceOn:'voz activada',voiceOff:'voz desactivada',linkCopied:'enlace copiado ✓',shareThePeace:'comparte la paz',installing:'instalando...',addToHome:'Añadir a Inicio',headphones:'auriculares mejoran la experiencia',close:'cerrar',gotIt:'entendido',balance:'Equilibrio',calm:'Calma',energy:'Energía',deep:'Profundo',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respiraciones totales',welcomeBack:'bienvenido',dayStreak:'días seguidos',updateAvailable:'Actualización disponible',update:'Actualizar'},
-  zh:{breathe:'呼吸',breatheIn:'吸气',hold:'屏息',release:'呼气',releaseSlow:'慢慢呼气',rest:'休息',tapToBegin:'点击开始',heart:'心轮开启',awakening:'觉醒',grounding:'扎根',unity:'合一',peace:'深度平静',journey:'旅程',breathwork:'呼吸法',duration:'时长',language:'语言',ifServes:'如果有帮助',breathsWith:'次呼吸',returnWhen:'忘记时请回来',voiceOn:'语音开启',voiceOff:'语音关闭',linkCopied:'已复制 ✓',shareThePeace:'分享平静',installing:'安装中...',addToHome:'添加到主屏幕',headphones:'耳机增强体验',close:'关闭',gotIt:'知道了',balance:'平衡',calm:'平静',energy:'能量',deep:'深度',min5:'5分钟',min10:'10分钟',min20:'20分钟',lifetimeBreaths:'总呼吸次数',welcomeBack:'欢迎回来',dayStreak:'天连续',updateAvailable:'有新版本',update:'更新'},
-  hi:{breathe:'साँस',breatheIn:'साँस लो',hold:'रोको',release:'छोड़ो',releaseSlow:'धीरे छोड़ो',rest:'विश्राम',tapToBegin:'टैप करें',heart:'हृदय खोलना',awakening:'जागृति',grounding:'ग्राउंडिंग',unity:'एकता',peace:'गहरी शांति',journey:'यात्रा',breathwork:'श्वास क्रिया',duration:'अवधि',language:'भाषा',ifServes:'अगर मदद करे',breathsWith:'साँसें',returnWhen:'जब भूल जाओ लौट आओ',voiceOn:'आवाज़ चालू',voiceOff:'आवाज़ बंद',linkCopied:'कॉपी ✓',shareThePeace:'शांति साझा करें',installing:'इंस्टॉल हो रहा...',addToHome:'होम में जोड़ें',headphones:'हेडफोन से बेहतर अनुभव',close:'बंद करें',gotIt:'समझ गया',balance:'संतुलन',calm:'शांत',energy:'ऊर्जा',deep:'गहरा',min5:'5 मिनट',min10:'10 मिनट',min20:'20 मिनट',lifetimeBreaths:'कुल साँसें',welcomeBack:'वापसी पर स्वागत',dayStreak:'दिन लगातार',updateAvailable:'अपडेट उपलब्ध',update:'अपडेट'},
-  ar:{breathe:'تنفس',breatheIn:'شهيق',hold:'احبس',release:'زفير',releaseSlow:'زفير ببطء',rest:'استرح',tapToBegin:'انقر للبدء',heart:'فتح القلب',awakening:'الصحوة',grounding:'التأريض',unity:'الوحدة',peace:'السلام العميق',journey:'الرحلة',breathwork:'تمارين التنفس',duration:'المدة',language:'اللغة',ifServes:'إذا أفادك',breathsWith:'أنفاس',returnWhen:'عد عندما تنسى',voiceOn:'الصوت مفعل',voiceOff:'الصوت معطل',linkCopied:'تم النسخ ✓',shareThePeace:'شارك السلام',installing:'جاري التثبيت...',addToHome:'أضف للشاشة',headphones:'السماعات تعزز التجربة',close:'إغلاق',gotIt:'فهمت',balance:'توازن',calm:'هدوء',energy:'طاقة',deep:'عميق',min5:'5 دقائق',min10:'10 دقائق',min20:'20 دقيقة',lifetimeBreaths:'إجمالي الأنفاس',welcomeBack:'مرحباً بعودتك',dayStreak:'أيام متتالية',updateAvailable:'تحديث متاح',update:'تحديث'},
-  pt:{breathe:'respire',breatheIn:'inspire',hold:'segure',release:'expire',releaseSlow:'expire devagar',rest:'descanse',tapToBegin:'toque para começar',heart:'Abertura do Coração',awakening:'Despertar',grounding:'Aterramento',unity:'Unidade',peace:'Paz Profunda',journey:'Jornada',breathwork:'Respiração',duration:'Duração',language:'Idioma',ifServes:'se te servir',breathsWith:'respirações',returnWhen:'volte quando esquecer',voiceOn:'voz ativada',voiceOff:'voz desativada',linkCopied:'copiado ✓',shareThePeace:'compartilhe a paz',installing:'instalando...',addToHome:'Adicionar à Tela',headphones:'fones melhoram a experiência',close:'fechar',gotIt:'entendi',balance:'Equilíbrio',calm:'Calma',energy:'Energia',deep:'Profundo',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respirações totais',welcomeBack:'bem-vindo',dayStreak:'dias seguidos',updateAvailable:'Atualização disponível',update:'Atualizar'},
-  ru:{breathe:'дыши',breatheIn:'вдох',hold:'задержка',release:'выдох',releaseSlow:'медленный выдох',rest:'отдых',tapToBegin:'нажмите',heart:'Открытие Сердца',awakening:'Пробуждение',grounding:'Заземление',unity:'Единство',peace:'Глубокий Покой',journey:'Путешествие',breathwork:'Дыхание',duration:'Длительность',language:'Язык',ifServes:'если поможет',breathsWith:'вдохов',returnWhen:'возвращайтесь',voiceOn:'голос вкл',voiceOff:'голос выкл',linkCopied:'скопировано ✓',shareThePeace:'поделитесь покоем',installing:'установка...',addToHome:'На главный экран',headphones:'наушники усилят эффект',close:'закрыть',gotIt:'понятно',balance:'Баланс',calm:'Покой',energy:'Энергия',deep:'Глубина',min5:'5 мин',min10:'10 мин',min20:'20 мин',lifetimeBreaths:'всего вдохов',welcomeBack:'с возвращением',dayStreak:'дней подряд',updateAvailable:'Доступно обновление',update:'Обновить'},
-  ja:{breathe:'呼吸',breatheIn:'吸う',hold:'止める',release:'吐く',releaseSlow:'ゆっくり吐く',rest:'休む',tapToBegin:'タップして開始',heart:'ハートを開く',awakening:'目覚め',grounding:'グラウンディング',unity:'統一',peace:'深い平和',journey:'ジャーニー',breathwork:'呼吸法',duration:'時間',language:'言語',ifServes:'お役に立てれば',breathsWith:'回の呼吸',returnWhen:'忘れた時に',voiceOn:'音声オン',voiceOff:'音声オフ',linkCopied:'コピー ✓',shareThePeace:'平和を共有',installing:'インストール中...',addToHome:'ホームに追加',headphones:'ヘッドホン推奨',close:'閉じる',gotIt:'了解',balance:'バランス',calm:'穏やか',energy:'エネルギー',deep:'深い',min5:'5分',min10:'10分',min20:'20分',lifetimeBreaths:'総呼吸数',welcomeBack:'おかえりなさい',dayStreak:'日連続',updateAvailable:'更新があります',update:'更新'},
-  ko:{breathe:'숨쉬기',breatheIn:'들이쉬기',hold:'멈추기',release:'내쉬기',releaseSlow:'천천히 내쉬기',rest:'쉬기',tapToBegin:'탭하여 시작',heart:'심장 열기',awakening:'각성',grounding:'그라운딩',unity:'하나됨',peace:'깊은 평화',journey:'여정',breathwork:'호흡법',duration:'시간',language:'언어',ifServes:'도움이 된다면',breathsWith:'번 호흡',returnWhen:'잊을 때 돌아오세요',voiceOn:'음성 켜기',voiceOff:'음성 끄기',linkCopied:'복사됨 ✓',shareThePeace:'평화를 나누세요',installing:'설치 중...',addToHome:'홈에 추가',headphones:'헤드폰 권장',close:'닫기',gotIt:'알겠습니다',balance:'균형',calm:'평온',energy:'에너지',deep:'깊은',min5:'5분',min10:'10분',min20:'20분',lifetimeBreaths:'총 호흡',welcomeBack:'환영합니다',dayStreak:'일 연속',updateAvailable:'업데이트 가능',update:'업데이트'},
-  fr:{breathe:'respire',breatheIn:'inspire',hold:'retiens',release:'expire',releaseSlow:'expire lentement',rest:'repose',tapToBegin:'touche pour commencer',heart:'Ouverture du Cœur',awakening:'Éveil',grounding:'Ancrage',unity:'Unité',peace:'Paix Profonde',journey:'Voyage',breathwork:'Respiration',duration:'Durée',language:'Langue',ifServes:'si cela vous aide',breathsWith:'respirations',returnWhen:'revenez',voiceOn:'voix on',voiceOff:'voix off',linkCopied:'copié ✓',shareThePeace:'partagez la paix',installing:'installation...',addToHome:'Ajouter à l\'écran',headphones:'écouteurs recommandés',close:'fermer',gotIt:'compris',balance:'Équilibre',calm:'Calme',energy:'Énergie',deep:'Profond',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respirations totales',welcomeBack:'bon retour',dayStreak:'jours consécutifs',updateAvailable:'Mise à jour disponible',update:'Mettre à jour'}
+  en:{breathe:'breathe',breatheIn:'breathe in',hold:'hold',release:'release',releaseSlow:'release slowly',rest:'rest',tapToBegin:'tap to begin',heart:'Heart Opening',awakening:'Awakening',grounding:'Grounding',unity:'Unity',peace:'Deep Peace',journey:'Journey',breathwork:'Breathwork',duration:'Duration',language:'Language',ifServes:'if this serves you',breathsWith:'breaths with Source',returnWhen:'return when you forget.',voiceOn:'voice on',voiceOff:'voice off',linkCopied:'link copied ✓',shareThePeace:'share the peace',installing:'installing...',addToHome:'Add to Home Screen',headphones:'headphones enhance the experience',close:'close',gotIt:'got it',balance:'Balance',calm:'Calm',energy:'Energy',deep:'Deep',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'lifetime breaths',welcomeBack:'welcome back',dayStreak:'day streak',updateAvailable:'update available',update:'Update',updating:'updating...'},
+  es:{breathe:'respira',breatheIn:'inhala',hold:'sostén',release:'exhala',releaseSlow:'exhala lento',rest:'descansa',tapToBegin:'toca para comenzar',heart:'Apertura del Corazón',awakening:'Despertar',grounding:'Arraigo',unity:'Unidad',peace:'Paz Profunda',journey:'Viaje',breathwork:'Respiración',duration:'Duración',language:'Idioma',ifServes:'si te sirve',breathsWith:'respiraciones con la Fuente',returnWhen:'regresa cuando olvides.',voiceOn:'voz activada',voiceOff:'voz desactivada',linkCopied:'enlace copiado ✓',shareThePeace:'comparte la paz',installing:'instalando...',addToHome:'Añadir a Inicio',headphones:'auriculares mejoran la experiencia',close:'cerrar',gotIt:'entendido',balance:'Equilibrio',calm:'Calma',energy:'Energía',deep:'Profundo',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respiraciones totales',welcomeBack:'bienvenido',dayStreak:'días seguidos',updateAvailable:'actualización disponible',update:'Actualizar',updating:'actualizando...'},
+  zh:{breathe:'呼吸',breatheIn:'吸气',hold:'屏息',release:'呼气',releaseSlow:'慢慢呼气',rest:'休息',tapToBegin:'点击开始',heart:'心轮开启',awakening:'觉醒',grounding:'扎根',unity:'合一',peace:'深度平静',journey:'旅程',breathwork:'呼吸法',duration:'时长',language:'语言',ifServes:'如果有帮助',breathsWith:'次呼吸',returnWhen:'忘记时请回来',voiceOn:'语音开启',voiceOff:'语音关闭',linkCopied:'已复制 ✓',shareThePeace:'分享平静',installing:'安装中...',addToHome:'添加到主屏幕',headphones:'耳机增强体验',close:'关闭',gotIt:'知道了',balance:'平衡',calm:'平静',energy:'能量',deep:'深度',min5:'5分钟',min10:'10分钟',min20:'20分钟',lifetimeBreaths:'总呼吸次数',welcomeBack:'欢迎回来',dayStreak:'天连续',updateAvailable:'有新版本',update:'更新',updating:'更新中...'},
+  hi:{breathe:'साँस',breatheIn:'साँस लो',hold:'रोको',release:'छोड़ो',releaseSlow:'धीरे छोड़ो',rest:'विश्राम',tapToBegin:'टैप करें',heart:'हृदय खोलना',awakening:'जागृति',grounding:'ग्राउंडिंग',unity:'एकता',peace:'गहरी शांति',journey:'यात्रा',breathwork:'श्वास क्रिया',duration:'अवधि',language:'भाषा',ifServes:'अगर मदद करे',breathsWith:'साँसें',returnWhen:'जब भूल जाओ लौट आओ',voiceOn:'आवाज़ चालू',voiceOff:'आवाज़ बंद',linkCopied:'कॉपी ✓',shareThePeace:'शांति साझा करें',installing:'इंस्टॉल हो रहा...',addToHome:'होम में जोड़ें',headphones:'हेडफोन से बेहतर अनुभव',close:'बंद करें',gotIt:'समझ गया',balance:'संतुलन',calm:'शांत',energy:'ऊर्जा',deep:'गहरा',min5:'5 मिनट',min10:'10 मिनट',min20:'20 मिनट',lifetimeBreaths:'कुल साँसें',welcomeBack:'वापसी पर स्वागत',dayStreak:'दिन लगातार',updateAvailable:'अपडेट उपलब्ध',update:'अपडेट',updating:'अपडेट हो रहा...'},
+  ar:{breathe:'تنفس',breatheIn:'شهيق',hold:'احبس',release:'زفير',releaseSlow:'زفير ببطء',rest:'استرح',tapToBegin:'انقر للبدء',heart:'فتح القلب',awakening:'الصحوة',grounding:'التأريض',unity:'الوحدة',peace:'السلام العميق',journey:'الرحلة',breathwork:'تمارين التنفس',duration:'المدة',language:'اللغة',ifServes:'إذا أفادك',breathsWith:'أنفاس',returnWhen:'عد عندما تنسى',voiceOn:'الصوت مفعل',voiceOff:'الصوت معطل',linkCopied:'تم النسخ ✓',shareThePeace:'شارك السلام',installing:'جاري التثبيت...',addToHome:'أضف للشاشة',headphones:'السماعات تعزز التجربة',close:'إغلاق',gotIt:'فهمت',balance:'توازن',calm:'هدوء',energy:'طاقة',deep:'عميق',min5:'5 دقائق',min10:'10 دقائق',min20:'20 دقيقة',lifetimeBreaths:'إجمالي الأنفاس',welcomeBack:'مرحباً بعودتك',dayStreak:'أيام متتالية',updateAvailable:'تحديث متاح',update:'تحديث',updating:'جاري التحديث...'},
+  pt:{breathe:'respire',breatheIn:'inspire',hold:'segure',release:'expire',releaseSlow:'expire devagar',rest:'descanse',tapToBegin:'toque para começar',heart:'Abertura do Coração',awakening:'Despertar',grounding:'Aterramento',unity:'Unidade',peace:'Paz Profunda',journey:'Jornada',breathwork:'Respiração',duration:'Duração',language:'Idioma',ifServes:'se te servir',breathsWith:'respirações',returnWhen:'volte quando esquecer',voiceOn:'voz ativada',voiceOff:'voz desativada',linkCopied:'copiado ✓',shareThePeace:'compartilhe a paz',installing:'instalando...',addToHome:'Adicionar à Tela',headphones:'fones melhoram a experiência',close:'fechar',gotIt:'entendi',balance:'Equilíbrio',calm:'Calma',energy:'Energia',deep:'Profundo',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respirações totais',welcomeBack:'bem-vindo',dayStreak:'dias seguidos',updateAvailable:'atualização disponível',update:'Atualizar',updating:'atualizando...'},
+  ru:{breathe:'дыши',breatheIn:'вдох',hold:'задержка',release:'выдох',releaseSlow:'медленный выдох',rest:'отдых',tapToBegin:'нажмите',heart:'Открытие Сердца',awakening:'Пробуждение',grounding:'Заземление',unity:'Единство',peace:'Глубокий Покой',journey:'Путешествие',breathwork:'Дыхание',duration:'Длительность',language:'Язык',ifServes:'если поможет',breathsWith:'вдохов',returnWhen:'возвращайтесь',voiceOn:'голос вкл',voiceOff:'голос выкл',linkCopied:'скопировано ✓',shareThePeace:'поделитесь покоем',installing:'установка...',addToHome:'На главный экран',headphones:'наушники усилят эффект',close:'закрыть',gotIt:'понятно',balance:'Баланс',calm:'Покой',energy:'Энергия',deep:'Глубина',min5:'5 мин',min10:'10 мин',min20:'20 мин',lifetimeBreaths:'всего вдохов',welcomeBack:'с возвращением',dayStreak:'дней подряд',updateAvailable:'доступно обновление',update:'Обновить',updating:'обновление...'},
+  ja:{breathe:'呼吸',breatheIn:'吸う',hold:'止める',release:'吐く',releaseSlow:'ゆっくり吐く',rest:'休む',tapToBegin:'タップして開始',heart:'ハートを開く',awakening:'目覚め',grounding:'グラウンディング',unity:'統一',peace:'深い平和',journey:'ジャーニー',breathwork:'呼吸法',duration:'時間',language:'言語',ifServes:'お役に立てれば',breathsWith:'回の呼吸',returnWhen:'忘れた時に',voiceOn:'音声オン',voiceOff:'音声オフ',linkCopied:'コピー ✓',shareThePeace:'平和を共有',installing:'インストール中...',addToHome:'ホームに追加',headphones:'ヘッドホン推奨',close:'閉じる',gotIt:'了解',balance:'バランス',calm:'穏やか',energy:'エネルギー',deep:'深い',min5:'5分',min10:'10分',min20:'20分',lifetimeBreaths:'総呼吸数',welcomeBack:'おかえりなさい',dayStreak:'日連続',updateAvailable:'更新があります',update:'更新',updating:'更新中...'},
+  ko:{breathe:'숨쉬기',breatheIn:'들이쉬기',hold:'멈추기',release:'내쉬기',releaseSlow:'천천히 내쉬기',rest:'쉬기',tapToBegin:'탭하여 시작',heart:'심장 열기',awakening:'각성',grounding:'그라운딩',unity:'하나됨',peace:'깊은 평화',journey:'여정',breathwork:'호흡법',duration:'시간',language:'언어',ifServes:'도움이 된다면',breathsWith:'번 호흡',returnWhen:'잊을 때 돌아오세요',voiceOn:'음성 켜기',voiceOff:'음성 끄기',linkCopied:'복사됨 ✓',shareThePeace:'평화를 나누세요',installing:'설치 중...',addToHome:'홈에 추가',headphones:'헤드폰 권장',close:'닫기',gotIt:'알겠습니다',balance:'균형',calm:'평온',energy:'에너지',deep:'깊은',min5:'5분',min10:'10분',min20:'20분',lifetimeBreaths:'총 호흡',welcomeBack:'환영합니다',dayStreak:'일 연속',updateAvailable:'업데이트 가능',update:'업데이트',updating:'업데이트 중...'},
+  fr:{breathe:'respire',breatheIn:'inspire',hold:'retiens',release:'expire',releaseSlow:'expire lentement',rest:'repose',tapToBegin:'touche pour commencer',heart:'Ouverture du Cœur',awakening:'Éveil',grounding:'Ancrage',unity:'Unité',peace:'Paix Profonde',journey:'Voyage',breathwork:'Respiration',duration:'Durée',language:'Langue',ifServes:'si cela vous aide',breathsWith:'respirations',returnWhen:'revenez',voiceOn:'voix on',voiceOff:'voix off',linkCopied:'copié ✓',shareThePeace:'partagez la paix',installing:'installation...',addToHome:'Ajouter à l\'écran',headphones:'écouteurs recommandés',close:'fermer',gotIt:'compris',balance:'Équilibre',calm:'Calme',energy:'Énergie',deep:'Profond',min5:'5 min',min10:'10 min',min20:'20 min',lifetimeBreaths:'respirations totales',welcomeBack:'bon retour',dayStreak:'jours consécutifs',updateAvailable:'mise à jour disponible',update:'Mettre à jour',updating:'mise à jour...'}
 };
 
 const BREATHWORK={balance:{pattern:[4,4,4,4],getWords:L=>[L.breatheIn,L.hold,L.release,L.rest]},calm:{pattern:[4,7,8,0],getWords:L=>[L.breatheIn,L.hold,L.releaseSlow,'']},energy:{pattern:[4,0,4,0],getWords:L=>[L.breatheIn,'',L.release,'']},deep:{pattern:[4,0,8,0],getWords:L=>[L.breatheIn,'',L.releaseSlow,'']}};
@@ -782,20 +806,26 @@ const CRYPTO={btc:'bc1qwjsvjg0ckfw2aa9c5zdhc4ewxn7yse8lvstuaz',eth:'0x12e10C6aA1
 const JOURNEYS={heart:{base:6,shifts:[2,1,-1,-2],freqs:[528,432,396,417],volumes:[.06,.05,.04,.025]},awakening:{base:40,shifts:[3,1,-1,-3],freqs:[741,852,963,639],volumes:[.06,.05,.04,.025]},grounding:{base:2,shifts:[1,.5,-.5,-1],freqs:[285,432,174,128],volumes:[.06,.05,.04,.025]},unity:{base:10,shifts:[2,1,-1,-2],freqs:[528,639,111,432],volumes:[.06,.05,.04,.025]},peace:{base:4,shifts:[1.5,.5,-.5,-1.5],freqs:[432,396,417,528],volumes:[.05,.04,.03,.02]}};
 const WISDOMS=["you are worthy of love. you always have been.","your heart knows the way. trust it.","love is not earned. it is remembered.","consciousness is not found. it is unveiled.","the truth you seek is seeking you.","you have always been the light you're looking for.","stillness speaks louder than thought.","you are held by the earth. always.","your body is your first home. return to it.","presence is the anchor. breath is the chain.","you belong here. you have always belonged.","separation is the illusion. oneness is the truth.","there is no other. there is only one.","peace begins when we remember we are one.","every breath connects you to all beings.","peace is not found. it is remembered.","stillness is your nature. return to it.","in the quiet, God speaks.","surrender is not giving up. it is opening up.","the deepest peace is already within you."];
 
-const S={on:false,phase:0,breaths:0,sound:false,voice:false,journey:'heart',breathwork:'balance',duration:600,elapsed:0,timer:null,tickTimer:null,audio:null,osc:null,oscL:null,oscR:null,subOsc:null,gain:null,gainL:null,gainR:null,subGain:null,hasStarted:false,headphonesShown:false,deferredPrompt:null,lang:'en',lifetimeBreaths:0,streak:0,lastVisit:null,introPlayed:false,swRegistration:null,updateAvailable:false};
+const S={on:false,phase:0,breaths:0,sound:false,voice:false,journey:'heart',breathwork:'balance',duration:600,elapsed:0,timer:null,tickTimer:null,audio:null,osc:null,oscL:null,oscR:null,subOsc:null,gain:null,gainL:null,gainR:null,subGain:null,hasStarted:false,headphonesShown:false,deferredPrompt:null,lang:'en',lifetimeBreaths:0,streak:0,lastVisit:null,introPlayed:false,swRegistration:null,updateAvailable:false,haptics:true};
 
-try{const saved=localStorage.getItem('innerafield');if(saved){const p=JSON.parse(saved);S.journey=p.journey||'heart';S.breathwork=p.breathwork||'balance';S.duration=p.duration??600;S.sound=p.sound||false;S.voice=p.voice||false;S.lang=p.lang||'en';S.lifetimeBreaths=p.lifetimeBreaths||0;S.streak=p.streak||0;S.lastVisit=p.lastVisit||null;}}catch(e){}
+try{const saved=localStorage.getItem('innerafield');if(saved){const p=JSON.parse(saved);S.journey=p.journey||'heart';S.breathwork=p.breathwork||'balance';S.duration=p.duration??600;S.sound=p.sound||false;S.voice=p.voice||false;S.lang=p.lang||'en';S.lifetimeBreaths=p.lifetimeBreaths||0;S.streak=p.streak||0;S.lastVisit=p.lastVisit||null;S.haptics=p.haptics!==false;}}catch(e){}
 
 function updateStreak(){const today=new Date().toDateString();if(S.lastVisit){const last=new Date(S.lastVisit);const lastDate=last.toDateString();const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);if(lastDate!==today){S.streak=lastDate===yesterday.toDateString()?S.streak+1:1;}}else{S.streak=1;}S.lastVisit=today;savePrefs();}
 
 const $=id=>document.getElementById(id);
-const circle=$('circle'),word=$('word'),hint=$('hint'),phaseEl=$('phase'),timerDisplay=$('timerDisplay'),wisdom=$('wisdom'),sessionMsg=$('sessionMsg'),sr=$('sr'),menu=$('menu'),overlay=$('overlay'),toast=$('toast'),donateModal=$('donateModal'),iosModal=$('iosModal'),langModal=$('langModal'),installBtn=$('installBtn'),installBtnTop=$('installBtnTop'),streakEl=$('streak'),streakCount=$('streakCount'),updateBanner=$('updateBanner'),versionDisplay=$('versionDisplay');
+const circle=$('circle'),word=$('word'),hint=$('hint'),phaseEl=$('phase'),timerDisplay=$('timerDisplay'),wisdom=$('wisdom'),sessionMsg=$('sessionMsg'),sr=$('sr'),menu=$('menu'),overlay=$('overlay'),toast=$('toast'),donateModal=$('donateModal'),iosModal=$('iosModal'),langModal=$('langModal'),installBtn=$('installBtn'),installBtnTop=$('installBtnTop'),streakEl=$('streak'),streakCount=$('streakCount'),updateBanner=$('updateBanner'),updateBtn=$('updateBtn'),versionDisplay=$('versionDisplay');
 const phases=['inhale','hold-in','exhale','hold-out'];
 
 function t(key){return LANG[S.lang]?.[key]||LANG.en[key]||key;}
 function getPattern(){return BREATHWORK[S.breathwork].pattern;}
 function getWords(){return BREATHWORK[S.breathwork].getWords(LANG[S.lang]||LANG.en);}
 function findNextActivePhase(from){const pattern=getPattern();let next=(from+1)%4;for(let i=0;i<4;i++){if(pattern[next]>0)return next;next=(next+1)%4;}return 0;}
+
+/* Haptic feedback */
+function haptic(pattern){
+  if(!S.haptics||!('vibrate'in navigator))return;
+  try{navigator.vibrate(pattern);}catch(e){}
+}
 
 function updateUI(){
   const L=LANG[S.lang]||LANG.en;
@@ -813,9 +843,11 @@ function updateUI(){
   document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('selected',el.dataset.lang===S.lang));
   if(S.streak>1){streakCount.textContent=S.streak;streakEl.classList.add('show');}
   versionDisplay.textContent='v'+VERSION;
+  // Update button title
+  updateBtn.title=L.updateAvailable;
 }
 
-function savePrefs(){try{localStorage.setItem('innerafield',JSON.stringify({journey:S.journey,breathwork:S.breathwork,duration:S.duration,sound:S.sound,voice:S.voice,lang:S.lang,lifetimeBreaths:S.lifetimeBreaths,streak:S.streak,lastVisit:S.lastVisit}));}catch(e){}}
+function savePrefs(){try{localStorage.setItem('innerafield',JSON.stringify({journey:S.journey,breathwork:S.breathwork,duration:S.duration,sound:S.sound,voice:S.voice,lang:S.lang,lifetimeBreaths:S.lifetimeBreaths,streak:S.streak,lastVisit:S.lastVisit,haptics:S.haptics}));}catch(e){}}
 
 /* Audio */
 function initAudio(){if(S.audio)return;S.audio=new(window.AudioContext||window.webkitAudioContext)();S.gain=S.audio.createGain();S.gain.gain.value=0;S.gain.connect(S.audio.destination);S.gainL=S.audio.createGain();S.gainR=S.audio.createGain();S.gainL.gain.value=0;S.gainR.gain.value=0;const merger=S.audio.createChannelMerger(2);S.gainL.connect(merger,0,0);S.gainR.connect(merger,0,1);merger.connect(S.audio.destination);S.subGain=S.audio.createGain();S.subGain.gain.value=0;S.subGain.connect(S.audio.destination);}
@@ -847,13 +879,69 @@ function speak(text){if(!S.voice||!text||!window.speechSynthesis)return;speechSy
 function showToast(msg,icon=''){toast.innerHTML=icon?'<span class="icon">'+icon+'</span>'+msg:msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3000);}
 
 /* Breathing */
-function setPhase(i){const pattern=getPattern(),words=getWords(),journey=JOURNEYS[S.journey],dur=pattern[i];S.phase=i;circle.style.transitionDuration=(dur*.9)+'s';circle.className='circle breathing '+phases[i];const w=words[i];word.textContent=w||'';phaseEl.textContent=w?phases[i].replace('-in',' in').replace('-out',' out'):'';sr.textContent=w||'';if(w)speak(w);if(S.sound&&S.audio){fadeOutSolfeggio();setTimeout(()=>{if(!S.on)return;playFreq(journey.freqs[i],journey.volumes[i]);playBinaural(journey.base+journey.shifts[i]);},150);}if(i===2){S.breaths++;S.lifetimeBreaths++;}}
+function setPhase(i){
+  const pattern=getPattern(),words=getWords(),journey=JOURNEYS[S.journey],dur=pattern[i];
+  S.phase=i;
+  circle.style.transitionDuration=(dur*.9)+'s';
+  circle.className='circle breathing '+phases[i];
+  const w=words[i];
+  word.textContent=w||'';
+  phaseEl.textContent=w?phases[i].replace('-in',' in').replace('-out',' out'):'';
+  sr.textContent=w||'';
+  if(w)speak(w);
+  
+  // Haptic feedback on each phase
+  if(i===0)haptic(80);      // inhale - medium pulse
+  else if(i===1)haptic(40); // hold - soft pulse
+  else if(i===2)haptic(60); // exhale - gentle pulse
+  else if(i===3)haptic(30); // rest - softest pulse
+  
+  if(S.sound&&S.audio){
+    fadeOutSolfeggio();
+    setTimeout(()=>{if(!S.on)return;playFreq(journey.freqs[i],journey.volumes[i]);playBinaural(journey.base+journey.shifts[i]);},150);
+  }
+  if(i===2){S.breaths++;S.lifetimeBreaths++;}
+}
+
 function scheduleNext(){if(!S.on)return;S.timer=setTimeout(()=>{if(!S.on)return;setPhase(findNextActivePhase(S.phase));scheduleNext();},getPattern()[S.phase]*1000);}
 function updateTimer(){if(!S.on)return;S.elapsed++;if(S.duration>0){const rem=S.duration-S.elapsed;if(rem<=0){stop();return;}timerDisplay.textContent=Math.floor(rem/60)+':'+(rem%60<10?'0':'')+(rem%60);}else timerDisplay.textContent=t('breathe')+' '+S.breaths;S.tickTimer=setTimeout(updateTimer,1000);}
 
-function start(){if(S.on)return;S.on=true;S.breaths=0;S.elapsed=0;S.hasStarted=true;document.body.classList.add('active');sessionMsg.classList.remove('show');sessionMsg.innerHTML='';hint.style.display='none';wisdom.textContent=WISDOMS[Math.floor(Math.random()*WISDOMS.length)];circle.classList.remove('idle');circle.classList.add('starting');if(S.sound){initAudio();if(S.audio.state==='suspended')S.audio.resume();playSubBass();}setTimeout(()=>{circle.classList.remove('starting');const pattern=getPattern();let first=0;for(let i=0;i<4;i++)if(pattern[i]>0){first=i;break;}setPhase(first);scheduleNext();updateTimer();},400);sr.textContent='Breathing started.';}
+function start(){
+  if(S.on)return;
+  S.on=true;S.breaths=0;S.elapsed=0;S.hasStarted=true;
+  document.body.classList.add('active');
+  sessionMsg.classList.remove('show');sessionMsg.innerHTML='';
+  hint.style.display='none';
+  wisdom.textContent=WISDOMS[Math.floor(Math.random()*WISDOMS.length)];
+  circle.classList.remove('idle');circle.classList.add('starting');
+  haptic(100); // Start feedback
+  if(S.sound){initAudio();if(S.audio.state==='suspended')S.audio.resume();playSubBass();}
+  setTimeout(()=>{
+    circle.classList.remove('starting');
+    const pattern=getPattern();
+    let first=0;for(let i=0;i<4;i++)if(pattern[i]>0){first=i;break;}
+    setPhase(first);scheduleNext();updateTimer();
+  },400);
+  sr.textContent='Breathing started.';
+}
 
-function stop(){if(!S.on)return;S.on=false;document.body.classList.remove('active');clearTimeout(S.timer);clearTimeout(S.tickTimer);S.timer=S.tickTimer=null;circle.style.transitionDuration='';circle.className='circle idle';word.textContent=t('breathe');phaseEl.textContent='';timerDisplay.textContent='';stopAudio();savePrefs();sessionMsg.innerHTML='<span class="count">✧ '+S.breaths+' '+t('breathsWith')+' ✧</span><br>'+t('returnWhen')+'<span class="lifetime">'+S.lifetimeBreaths.toLocaleString()+' '+t('lifetimeBreaths')+'</span>';sessionMsg.classList.add('show');setTimeout(()=>{sessionMsg.classList.remove('show');wisdom.textContent='';},8000);sr.textContent=S.breaths+' breaths complete.';}
+function stop(){
+  if(!S.on)return;
+  S.on=false;
+  document.body.classList.remove('active');
+  clearTimeout(S.timer);clearTimeout(S.tickTimer);
+  S.timer=S.tickTimer=null;
+  circle.style.transitionDuration='';
+  circle.className='circle idle';
+  word.textContent=t('breathe');
+  phaseEl.textContent='';timerDisplay.textContent='';
+  stopAudio();savePrefs();
+  haptic([50,50,50]); // End feedback
+  sessionMsg.innerHTML='<span class="count">✧ '+S.breaths+' '+t('breathsWith')+' ✧</span><br>'+t('returnWhen')+'<span class="lifetime">'+S.lifetimeBreaths.toLocaleString()+' '+t('lifetimeBreaths')+'</span>';
+  sessionMsg.classList.add('show');
+  setTimeout(()=>{sessionMsg.classList.remove('show');wisdom.textContent='';},8000);
+  sr.textContent=S.breaths+' breaths complete.';
+}
 
 function toggle(){S.on?stop():start();}
 function openMenu(){menu.classList.add('open');overlay.classList.add('show');}
@@ -863,19 +951,19 @@ function closeAllModals(){donateModal.classList.remove('show');iosModal.classLis
 function initMenuState(){document.querySelectorAll('[data-journey]').forEach(el=>el.classList.toggle('selected',el.dataset.journey===S.journey));document.querySelectorAll('[data-breath]').forEach(el=>el.classList.toggle('selected',el.dataset.breath===S.breathwork));document.querySelectorAll('[data-time]').forEach(el=>el.classList.toggle('selected',parseInt(el.dataset.time)===S.duration));document.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('selected',el.dataset.lang===S.lang));$('soundBtn').classList.toggle('on',S.sound);$('voiceBtn').classList.toggle('on',S.voice);updateUI();}
 
 /* Event listeners */
-document.querySelectorAll('[data-journey]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-journey]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.journey=el.dataset.journey;savePrefs();}));
-document.querySelectorAll('[data-breath]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-breath]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.breathwork=el.dataset.breath;savePrefs();}));
-document.querySelectorAll('[data-time]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-time]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.duration=parseInt(el.dataset.time);savePrefs();}));
-document.querySelectorAll('[data-lang]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-lang]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.lang=el.dataset.lang;savePrefs();updateUI();langModal.classList.remove('show');}));
+document.querySelectorAll('[data-journey]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-journey]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.journey=el.dataset.journey;savePrefs();haptic(30);}));
+document.querySelectorAll('[data-breath]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-breath]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.breathwork=el.dataset.breath;savePrefs();haptic(30);}));
+document.querySelectorAll('[data-time]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-time]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.duration=parseInt(el.dataset.time);savePrefs();haptic(30);}));
+document.querySelectorAll('[data-lang]').forEach(el=>el.addEventListener('click',()=>{document.querySelectorAll('[data-lang]').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');S.lang=el.dataset.lang;savePrefs();updateUI();langModal.classList.remove('show');haptic(30);}));
 
-$('voiceBtn').addEventListener('click',()=>{S.voice=!S.voice;$('voiceBtn').classList.toggle('on',S.voice);savePrefs();showToast(S.voice?t('voiceOn'):t('voiceOff'));});
-$('langBtn').addEventListener('click',()=>langModal.classList.add('show'));
+$('voiceBtn').addEventListener('click',()=>{S.voice=!S.voice;$('voiceBtn').classList.toggle('on',S.voice);savePrefs();showToast(S.voice?t('voiceOn'):t('voiceOff'));haptic(40);});
+$('langBtn').addEventListener('click',()=>{langModal.classList.add('show');haptic(30);});
 $('langClose').addEventListener('click',()=>langModal.classList.remove('show'));
-$('menuBtn').addEventListener('click',openMenu);
+$('menuBtn').addEventListener('click',()=>{openMenu();haptic(30);});
 $('menuClose').addEventListener('click',closeMenu);
 overlay.addEventListener('click',()=>{closeMenu();closeAllModals();});
-$('soundBtn').addEventListener('click',()=>{S.sound=!S.sound;$('soundBtn').classList.toggle('on',S.sound);savePrefs();if(S.sound){if(!S.headphonesShown){showToast(t('headphones'),'🎧');S.headphonesShown=true;}if(S.on){initAudio();if(S.audio.state==='suspended')S.audio.resume();const j=JOURNEYS[S.journey];playFreq(j.freqs[S.phase],j.volumes[S.phase]);playBinaural(j.base+j.shifts[S.phase]);playSubBass();}}else stopAudio();});
-$('contrastBtn').addEventListener('click',()=>{document.body.classList.toggle('contrast');$('contrastBtn').classList.toggle('on',document.body.classList.contains('contrast'));});
+$('soundBtn').addEventListener('click',()=>{S.sound=!S.sound;$('soundBtn').classList.toggle('on',S.sound);savePrefs();haptic(40);if(S.sound){if(!S.headphonesShown){showToast(t('headphones'),'🎧');S.headphonesShown=true;}if(S.on){initAudio();if(S.audio.state==='suspended')S.audio.resume();const j=JOURNEYS[S.journey];playFreq(j.freqs[S.phase],j.volumes[S.phase]);playBinaural(j.base+j.shifts[S.phase]);playSubBass();}}else stopAudio();});
+$('contrastBtn').addEventListener('click',()=>{document.body.classList.toggle('contrast');$('contrastBtn').classList.toggle('on',document.body.classList.contains('contrast'));haptic(30);});
 
 async function shareApp(){const d={title:'Innera Field',text:'Free breathing meditation. No account. No tracking. Just peace.',url:'https://innerafield.com'};if(navigator.share)try{await navigator.share(d);}catch(e){if(e.name!=='AbortError')copyLink();}else copyLink();}
 function copyLink(){navigator.clipboard.writeText('https://innerafield.com').then(()=>showToast(t('linkCopied')+'<br>'+t('shareThePeace'))).catch(()=>showToast('innerafield.com'));}
@@ -902,32 +990,60 @@ circle.addEventListener('click',toggle);
 circle.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
 document.addEventListener('keydown',e=>{if(e.key===' '&&document.activeElement===document.body){e.preventDefault();toggle();}if(e.key==='Escape'){if(donateModal.classList.contains('show'))donateModal.classList.remove('show');else if(iosModal.classList.contains('show'))iosModal.classList.remove('show');else if(langModal.classList.contains('show'))langModal.classList.remove('show');else if(menu.classList.contains('open'))closeMenu();else if(S.on)stop();}});
 
-/* Service Worker & Updates */
-function showUpdateBanner(){updateBanner.classList.add('show');}
-$('updateBtn').addEventListener('click',()=>{if(S.swRegistration&&S.swRegistration.waiting){S.swRegistration.waiting.postMessage('SKIP_WAITING');}window.location.reload();});
+/* ═══════════════════════════════════════════════════════════
+   SERVICE WORKER & UPDATE SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+function showUpdateAvailable(){
+  S.updateAvailable=true;
+  updateBtn.classList.add('show');
+  // Also show banner after a short delay
+  setTimeout(()=>{
+    if(S.updateAvailable)updateBanner.classList.add('show');
+  },3000);
+}
+
+function doUpdate(){
+  showToast(t('updating'),'↑');
+  haptic([50,100,50]);
+  if(S.swRegistration&&S.swRegistration.waiting){
+    S.swRegistration.waiting.postMessage('SKIP_WAITING');
+  }
+  setTimeout(()=>window.location.reload(),500);
+}
+
+updateBtn.addEventListener('click',doUpdate);
+$('bannerUpdateBtn').addEventListener('click',doUpdate);
 
 if('serviceWorker'in navigator){
   navigator.serviceWorker.register('sw.js').then(reg=>{
     S.swRegistration=reg;
+    
+    // Check if there's already a waiting worker
+    if(reg.waiting){
+      showUpdateAvailable();
+    }
+    
+    // Listen for new service worker installing
     reg.addEventListener('updatefound',()=>{
       const newWorker=reg.installing;
       newWorker.addEventListener('statechange',()=>{
         if(newWorker.state==='installed'&&navigator.serviceWorker.controller){
-          S.updateAvailable=true;
-          showUpdateBanner();
+          showUpdateAvailable();
         }
       });
     });
+    
+    // Periodic check for updates (every 30 minutes)
+    setInterval(()=>reg.update(),30*60*1000);
+    
   }).catch(()=>{});
   
-  navigator.serviceWorker.addEventListener('message',e=>{
-    if(e.data&&e.data.type==='SW_UPDATED'){
-      console.log('Updated to version:',e.data.version);
-    }
-  });
-  
+  // Reload when new service worker takes over
+  let refreshing=false;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{
-    if(S.updateAvailable)window.location.reload();
+    if(refreshing)return;
+    refreshing=true;
+    window.location.reload();
   });
 }
 

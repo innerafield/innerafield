@@ -1,8 +1,8 @@
-// Innera Field Service Worker v3.3
+// Innera Field Service Worker v3.3.1
 // One Field. One Breath. One Source.
 
-const VERSION = '3.3.0';
-const CACHE_NAME = 'innera-v3.3';
+const VERSION = '3.3.1';
+const CACHE_NAME = 'innera-v3.3.1';
 const ASSETS = [
   '/',
   '/index.html',
@@ -16,17 +16,20 @@ const ASSETS = [
   '/icons/favicon-16.png'
 ];
 
-// Install - cache assets
+// Install - cache all assets
 self.addEventListener('install', event => {
   console.log('[SW] Installing version', VERSION);
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting()) // Activate immediately
+      .then(() => {
+        console.log('[SW] All assets cached');
+        // Don't skip waiting - let the page control when to update
+      })
   );
 });
 
-// Activate - clean old caches and notify clients
+// Activate - clean old caches
 self.addEventListener('activate', event => {
   console.log('[SW] Activating version', VERSION);
   event.waitUntil(
@@ -38,29 +41,19 @@ self.addEventListener('activate', event => {
               return caches.delete(key);
             })
       );
-    }).then(() => {
-      // Take control of all clients immediately
-      return self.clients.claim();
-    }).then(() => {
-      // Notify all clients that a new version is active
-      return self.clients.matchAll().then(clients => {
-        clients.forEach(client => {
-          client.postMessage({
-            type: 'SW_UPDATED',
-            version: VERSION
-          });
-        });
-      });
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
-// Fetch - network first for HTML, cache first for assets
+// Fetch - network first for HTML, cache first for other assets
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // For navigation requests (HTML), try network first
-  if (event.request.mode === 'navigate') {
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') return;
+  
+  // For navigation (HTML pages) - network first
+  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
     event.respondWith(
       fetch(event.request)
         .then(response => {
@@ -71,41 +64,41 @@ self.addEventListener('fetch', event => {
         })
         .catch(() => {
           // Offline - serve from cache
-          return caches.match(event.request) || caches.match('/');
+          return caches.match(event.request).then(cached => {
+            return cached || caches.match('/index.html');
+          });
         })
     );
     return;
   }
   
-  // For other requests, cache first
+  // For other assets - cache first, then network
   event.respondWith(
-    caches.match(event.request)
-      .then(cached => {
-        if (cached) return cached;
-        return fetch(event.request)
-          .then(response => {
-            if (!response || response.status !== 200) return response;
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-            return response;
-          })
-          .catch(() => null);
-      })
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      
+      return fetch(event.request).then(response => {
+        // Only cache successful responses
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+          return response;
+        }
+        
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        return response;
+      }).catch(() => null);
+    })
   );
 });
 
-// Listen for messages from clients
+// Listen for skip waiting message from page
 self.addEventListener('message', event => {
-  if (event.data === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: VERSION });
-  }
-  
   if (event.data === 'SKIP_WAITING') {
+    console.log('[SW] Skipping waiting, activating now');
     self.skipWaiting();
   }
   
-  if (event.data === 'CHECK_UPDATE') {
-    // Force check for updates by re-registering
-    self.registration.update();
+  if (event.data === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: VERSION });
   }
 });
